@@ -1,0 +1,100 @@
+site_name: AWS Mastery Path
+site_description: A structured, module-wise AWS training program from entry level to master level, with runnable CLI commands and real AWS configuration in every module.
+site_url: https://sigilipelli.github.io/aws-mastery-path/
+repo_url: https://github.com/SIGILIPELLI/aws-mastery-path
+repo_name: aws-mastery-path
+
+theme:
+  name: material
+  custom_dir: docs/overrides
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - navigation.indexes
+    - content.code.copy
+    - content.code.annotate
+    - search.suggest
+    - search.highlight
+
+markdown_extensions:
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - toc:
+      permalink: true
+
+extra_css:
+  - stylesheets/extra.css
+
+nav:
+  - Home: index.md
+  - Privacy Policy: privacy.md
+  - "Level 1 · Entry":
+      - Overview: level-1/index.md
+      - "01 · Setup & AWS CLI": level-1/01-setup-cli.md
+      - "02 · IAM & Security Basics": level-1/02-iam-security-basics.md
+      - "03 · EC2 Compute": level-1/03-ec2-compute.md
+      - "04 · S3 Storage": level-1/04-s3-storage.md
+      - "05 · VPC Networking Basics": level-1/05-vpc-networking-basics.md
+      - "06 · RDS Databases": level-1/06-rds-databases.md
+      - "07 · Lambda & Serverless": level-1/07-lambda-serverless.md
+      - "08 · CloudWatch Monitoring & Logging": level-1/08-cloudwatch-monitoring.md
+      - "09 · CloudFormation & IaC Intro": level-1/09-cloudformation-iac.md
+      - "10 · Capstone — Serverless Web App": level-1/10-capstone-project.md
+  - "Level 2 · Intermediate":
+      - Overview: level-2/index.md
+      - "01 · Containers on AWS (ECS/Fargate)": level-2/01-ecs-containers.md
+      - "02 · Auto Scaling & Load Balancing": level-2/02-autoscaling-load-balancing.md
+      - "03 · Route 53 & DNS": level-2/03-route53-dns.md
+      - "04 · SNS & SQS Messaging": level-2/04-sns-sqs-messaging.md
+      - "05 · DynamoDB Deep Dive": level-2/05-dynamodb-deep-dive.md
+      - "06 · Elastic Beanstalk": level-2/06-elastic-beanstalk.md
+      - "07 · Secrets Manager & Parameter Store": level-2/07-secrets-parameter-store.md
+      - "08 · CloudFront & CDN Basics": level-2/08-cloudfront-cdn.md
+      - "09 · Cost Management & Billing": level-2/09-cost-management-billing.md
+      - "10 · Project — Scalable Web App": level-2/10-project-scalable-web-app.md
+  - "Level 3 · Advanced":
+      - Overview: level-3/index.md
+      - "01 · Advanced VPC (Peering, Transit Gateway, VPN)": level-3/01-advanced-vpc.md
+      - "02 · Kubernetes on AWS (EKS)": level-3/02-eks-kubernetes.md
+      - "03 · Step Functions & Orchestration": level-3/03-step-functions-orchestration.md
+      - "04 · Advanced IAM (SCPs, Permission Boundaries)": level-3/04-advanced-iam.md
+      - "05 · Terraform on AWS": level-3/05-terraform-on-aws.md
+      - "06 · CI/CD (CodePipeline, CodeBuild, CodeDeploy)": level-3/06-cicd-codepipeline.md
+      - "07 · Multi-Region & Disaster Recovery": level-3/07-multi-region-disaster-recovery.md
+      - "08 · Advanced Monitoring (X-Ray & Tracing)": level-3/08-advanced-monitoring-xray.md
+      - "09 · Security Deep Dive (GuardDuty, WAF, Security Hub)": level-3/09-security-deep-dive.md
+      - "10 · Project — Multi-Tier CI/CD Pipeline": level-3/10-project-cicd-pipeline.md
+  - "Level 4 · Master":
+      - Overview: level-4/index.md
+      - "01 · AWS Well-Architected Framework": level-4/01-well-architected-framework.md
+      - "02 · Advanced Serverless (EventBridge at Scale)": level-4/02-advanced-serverless-eventbridge.md
+      - "03 · Data Lakes & Analytics (S3, Athena, Glue, Redshift)": level-4/03-data-lakes-analytics.md
+      - "04 · Kubernetes at Scale (EKS Production Patterns)": level-4/04-eks-at-scale.md
+      - "05 · Multi-Account Strategy (Organizations, Control Tower)": level-4/05-multi-account-strategy.md
+      - "06 · Cost Optimization at Scale": level-4/06-cost-optimization-at-scale.md
+      - "07 · Advanced Networking (Direct Connect, Global Accelerator)": level-4/07-advanced-networking.md
+      - "08 · Compliance & Governance (Config, Audit Manager)": level-4/08-compliance-governance.md
+      - "09 · Chaos Engineering & Resilience Testing": level-4/09-chaos-engineering-resilience.md
+      - "10 · Capstone Project — Production-Grade Cloud Architecture": level-4/10-capstone-project.md
