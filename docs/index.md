@@ -1,3 +1,8 @@
+---
+title: "Learn AWS Free: Beginner to Master Cloud Course"
+description: "Free AWS course from beginner to advanced -- hands-on cloud lessons with real capstone projects. Part of a 37-course free learning library."
+---
+
 # AWS Mastery Path
 
 A structured, module-wise AWS training program that takes you from creating
