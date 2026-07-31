@@ -15,9 +15,9 @@ module, and a hands-on project at the end of each level.
 | Level | Focus | Modules |
 |-------|-------|---------|
 | [Level 1 · Entry](level-1/index.md) | Account setup, IAM, EC2, S3, VPC, RDS, Lambda, CloudWatch, CloudFormation | 9 topics + 1 capstone |
-| [Level 2 · Intermediate](level-2/index.md) | Containers, auto scaling, DNS, messaging, DynamoDB, CDN, cost management | 9 topics + 1 project |
-| [Level 3 · Advanced](level-3/index.md) | Advanced networking, Kubernetes (EKS), IaC with Terraform, CI/CD, security | 9 topics + 1 project |
-| [Level 4 · Master](level-4/index.md) | Well-Architected Framework, data lakes, multi-account strategy, chaos engineering | 9 topics + 1 capstone |
+| Level 2 · Intermediate (coming soon) | Containers, auto scaling, DNS, messaging, DynamoDB, CDN, cost management | 9 topics + 1 project |
+| Level 3 · Advanced (coming soon) | Advanced networking, Kubernetes (EKS), IaC with Terraform, CI/CD, security | 9 topics + 1 project |
+| Level 4 · Master (coming soon) | Well-Architected Framework, data lakes, multi-account strategy, chaos engineering | 9 topics + 1 capstone |
 
 ## How to use this site
 
