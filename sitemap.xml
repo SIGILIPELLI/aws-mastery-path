@@ -2,54 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://sigilipelli.github.io/aws-mastery-path/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-03</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/aws-mastery-path/privacy/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-03</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/aws-mastery-path/level-1/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-03</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/aws-mastery-path/level-1/01-setup-cli/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-03</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/aws-mastery-path/level-1/02-iam-security-basics/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-03</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/aws-mastery-path/level-1/03-ec2-compute/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-03</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/aws-mastery-path/level-1/04-s3-storage/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-03</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/aws-mastery-path/level-1/05-vpc-networking-basics/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-03</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/aws-mastery-path/level-1/06-rds-databases/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-03</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/aws-mastery-path/level-1/07-lambda-serverless/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-03</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/aws-mastery-path/level-1/08-cloudwatch-monitoring/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-03</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/aws-mastery-path/level-1/09-cloudformation-iac/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-03</lastmod>
     </url>
     <url>
          <loc>https://sigilipelli.github.io/aws-mastery-path/level-1/10-capstone-project/</loc>
-         <lastmod>2026-07-31</lastmod>
+         <lastmod>2026-08-03</lastmod>
     </url>
 </urlset>
