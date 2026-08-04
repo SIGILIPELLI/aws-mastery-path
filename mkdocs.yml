@@ -62,8 +62,19 @@ nav:
       - "08 · CloudWatch Monitoring & Logging": level-1/08-cloudwatch-monitoring.md
       - "09 · CloudFormation & IaC Intro": level-1/09-cloudformation-iac.md
       - "10 · Capstone — Serverless Web App": level-1/10-capstone-project.md
+  - "Level 2 · Intermediate":
+      - Overview: level-2/index.md
+      - "01 · Containers on AWS (ECS/Fargate)": level-2/01-ecs-containers.md
+      - "02 · Auto Scaling & Load Balancing": level-2/02-autoscaling-load-balancing.md
+      - "03 · Route 53 & DNS": level-2/03-route53-dns.md
+      - "04 · SNS & SQS Messaging": level-2/04-sns-sqs-messaging.md
+      - "05 · DynamoDB Deep Dive": level-2/05-dynamodb-deep-dive.md
+      - "06 · Elastic Beanstalk": level-2/06-elastic-beanstalk.md
+      - "07 · Secrets Manager & Parameter Store": level-2/07-secrets-parameter-store.md
+      - "08 · CloudFront & CDN Basics": level-2/08-cloudfront-cdn.md
+      - "09 · Cost Management & Billing": level-2/09-cost-management-billing.md
+      - "10 · Project — Scalable Web App": level-2/10-project-scalable-web-app.md
 # --- auto-pruned stub levels (see AdSense low-value-content fix) ---
 exclude_docs: |
-  level-2/*.md
   level-3/*.md
   level-4/*.md
