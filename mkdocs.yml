@@ -1,8 +1,8 @@
 site_name: AWS Mastery Path
 site_description: A structured, module-wise AWS training program from entry level to master level, with runnable CLI commands and real AWS configuration in every module.
-site_url: https://sigilipelli.github.io/aws-mastery-path/
-repo_url: https://github.com/SIGILIPELLI/aws-mastery-path
-repo_name: aws-mastery-path
+site_url: https://sigilipelli.github.io/aws-skillmastery/
+repo_url: https://github.com/SIGILIPELLI/aws-skillmastery
+repo_name: aws-skillmastery
 
 theme:
   name: material
