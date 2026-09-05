@@ -118,6 +118,42 @@ payloads you want visible on a trace but don't need to query by.
 | `aws xray get-service-graph` | Fetch the service map data |
 | `aws xray put-trace-segments` | Manually submit segments (custom instrumentation) |
 
+## How It Actually Works
+
+X-Ray reconstructs a distributed request's full call graph from
+independently-emitted **trace segments** — each service involved in
+handling a request (via the X-Ray SDK or auto-instrumentation) generates its
+own segment describing the work it did, tagged with a shared trace ID that's
+propagated forward through request headers (`X-Amzn-Trace-Id`) as the
+request hops between services. X-Ray's backend never sees the request
+travel end-to-end itself; it only receives these disconnected segments
+(often via a local X-Ray daemon that batches and forwards them
+asynchronously, specifically so tracing overhead doesn't block your
+application's actual response path) and reassembles them into one trace
+purely by matching that shared trace ID — which is exactly why a broken
+trace (a service that fails to propagate the header) produces a visibly
+truncated trace map rather than an error: X-Ray has no way to know a hop it
+was never told about exists.
+
+**Sampling** exists because instrumenting and transmitting a segment for
+every single request at scale would itself become a meaningful source of
+load and cost; the default X-Ray sampling rule (1 request/second plus 5% of
+additional requests) is evaluated locally by the SDK per-request against a
+sampling decision cached from the X-Ray control plane, meaning the decision
+to trace a given request is made *before* the request executes, not
+after-the-fact based on whether something interesting happened to it —
+which is why intermittent errors can be invisible in X-Ray traces unless you
+tune sampling rules or force-sample on error conditions explicitly.
+
+CloudWatch's **Container Insights / embedded metric format** takes a
+different approach entirely: rather than a separate tracing pipeline,
+structured JSON log lines emitted by your application are parsed by
+CloudWatch Logs at ingestion time, with fields you mark as metrics
+extracted and written directly into the CloudWatch metrics store — meaning
+"custom metrics" from EMF logs are derived from log data after the fact by
+CloudWatch's own ingestion pipeline, not sent as a distinct metric API call
+from your code.
+
 ## Exercise
 
 Enable `Active` X-Ray tracing on a Lambda function fronted by API

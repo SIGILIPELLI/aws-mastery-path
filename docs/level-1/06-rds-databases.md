@@ -169,6 +169,35 @@ RDS takes one last snapshot before deleting.
 | `aws rds delete-db-instance --skip-final-snapshot` | Delete the instance (no final backup). |
 | `--source-group` (on a security group rule) | Allow traffic only from members of another security group. |
 
+## How It Actually Works
+
+RDS is "managed" in a very specific sense: AWS runs an agent on the
+underlying EC2-class host that supervises the actual database engine
+process (MySQL, PostgreSQL, etc.) and automates the operational tasks around
+it — patching, backups, failover — but the engine itself is the same
+open-source (or licensed) binary you'd run yourself; RDS isn't a
+reimplementation of MySQL, it's orchestration wrapped around it.
+
+**Multi-AZ** deployments work through synchronous, block-level replication
+to a standby instance in a different Availability Zone: every write is
+acknowledged to your application only after it has been durably persisted
+on both the primary's and the standby's storage volumes, which is why
+Multi-AZ increases write latency slightly compared to a single-AZ instance —
+you're paying a network round-trip per commit in exchange for RDS being able
+to detect a primary failure and automatically flip the DNS-level endpoint to
+the standby, typically within 60–120 seconds, without you changing a
+connection string.
+
+**Read replicas** use the opposite mechanism: **asynchronous** replication
+via the database engine's own native replication log (e.g. MySQL binlog
+shipping), which is why replicas can lag behind the primary under heavy
+write load — there's no synchronous handshake forcing them to stay current.
+Automated backups are implemented as continuous transaction-log capture plus
+periodic storage-volume snapshots, which is what makes **point-in-time
+restore** possible down to the second: RDS replays the captured log from the
+nearest snapshot forward to your requested timestamp on a freshly
+provisioned instance, rather than "rewinding" the existing one in place.
+
 ## Exercise
 
 1. Create a second private subnet in a different AZ, a DB subnet group using

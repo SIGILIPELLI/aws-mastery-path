@@ -156,6 +156,35 @@ exactly what was originally published within the time window.
 | `aws events create-archive` | Enable replay capability |
 | `aws events start-replay` | Re-deliver past events |
 
+## How It Actually Works
+
+EventBridge is architecturally a **publish/subscribe event bus** built
+around **rules** that pattern-match against event JSON — when an event is
+published (either by an AWS service automatically, or your own
+`PutEvents` call), EventBridge evaluates every rule on the target event
+bus against that event's structure, and for each matching rule, invokes
+every configured target *independently and in parallel*, similar in spirit
+to SNS fan-out but with far richer content-based routing: a rule can match
+on nested JSON fields, numeric ranges, and prefixes rather than just a
+topic name.
+
+Because target invocation is decoupled per-rule, EventBridge maintains its
+own **retry policy with exponential backoff and dead-letter queue support**
+per target — a failure delivering to one target (say, a Lambda function
+throttling) has zero effect on delivery to any other target matched by the
+same or a different rule; each target's retry state is tracked
+independently by EventBridge's delivery subsystem, not by the publishing
+service.
+
+**Schema Registry** and its "schema discovery" feature work by EventBridge
+passively sampling a percentage of events flowing through a bus and running
+structural inference over them to generate an OpenAPI/JSONSchema definition
+— it's not a strict validation gate by default (events don't need to match
+a registered schema to be delivered), which is a deliberate trade-off:
+EventBridge prioritizes not silently dropping events over enforcing schema
+compliance, leaving strict validation to be opted into at the consumer
+level if you need it.
+
 ## Exercise
 
 Create a custom event bus, publish three `OrderPlaced` events with

@@ -183,6 +183,35 @@ instantly, and doesn't consume write capacity.
 | `aws dynamodb update-table --stream-specification StreamEnabled=true,...` | Enable a change stream. |
 | `aws dynamodb update-time-to-live` | Enable automatic item expiry. |
 
+## How It Actually Works
+
+DynamoDB's performance guarantees come directly from how it partitions
+data: every item's **partition key** is hashed, and that hash determines
+which physical storage partition holds the item — there's no query planner
+scanning an index, a `GetItem` by key is essentially "hash the key, jump
+straight to the partition holding it." This is exactly why DynamoDB
+punishes poor key design so harshly: if most of your traffic hits a small
+number of partition key values (a "hot partition"), that traffic is
+concentrated onto one physical partition's fixed throughput allocation no
+matter how much total provisioned capacity your table has — the other
+partitions sit idle while one gets throttled.
+
+Provisioned/on-demand capacity is enforced per-partition, not table-wide:
+DynamoDB automatically splits partitions as a table grows (by size or
+sustained throughput), redistributing key-hash ranges across more physical
+partitions — but a sudden traffic spike to one key can outrun that
+adaptive splitting, which is the real mechanism behind DynamoDB throttling
+you even when your table-level "capacity" metric looks fine.
+
+**Global Secondary Indexes** aren't computed at query time — they're
+maintained as a separate, asynchronously-updated copy of your data
+reorganized under a different key, updated via DynamoDB's internal
+replication stream after every write to the base table. That asynchrony is
+why a GSI can lag milliseconds behind the base table under load (eventual
+consistency by default), and why a GSI needs its own provisioned throughput
+— you're paying for a second, independently-partitioned dataset being kept
+in sync, not a free index on top of one.
+
 ## Exercise
 
 1. Create a table modeling orders with `customerId` (partition) +

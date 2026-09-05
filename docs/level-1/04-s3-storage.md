@@ -171,6 +171,37 @@ more once you're optimizing costs at scale (Level 4 covers this).
 | `aws s3api put-public-access-block ...` | Opt in/out of S3's public-access safety blocks. |
 | `aws s3api put-bucket-website --bucket B --website-configuration '{...}'` | Enable static website hosting. |
 
+## How It Actually Works
+
+S3 buckets aren't a filesystem — there is no directory tree on disk anywhere.
+Every object is stored as an opaque blob in a massive, sharded key-value
+index, addressed by the full key string (`images/logo.png` is one flat key,
+not a traversal through folders); the Console's "folder" view is purely a
+UI illusion built by splitting keys on `/`. This is why S3 can list a
+million-object "folder" instantly regardless of nesting depth, and why
+renaming a folder is actually a full copy-then-delete of every object under
+that prefix, not a cheap metadata rename.
+
+Historically S3 was the textbook example of **eventual consistency**: a
+`PUT` followed immediately by a `GET` of the same key could, in the old
+model, return stale data because the object had to propagate across multiple
+storage nodes for durability before being uniformly visible. Since December
+2020, S3 provides **strong read-after-write consistency** for all operations
+(including overwrites and deletes) — but the underlying mechanism didn't
+change from "eventually replicate to 11-nines durability across at least
+three Availability Zones"; what changed is that reads are now routed through
+a consistency-checking layer that won't serve a response until it can
+guarantee it reflects the latest committed write, even while replication to
+all copies is still catching up in the background.
+
+Versioning works by never overwriting a key's data at all: internally, each
+key maps to a chain of immutable version objects plus a pointer to "current."
+A `PUT` to an existing key allocates a brand-new object and version ID and
+moves the pointer; a "delete" on a versioned bucket just writes a
+zero-byte delete-marker version on top of the chain — the storage bytes for
+every prior version remain fully allocated (and billed) until you issue a
+version-specific delete.
+
 ## Exercise
 
 1. Create a bucket with a globally-unique name of your choosing.

@@ -153,6 +153,39 @@ aws s3api put-bucket-lifecycle-configuration \
 | Detect spend anomalies | `aws ce create-anomaly-monitor` |
 | Tier S3 storage automatically | `aws s3api put-bucket-lifecycle-configuration` |
 
+## How It Actually Works
+
+At scale, cost optimization is fundamentally about exploiting how each
+service's billing meter actually works, not just "using less." **Spot
+Instances** are spare EC2 capacity AWS's own internal capacity-management
+system has determined it doesn't currently need for On-Demand/Reserved
+commitments — pricing floats based on real-time supply and demand per
+instance pool (instance type + AZ), and the two-minute interruption notice
+you get before reclamation exists because AWS's capacity system needs that
+resource back for a higher-priority (On-Demand/Reserved) request, not
+because of anything you did; this is why Spot strategy at scale means
+diversifying across many instance-pool combinations (so losing one pool's
+capacity doesn't take down your whole fleet) rather than picking the single
+cheapest option.
+
+**Savings Plans** work through the billing engine's rating step (module 09,
+Level 2) matching your committed dollar-per-hour rate against *any*
+eligible usage first, before falling back to on-demand rates for the
+remainder — at fleet scale, this means Savings Plans should be sized against
+your aggregate, sustained baseline usage across the whole organization
+(often via a payer account applying discounts across linked accounts),
+because the discount-matching happens organization-wide during the same
+consolidated billing rating pass, not account-by-account.
+
+**S3 Intelligent-Tiering** at scale works by S3 itself monitoring
+per-object access patterns and automatically moving objects between access
+tiers based on observed (not predicted) usage — this is a real, continuous
+background process S3 runs against your bucket's actual request logs
+internally, which is why it has no retrieval fees between the frequent and
+infrequent tiers (unlike manually choosing Standard-IA) but does carry a
+small per-object monitoring fee: you're paying for that continuous
+tier-decision computation instead of doing the tiering analysis yourself.
+
 ## Exercise
 
 Using `aws compute-optimizer get-ec2-instance-recommendations` (or the

@@ -170,6 +170,35 @@ aws logs get-query-results --query-id abcd-1234-...
 | `aws cloudwatch describe-alarms` | Check current alarm state. |
 | `aws logs start-query` / `get-query-results` | Run a Logs Insights query. |
 
+## How It Actually Works
+
+CloudWatch metrics are not sampled continuously in the way a local
+monitoring agent might poll — they're **published as discrete data points**
+by the service or agent emitting them (EC2's hypervisor emits CPU/network
+metrics every 1 or 5 minutes depending on "detailed monitoring"; your own
+`put-metric-data` calls create points whenever you call them), and
+CloudWatch's storage layer is really a time-series database that
+aggregates points landing in the same period into statistics (Average, Sum,
+MO, p99, etc.) rather than storing every raw point forever — which is why
+older data is only queryable at coarser resolution: CloudWatch automatically
+rolls 1-minute data up into 5-minute, then 1-hour aggregates as it ages out,
+trading precision for storage cost.
+
+**Alarms** are a state machine, not a continuous check: an alarm evaluates
+on a schedule (your period × evaluation-periods), and only transitions
+between `OK`, `ALARM`, and `INSUFFICIENT_DATA` when enough consecutive
+periods meet the threshold — this deliberate delay (not reacting to a single
+spike) is what prevents flapping, but it's also exactly why an alarm can
+lag several minutes behind a real, ongoing incident.
+
+Logs work on a completely different backend: CloudWatch Logs ingests
+line-oriented events into **log streams** grouped by **log group**, storing
+them append-only and indexing them for Logs Insights queries, which is why
+Insights queries scan compressed data proportional to the time range you
+select rather than doing a live grep — querying a wide time window across a
+high-volume log group is a genuine (and billed) full-text scan, not an
+instant lookup.
+
 ## Exercise
 
 1. Set a 14-day retention policy on the log group for your `training-hello`

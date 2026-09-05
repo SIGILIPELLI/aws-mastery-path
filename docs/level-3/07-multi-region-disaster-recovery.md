@@ -135,6 +135,39 @@ secondary record — no manual DNS change needed during an incident.
 | DNS failover | `aws route53 change-resource-record-sets` with `Failover` policy |
 | Health check | `aws route53 create-health-check` |
 
+## How It Actually Works
+
+Cross-region replication features (S3 CRR, RDS cross-region read replicas,
+DynamoDB Global Tables) all share the same underlying constraint: regions
+are separate control-plane and data-plane deployments connected only by
+AWS's private backbone network, so any cross-region replication is
+necessarily **asynchronous** — there is no synchronous cross-region write
+path in AWS because the physical distance alone (hundreds to thousands of
+miles) makes synchronous replication's round-trip latency unacceptable for
+almost any workload. This is the mechanical reason every multi-region DR
+strategy has to reckon with **RPO** (how much data you can afford to lose,
+bounded by replication lag) as a real, physics-driven number, not just a
+policy choice.
+
+DynamoDB Global Tables implement multi-region writes via **multi-master
+replication with last-writer-wins conflict resolution**: each region can
+accept writes independently, and DynamoDB's internal replication streams
+propagate every write to all other participating regions' tables,
+resolving any conflicting writes to the same item using each write's
+internal timestamp — meaning two near-simultaneous writes to the same key
+in different regions can silently have one discarded, which is a
+fundamentally different consistency model than a single-region table
+offers and needs to be designed around at the application level.
+
+DNS-based failover (Route 53 health checks flipping a failover routing
+policy) is a control-plane action layered on top of whatever replication
+mechanism your data tier uses — Route 53 detecting an unhealthy primary and
+switching authoritative answers to the secondary region only redirects
+*new* DNS lookups; clients holding a cached resolution (bounded by your
+record's TTL) keep hitting the failed region until that TTL expires, which
+is why RTO in a DNS-failover design is never zero even after the failover
+itself completes instantly.
+
 ## Exercise
 
 Given a single-region web app (ALB + ASG + RDS) with an RTO requirement

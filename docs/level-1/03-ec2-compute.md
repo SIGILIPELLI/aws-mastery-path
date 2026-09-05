@@ -176,6 +176,35 @@ aws ec2 terminate-instances --instance-ids i-0123456789abcdef0
 | `aws ec2 stop-instances` / `start-instances` | Pause/resume billing for compute (storage still billed). |
 | `aws ec2 terminate-instances` | Delete the instance and its root volume. |
 
+## How It Actually Works
+
+Launching an EC2 instance is not "starting a server" in the traditional
+sense — it's a scheduling decision made by AWS's fleet-wide **placement**
+system. When you call `RunInstances`, the request goes to a control-plane
+service that picks a physical host in the target Availability Zone with
+enough spare capacity for your instance type, taking into account the
+underlying **Nitro hypervisor** architecture: on Nitro-based instance types,
+nearly all traditional hypervisor work (networking, storage virtualization,
+security) is offloaded to dedicated Nitro Cards (custom silicon), leaving a
+minimal, stripped-down hypervisor on the host CPU. That's why modern instance
+types get near bare-metal performance — your guest OS isn't sharing CPU
+cycles with a heavyweight software hypervisor doing packet processing.
+
+A security group is not a firewall rule list evaluated top-to-bottom like a
+traditional ACL — it's a **stateful**, allow-only object evaluated by the
+Nitro Card itself at the network-interface level, before packets ever reach
+your instance's virtual NIC. "Stateful" means only the initiating direction
+needs an explicit rule; return traffic is tracked and auto-permitted via
+connection tracking, which is also why security groups have no explicit-deny
+rules — only allows, unioned across every group attached to the interface.
+
+Instance metadata (the `169.254.169.254` link-local address) is served by a
+per-instance metadata service running on the Nitro hypervisor, not fetched
+over the internet or even your VPC's routing — it's why IMDS calls work even
+with no internet gateway, and why IMDSv2's session-token requirement (a
+`PUT` before any `GET`) closes off SSRF attacks that could otherwise trick a
+vulnerable app into leaking that role's temporary credentials.
+
 ## Exercise
 
 1. Launch a `t3.micro` Amazon Linux instance with a security group that

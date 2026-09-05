@@ -134,6 +134,38 @@ one VPN serve every VPC on the TGW.
 | Site-to-Site VPN | On-prem ↔ AWS | N/A | Quick on-prem connectivity |
 | Direct Connect (L4) | On-prem ↔ AWS | N/A | Dedicated, high-bandwidth |
 
+## How It Actually Works
+
+VPC Peering and Transit Gateway solve the same connectivity problem with
+fundamentally different underlying mechanisms. A peering connection is a
+**point-to-point, non-transitive** route: each side simply adds a static
+route in its route table pointing the peer's CIDR at the peering connection
+ID, and the VPC fabric handles direct routing between the two VPCs' hosts —
+non-transitivity isn't a policy restriction, it's structural: VPC A has no
+route entry to VPC C's CIDR just because it peers with VPC B, so traffic
+genuinely has nowhere to go without an explicit peering connection (or a
+Transit Gateway) between A and C directly.
+
+**Transit Gateway** replaces this N² mesh problem with a real, managed
+routing hub: it's implemented as a regional, highly-available router service
+with its own route tables, to which VPCs, VPNs, and Direct Connect
+attachments all connect as spokes. Because Transit Gateway performs its own
+route table lookups and propagation, transitive routing (A through the
+gateway to C) works by default — the gateway is doing genuine Layer-3
+routing decisions per attachment, not just relaying peering-style static
+routes, which is also what lets you segment traffic by attaching different
+VPCs to different Transit Gateway route tables for network isolation.
+
+**PrivateLink / VPC endpoints** work through an entirely different
+mechanism: an interface endpoint provisions an elastic network interface
+inside your subnet backed by AWS PrivateLink's infrastructure, which proxies
+traffic to the target service over Amazon's internal network without ever
+routing through an internet gateway, NAT gateway, or the public internet at
+all — DNS resolution for the service name is silently redirected (via
+Route 53 Resolver rules PrivateLink installs) to that private ENI's IP,
+which is why enabling private DNS on an endpoint requires no application
+code changes: the same hostname just now resolves somewhere else.
+
 ## Exercise
 
 Sketch (on paper or in a text file) a three-VPC topology — `prod`,

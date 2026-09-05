@@ -190,6 +190,35 @@ old tasks — no manual blue/green orchestration needed for a simple update.
 | `aws ecs describe-services --cluster C --services S` | Check running vs. desired task count. |
 | `aws logs tail /ecs/GROUP --since 10m` | Tail recent container logs. |
 
+## How It Actually Works
+
+ECS is fundamentally a **scheduler** — a control loop, not a container
+runtime. The ECS control plane maintains the desired state you declare (a
+service wanting N running tasks of a given task definition) and continuously
+reconciles it against observed reality reported by agents running on your
+compute, launching or stopping tasks to close the gap — the same
+reconcile-loop pattern Kubernetes uses, just AWS-native and much simpler in
+scope.
+
+On **EC2 launch type**, the reconciliation is done by the **ECS Container
+Agent**, a process running on each cluster instance that registers the
+host's available CPU/memory with the control plane and receives task
+placement instructions back; the agent then talks to the local Docker daemon
+to actually start containers. On **Fargate launch type**, there's no
+visible host at all — AWS provisions a Firecracker MicroVM per task
+on-demand behind the scenes, meaning Fargate tasks get the same hardware
+isolation boundary as Lambda functions, at the cost of a startup delay
+(pulling the image and booting the MicroVM) that EC2-backed tasks avoid once
+a host already has the image cached.
+
+Task placement on EC2 launch type is a bin-packing problem the scheduler
+solves per your chosen strategy (`binpack`, `spread`, or `random`):
+`binpack` deliberately concentrates tasks onto the fewest possible instances
+to maximize utilization (and let auto scaling shrink the cluster), while
+`spread` distributes across AZs or instances for resilience — the scheduler
+is optimizing a real constraint-satisfaction problem against each instance's
+registered remaining CPU/memory headroom, not just round-robining.
+
 ## Exercise
 
 1. Build a small HTTP app (any language) into a Docker image, push it to a

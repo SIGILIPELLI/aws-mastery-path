@@ -150,6 +150,38 @@ concurrency limits.
 | `aws stepfunctions get-execution-history` | Full step-by-step trace |
 | `aws stepfunctions stop-execution` | Cancel a running execution |
 
+## How It Actually Works
+
+A Step Functions state machine is executed by a durable, versioned
+**interpreter**, not by any of your own compute — the service itself walks
+the Amazon States Language JSON you define, and after every single state
+transition, it durably persists the complete execution history (inputs,
+outputs, timestamps) to its own storage before moving to the next state.
+This is what gives Step Functions its headline guarantee: an execution can
+survive the underlying interpreter process being rescheduled, upgraded, or
+failing over, because the *state* of "where this execution currently is" is
+never held only in volatile memory — it's replayed from the persisted
+event history exactly like an event-sourced system.
+
+**Standard** and **Express** workflows are actually two different backend
+implementations behind one API surface. Standard workflows use this fully
+durable, exactly-once state-transition model (appropriate for long-running,
+auditable workflows, up to a year), while Express workflows trade that
+durability for throughput: they're designed for high-volume, short-duration
+executions and log completion data asynchronously to CloudWatch Logs rather
+than maintaining the full per-state execution history Standard does — which
+is why Express only guarantees at-least-once semantics, and why you can't
+list historical Express executions in the console the way you can Standard
+ones.
+
+Service integrations (calling Lambda, ECS, SNS, etc. directly from a state)
+work through Step Functions' own IAM role assuming the permissions needed
+to call each target service, and — for the "run a job and wait"
+(`.sync`) integration pattern — Step Functions actually polls or subscribes
+to callback tokens/events from that service to know when to resume the
+state machine, meaning the orchestrator itself is tracking external
+long-running work rather than blocking a thread waiting on it.
+
 ## Exercise
 
 Write an ASL definition with a `Choice` state that routes an input

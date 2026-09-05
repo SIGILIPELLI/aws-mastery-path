@@ -149,6 +149,38 @@ Network or Application Load Balancer pointed at the pods.
 | `kubectl apply -f <file>` | Create/update resources from a manifest |
 | `kubectl logs <pod>` | Tail container logs |
 
+## How It Actually Works
+
+EKS runs the upstream, unmodified **Kubernetes control plane**
+(API server, etcd, scheduler, controller-manager) as a managed, highly
+available service spread across multiple AZs — AWS operates this control
+plane in an AWS-owned account/VPC, exposing only the API server endpoint to
+you, which is why you never see or patch etcd directly, but also why the
+control plane behaves exactly like any other Kubernetes cluster's for
+tooling compatibility (`kubectl`, Helm, and the whole CNCF ecosystem work
+unmodified).
+
+Networking is where EKS diverges most from a typical on-prem Kubernetes
+install: by default it uses the **AWS VPC CNI**, which assigns each pod a
+*real, routable VPC IP address* drawn from your subnet's available range —
+not an overlay-network IP like Flannel or Calico would typically assign.
+The CNI plugin does this by pre-allocating extra elastic network interfaces
+(and their secondary IPs) onto each worker node, ahead of pod scheduling, so
+that when a new pod is scheduled, an IP is already available to attach
+instantly rather than needing to provision one on the spot — this is also
+the real cause of the well-known "IP exhaustion" failure mode: a node can
+run out of assignable IPs (limited by both instance type and subnet size)
+well before it runs out of CPU/memory, causing pods to get stuck in
+`ContainerCreating`.
+
+Node scheduling itself is genuine Kubernetes scheduling — the API server's
+scheduler evaluates pod resource requests, taints/tolerations, and affinity
+rules against each node's reported capacity, and only then binds a pod to a
+node; `kubelet` on that node is what actually pulls the container image and
+starts it via the container runtime. EKS's managed node groups just
+automate the EC2 (or Fargate) provisioning side and register/deregister
+nodes with this scheduler via a standard Auto Scaling Group lifecycle hook.
+
 ## Exercise
 
 Create an EKS cluster with one managed node group of two `t3.medium`

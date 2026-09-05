@@ -137,6 +137,36 @@ that CloudFront can't handle.
 | `aws globalaccelerator create-accelerator` | Create a global static-IP entry point |
 | `aws globalaccelerator create-endpoint-group` | Add a regional target with health checks |
 
+## How It Actually Works
+
+**Direct Connect** bypasses the public internet entirely by provisioning a
+dedicated physical (or hosted, sub-rate) fiber connection from your
+router/colocation facility into an AWS Direct Connect location, where it
+terminates onto AWS's own network hardware — from that point on, your
+traffic to a VPC travels over AWS's private backbone rather than transiting
+any public internet exchange point, which is the actual mechanism behind
+Direct Connect's more predictable latency and jitter compared to a VPN over
+the public internet (a VPN's tunnel still rides over the unpredictable,
+shared public internet path underneath the encryption).
+
+A **Direct Connect Gateway** exists because a raw DX connection alone can
+only reach VPCs in the *same region* as the DX location — the gateway is a
+global routing construct that lets one physical DX connection's BGP
+sessions be associated with Virtual Private Gateways or Transit Gateways
+across *multiple* regions, effectively projecting one physical link's reach
+across your whole global VPC footprint via AWS's internal backbone rather
+than requiring a separate physical connection per region.
+
+**Global Accelerator** works through Anycast IP addressing: it advertises
+the same static IP addresses from every AWS edge location worldwide
+simultaneously, and relies on internet BGP routing itself to send a given
+client's traffic to whichever advertising edge location is topologically
+nearest — once traffic lands at that edge, it travels the rest of the way to
+your actual resources over AWS's private backbone rather than the public
+internet, similar in spirit to CloudFront but optimized for non-HTTP TCP/UDP
+traffic and for a static IP that doesn't change even as you add or remove
+backend endpoints across regions.
+
 ## Exercise
 
 Design (no need to provision) a resilient hybrid network for a company

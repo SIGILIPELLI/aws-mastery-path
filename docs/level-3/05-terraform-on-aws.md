@@ -161,6 +161,38 @@ different variables instead of copy-pasting HCL.
 | `terraform import <addr> <id>` | Bring an existing resource under management |
 | `terraform fmt` / `validate` | Format / syntax-check HCL |
 
+## How It Actually Works
+
+Terraform's core mechanism is a **declarative diff-and-apply engine** built
+on a dependency graph, conceptually similar to CloudFormation but
+implemented entirely client-side (or in your chosen remote runner) rather
+than as an AWS-native control-plane feature. `terraform plan` builds this
+graph from your `.tf` files (edges inferred from resource references), then
+compares each resource's desired attributes against the last-known state
+recorded in the **state file** — not against AWS's live API each time for
+every attribute; it uses the state file as its source of truth for "what did
+I create," refreshing it against real AWS resources first specifically to
+detect drift.
+
+The **provider** is what actually talks to AWS: it's a separate binary
+implementing Terraform's plugin protocol, translating each resource block
+into the equivalent AWS API calls (via the same underlying SDK the CLI
+uses), and mapping API responses back into the schema Terraform tracks in
+state — this indirection is why a manual Console change to a
+Terraform-managed resource causes drift: Terraform's state file still
+records the old values, and the next `plan` will propose "fixing" it back,
+because Terraform has no mechanism to detect out-of-band changes except by
+diffing against its own recorded state.
+
+State file locking (typically via DynamoDB when using an S3 backend) exists
+because concurrent `apply` runs manipulating the same state file
+non-atomically could corrupt it or produce conflicting operations against
+the same real resources — the lock is a simple conditional-write mutex in
+DynamoDB, acquired before Terraform reads state and released after the
+operation completes, which is exactly the same coordination problem
+distributed databases solve with compare-and-swap, applied to
+infrastructure tooling.
+
 ## Exercise
 
 Write a Terraform configuration that creates an S3 bucket and a DynamoDB

@@ -157,6 +157,37 @@ workloads on the same underlying lake.
 | Provisioned warehouse | `aws redshift-serverless create-workgroup` |
 | Query lake from Redshift | `CREATE EXTERNAL SCHEMA ... FROM DATA CATALOG` |
 
+## How It Actually Works
+
+A data lake built on S3 has no query engine of its own — S3 is purely
+durable, cheap object storage; **Athena** provides the query layer by
+running a managed **Presto/Trino** cluster on demand per query, which
+Athena spins up transparently behind the scenes, reads the relevant objects
+directly out of S3 (using **partition pruning**: if your data is
+partitioned by date in the S3 key structure, Athena's query planner skips
+entire prefixes that fall outside your `WHERE` clause's date range without
+reading a single byte from them), and tears the compute down again after
+the query completes — this is exactly why Athena bills per-byte-scanned
+rather than per-hour: you're not renting a cluster, you're renting a
+transient compute burst per query, and partitioning/columnar formats
+(Parquet) directly reduce that scanned-byte count and therefore cost.
+
+The **Glue Data Catalog** is the piece that makes this possible at all: it's
+a persistent metadata store (itself a managed Hive Metastore-compatible
+service) recording table schemas, partition locations, and file formats for
+data that physically still just sits as objects in S3 — Athena, EMR, and
+Redshift Spectrum all query against this *same* catalog, which is why
+defining a table's schema once in Glue makes it immediately usable from any
+of those engines without duplicating or moving the underlying data.
+
+**Glue crawlers** populate this catalog by sampling actual files in your S3
+prefixes, inferring schema and partition structure from real file contents
+and folder naming conventions — this is a real (if imperfect) inference
+process, not a lookup, which is why inconsistent schemas across files in
+the same prefix (a new column added halfway through) can produce a crawler
+run that either merges or conflicts on the column definition, requiring
+schema evolution handling downstream.
+
 ## Exercise
 
 Upload a small CSV to S3 partitioned by `year=2026/month=08/`, crawl it

@@ -123,6 +123,37 @@ aws rds modify-db-instance \
 | `aws wellarchitected create-milestone` | Snapshot current risk state |
 | `aws wellarchitected get-lens-review-report` | Generate a PDF summary |
 
+## How It Actually Works
+
+The Well-Architected Tool isn't a static checklist grader — each pillar's
+questions map to a structured evaluation of your architecture against risk
+patterns AWS has observed at scale across its own customer base, and the
+"High Risk Issue" flags it produces are derived from real, mechanism-level
+failure modes described elsewhere in this course: a Reliability pillar flag
+for "single points of failure," for instance, is checking for exactly the
+kind of thing you saw in the RDS Multi-AZ or ALB health-check modules —
+whether a component's failure mode has an automated, tested path to
+recovery, not just a redundant copy sitting idle and unverified.
+
+The **Reliability** pillar's emphasis on "test recovery procedures
+regularly" exists because most of the automated resilience mechanisms this
+course covers (RDS Multi-AZ failover, ASG health-check replacement, Route
+53 failover routing) have failure detection thresholds and cutover
+mechanics that only get exercised during a real failure — untested failover
+paths are a well-documented cause of DR mechanisms silently failing when
+actually needed (a misconfigured health check grace period, a stale
+security group blocking the standby), which is why "chaos engineering"
+(covered later in this level) exists specifically to exercise these paths
+deliberately rather than waiting for a real outage to find the gap.
+
+The **Cost Optimization** pillar's "right-sizing" guidance connects directly
+to how billing is metered (module 09, Level 2): because AWS bills per
+resource-hour of *provisioned* capacity regardless of utilization,
+right-sizing isn't a vague efficiency suggestion — it's a mechanical
+consequence of the billing model rewarding you for matching provisioned
+capacity to the CloudWatch-observed utilization curve rather than
+over-provisioning against worst-case guesses.
+
 ## Exercise
 
 Pick any architecture you've built in this path (e.g., the Level 3

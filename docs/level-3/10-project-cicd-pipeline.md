@@ -148,6 +148,38 @@ aws codepipeline get-pipeline-state --name training-app-pipeline \
   `latest`) or you cannot prove which exact build is running in prod
   during an incident.
 
+## How It Actually Works
+
+The manual approval gate in this pipeline isn't a UI trick — it's
+implemented as CodePipeline pausing its own state machine at that stage
+transition, holding the pipeline execution in a durable `InProgress` state
+with the approval action specifically waiting on either an SNS-notified
+human decision (via the Console or API) or an expiration timeout you
+configure; nothing is polling or consuming compute while it waits, exactly
+like the artifact-passing mechanism between stages generally — pipeline
+state lives in CodePipeline's own store, not in a running process.
+
+The blue/green production deploy stage works by CodeDeploy provisioning an
+entirely separate, parallel set of compute (new ASG instances or a new ECS
+task set) and running it through your defined lifecycle hooks
+(`BeforeInstall`, `AfterInstall`, `ValidateService`, etc.) while it receives
+**zero production traffic** — only after `ValidateService` passes does
+CodeDeploy issue the actual cutover, which for an ALB target group is
+atomic re-registration of targets, and for Lambda is an alias weight shift
+that can even be gradual (canary/linear) rather than instant. This is why
+rollback in this design is nearly free: the previous version's compute is
+left running (for a configurable window) rather than torn down immediately,
+so "rollback" is simply re-pointing the same traffic-shift mechanism
+backward instead of rebuilding anything.
+
+Notice that every stage boundary in this pipeline is a genuine
+**service-to-service API handoff** — CodePipeline calling CodeBuild's
+`StartBuild`, then CodeDeploy's `CreateDeployment` — each polled
+asynchronously for completion rather than any single long-running process
+owning the whole pipeline; a stuck pipeline almost always means one of these
+downstream services' own execution is stuck or throttled, not CodePipeline
+itself.
+
 ## Stretch goals
 
 - Add a second manual approval before staging too, gated on automated

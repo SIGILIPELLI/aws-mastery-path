@@ -137,6 +137,39 @@ account into a single dashboard — set up via
 | `aws securityhub enable-security-hub` | Turn on centralized findings |
 | `aws securityhub get-findings` | Query aggregated findings |
 
+## How It Actually Works
+
+**GuardDuty** doesn't scan your resources directly — it's a passive
+consumer of existing data streams AWS already generates for other purposes:
+VPC Flow Logs, DNS query logs, and CloudTrail management/data events are
+continuously fed into GuardDuty's own threat-intelligence and
+machine-learning pipeline, which correlates them against known malicious IP
+lists, DNS patterns associated with C2 infrastructure, and behavioral
+baselines built per-account (e.g., "this IAM user has never called
+`GetSecretValue` before, and just did, from an unusual geography"). Because
+it's built on log analysis rather than live interception, GuardDuty findings
+are inherently **detective**, not preventive — there's an unavoidable
+analysis lag between the underlying activity and a finding appearing, on
+the order of minutes.
+
+**AWS Config** works by subscribing to CloudTrail's change-relevant API
+calls and, on detecting one, invoking the affected resource type's describe
+API to capture a full **configuration snapshot**, which it stores as an
+immutable history item — this is what lets Config answer "what did this
+security group look like at 3pm last Tuesday" months later: it's not
+inferring history, it's replaying a literal recorded snapshot from that
+timestamp. Config Rules are Lambda functions (AWS-managed or custom) that
+Config invokes against each new snapshot to evaluate compliance, which is
+why a rule's evaluation timestamp can lag noticeably behind the actual
+resource change it's evaluating.
+
+KMS enforces a **hard boundary**: your key's cryptographic material never
+leaves the KMS HSM boundary in plaintext form, ever — this is why every KMS
+"decrypt" or "encrypt" operation is a network call rather than something an
+SDK can do locally with a cached key, and why CloudTrail can log a complete,
+non-repudiable audit trail of every single use of a key (unlike a
+client-managed key you could copy and use anywhere undetected).
+
 ## Exercise
 
 Enable GuardDuty in a test account, create a WAF Web ACL with the AWS

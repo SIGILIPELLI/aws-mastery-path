@@ -148,6 +148,43 @@ could accidentally trigger cross-customer access.
 | SCP | Account/OU | No — caps only |
 | `sts:AssumeRole` + `ExternalId` | Cross-account | N/A (auth mechanism) |
 
+## How It Actually Works
+
+**Permission boundaries** and **Service Control Policies** both work by
+intersecting with identity policies rather than granting anything
+themselves — conceptually, IAM computes the effective permission as the
+logical AND of (identity policy) AND (permission boundary, if any) AND
+(every applicable SCP down the OU hierarchy), then still applies the
+explicit-deny-wins rule across all of them combined. This is why an SCP
+can only ever narrow what's possible in an account, never grant a
+permission — the account's IAM users/roles still need their own identity
+policy to actually allow anything; the SCP is a ceiling, evaluated entirely
+separately from, and prior to, the account's own IAM evaluation.
+
+**Cross-account access via `AssumeRole`** works through a trust policy
+(a resource-based policy attached to the role) that names which principals
+are allowed to call `sts:AssumeRole` against it — STS checks this trust
+policy first, independent of any permissions the calling principal has in
+its own account, then, if permitted, issues temporary credentials scoped
+by the role's own permission policies. Because both the trust decision and
+the resulting permissions are evaluated fresh on every assumption (and STS
+tokens can be as short as 15 minutes), revoking a role's trust policy or
+tightening its permissions takes effect on the next assumption attempt
+without needing to hunt down and invalidate already-issued sessions
+individually — though sessions already issued before the change keep their
+originally-granted permissions until they expire, which is the real reason
+"remove access immediately" sometimes means also using an SCP or explicit
+deny to catch already-active sessions.
+
+**Condition keys** (like `aws:SourceIp` or `aws:MultiFactorAuthPresent`)
+are evaluated against the *request context* IAM builds for each API call —
+attributes like source IP, whether MFA was used for the underlying
+session, and the requested resource ARN are all captured at
+authentication/session time and carried through to every subsequent
+authorization check that call makes, which is why an MFA condition on a
+role's policy can enforce "MFA was used when this session started," not
+"MFA was used for this specific call."
+
 ## Exercise
 
 Write an SCP that denies `ec2:RunInstances` for any instance type other

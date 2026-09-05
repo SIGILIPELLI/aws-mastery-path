@@ -196,6 +196,34 @@ instance).
 | `--query "JMESPath"` | Filters/reshapes the JSON response client-side. |
 | `AWS_PROFILE` env var | Sets the default profile for the whole shell session. |
 
+## How It Actually Works
+
+The AWS CLI is a thin client over **Signature Version 4 (SigV4)** request
+signing and the same REST/JSON control-plane APIs the Console calls in your
+browser — there is no special "CLI protocol." Every `aws` command builds an
+HTTPS request, computes an HMAC-SHA256 signature derived from your secret
+access key, the request contents, the target region, and the current
+timestamp, and attaches it as an `Authorization` header. The signature binds
+the request to a 5-minute time window specifically to defeat replay attacks —
+if your clock drifts more than ~15 minutes from AWS's servers, every call
+starts failing with `RequestTimeTooSkewed` even though your credentials are
+fine.
+
+"Regions" are not just a routing label: each AWS region is an
+almost-fully-isolated deployment of the control plane, with its own instances
+of most services' metadata stores. When you create a bucket in
+`us-east-1`, that record genuinely does not exist in `eu-west-1` — there is
+no background replication of your resource inventory across regions unless a
+service explicitly offers cross-region replication as a feature. That's why
+switching `--region` mid-troubleshooting is the single most common cause of
+"my resource disappeared" confusion.
+
+Under `~/.aws/credentials`, a **profile** is nothing more than a named set of
+key material the CLI substitutes into the SigV4 signing step before the
+request ever leaves your machine — profile switching has zero server-side
+component; AWS never sees "profile B" as a concept, only the access key ID
+embedded in the signature.
+
 ## Exercise
 
 1. Create a second IAM user called `readonly-test` with the AWS-managed

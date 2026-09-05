@@ -169,6 +169,38 @@ pressure.
 | `aws elasticbeanstalk swap-environment-cnames` | Atomically swap two environments' public URLs (blue/green). |
 | `aws elasticbeanstalk terminate-environment --environment-name N` | Tear down an environment's underlying resources. |
 
+## How It Actually Works
+
+Elastic Beanstalk is not a separate compute platform — it's an
+**orchestration layer** that generates and manages a standard
+CloudFormation stack of EC2 instances, an Auto Scaling Group, a load
+balancer, and security groups on your behalf, then layers a deployment
+agent onto each instance to pull and run your application code. Every
+"Beanstalk environment" you see in the console maps to a real
+CloudFormation stack you can inspect directly — Beanstalk is a convenience
+wrapper generating infrastructure-as-code for you, not a fundamentally
+different execution model.
+
+Deployments work through Beanstalk's own agent process running on each
+instance, which polls an internal Beanstalk-managed S3 location for new
+application versions and orchestrates the rollout according to your chosen
+deployment policy: **all-at-once** simply pushes new code and restarts every
+instance simultaneously (fast, but a downtime window); **rolling** takes
+instances out of the load balancer in configurable batches, updates them,
+and returns them to rotation before moving to the next batch, trading
+deployment time for continuous availability; **immutable** deployments
+launch an entirely parallel Auto Scaling Group with the new version,
+health-check it independently, and only then swap the load balancer over
+and terminate the old group — the safest option precisely because a failed
+deployment never touches instances currently serving production traffic.
+
+Configuration changes you make (environment variables, instance type,
+scaling triggers) are stored as versioned "saved configurations" and
+applied by Beanstalk issuing the equivalent CloudFormation stack update —
+which is also why some configuration changes cause a full environment
+rebuild while others apply in place: it follows the exact same
+create-vs-replace rules any CloudFormation resource update follows.
+
 ## Exercise
 
 1. Create an application and upload a first version of a small web app as

@@ -129,6 +129,38 @@ percentage-based or production experiment.
 | `aws fis stop-experiment` | Manually abort a running experiment |
 | `aws fis list-experiments` | Review experiment history |
 
+## How It Actually Works
+
+**AWS Fault Injection Service (FIS)** doesn't simulate failures at the
+application layer — it injects real faults at the infrastructure level by
+calling the same underlying AWS APIs a genuine failure would trigger (or
+using SSM Agent-executed OS-level commands on the target instance), such as
+actually terminating a percentage of instances in an ASG, actually throttling
+network throughput at the ENI level, or actually injecting CPU/memory
+pressure via the SSM agent running on the instance — this is a deliberate
+design choice: testing your monitoring, alarms, and automated recovery
+paths (Multi-AZ failover, ASG replacement, Route 53 health-check failover)
+against a *simulated* fault would only prove those systems can detect
+simulations, not real failures.
+
+FIS experiments have mandatory **stop conditions** — CloudWatch alarms that,
+if triggered during the experiment, cause FIS to immediately halt and (where
+supported) roll back the injected fault — implemented as FIS itself
+polling the specified alarm's state during the experiment's run, which is
+the actual safety mechanism preventing a chaos experiment from cascading
+into a genuine, uncontrolled outage: it's not a policy or a suggestion, it's
+an automated circuit-breaker built into how the experiment executes.
+
+This connects directly back to the Well-Architected Reliability pillar's
+guidance to "test recovery procedures regularly" (module 01 of this level):
+a Multi-AZ RDS failover, an ASG health-check replacement, or a Route 53
+failover routing policy are all mechanisms with detection thresholds and
+cutover logic that, absent deliberate chaos testing, only get exercised
+during an actual production incident — FIS's purpose is precisely to
+exercise these same code paths (real termination, real throttling) on your
+own schedule, with the guardrails above in place, so the first time a
+failover mechanism runs isn't during a real outage.
+
 ## Exercise
 
 Write an FIS experiment template that terminates exactly one EC2

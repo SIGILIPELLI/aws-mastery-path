@@ -173,6 +173,38 @@ it's registered.
 | `aws route53domains check-domain-availability` | Check if a domain name can be registered. |
 | `dig NAME` / `nslookup NAME` | Query DNS directly to verify what resolvers actually see. |
 
+## How It Actually Works
+
+Route 53 is a globally-distributed **authoritative DNS** service — when you
+create a hosted zone, AWS assigns it four name servers spread across
+different top-level DNS provider infrastructures (a deliberate diversity
+choice, so a single provider's outage doesn't take your DNS with it), and
+propagates your records to Route 53's edge network of DNS resolvers
+worldwide via an internal, low-latency replication system, not the public
+internet's DNS propagation path — this is why Route 53 changes typically
+apply within seconds, unlike the "24–48 hours" folklore associated with DNS
+in general (which really refers to caching by *resolvers downstream* of
+Route 53, governed by the TTL you set).
+
+An **alias record** is Route 53-specific: unlike a CNAME (which can't
+coexist with other records at the zone apex per the DNS spec, and always
+costs a client an extra lookup), an alias record is resolved *inside* Route
+53's own infrastructure — at query time, Route 53 looks up the current IP(s)
+behind the target AWS resource (an ALB, CloudFront distribution, S3
+website endpoint) and returns those directly, for free, with no extra
+client-side hop, and automatically stays correct if the target's underlying
+IPs change, which they routinely do behind a load balancer.
+
+**Routing policies** (weighted, latency-based, failover, geolocation) are
+implemented by Route 53's resolvers making a per-query decision using data
+they hold locally: latency-based routing consults a static latency table
+between AWS's own edge locations and each region (not a live probe of the
+querying client), while health-check-based failover routing depends on
+Route 53's own health checkers (a separate global fleet) polling your
+endpoint and updating the record's eligibility within seconds of a failure
+being confirmed from multiple checker locations, to avoid flapping caused by
+one checker's transient network blip.
+
 ## Exercise
 
 1. Create a hosted zone for a subdomain you control (or a dummy domain for

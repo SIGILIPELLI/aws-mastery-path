@@ -265,6 +265,34 @@ self-healing did exactly what modules 1 and 2 promised.
 | `aws route53 change-resource-record-sets` | Point real domain names at the ALB and CloudFront. |
 | `aws ecs stop-task` | Manually kill a task to test self-healing. |
 
+## How It Actually Works
+
+This project's request path threads together several independent control
+planes that only *look* like one system from the outside. A request enters
+through Route 53's alias record (resolved inside Route 53's own
+infrastructure, with zero extra DNS hop), hits CloudFront's nearest edge
+PoP, and — on a cache miss — is forwarded to the ALB origin, which
+terminates the client connection and opens its own separate connection to
+whichever healthy target its independent health-check fleet has currently
+marked in-service. Each hop is a distinct network boundary with its own
+failure and retry semantics; there is no single component that "owns" the
+whole request end-to-end, which is exactly why a failure at any one layer
+(a bad health check, a stale CloudFront cache, a DNS TTL still pointing at
+an old alias) produces a different symptom than the others.
+
+The Auto Scaling Group's reaction to load is a closed feedback loop, not a
+direct response to user traffic: CloudWatch aggregates the target's metrics
+on its own polling interval, the ASG's target-tracking policy evaluates
+that aggregate against your target value, and only then does it call
+`RunInstances` — meaning there is an inherent lag between a real traffic
+spike and new capacity coming online, bounded below by instance boot time.
+Health checks at the ALB layer and the ASG's own EC2-status checks are
+separate systems that happen to cooperate: the ALB decides routing
+eligibility, while the ASG can independently decide an instance is unhealthy
+and replace it, and a misconfigured grace period is the classic reason a
+scale-out event turns into a replace-loop — new instances get killed for
+"failing" a health check before they've even finished booting.
+
 ## Stretch goals
 
 - **HTTPS on the ALB**: request an ACM certificate for

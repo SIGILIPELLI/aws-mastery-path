@@ -134,6 +134,43 @@ audit integrity.
 | `aws ram create-resource-share` | Share a resource across accounts |
 | `aws cloudtrail create-trail --is-organization-trail` | Org-wide audit logging |
 
+## How It Actually Works
+
+AWS Organizations builds a real, enforced hierarchy — a management account
+at the root, with member accounts grouped into **Organizational Units**
+(OUs) — and **Service Control Policies** attached at any level of this tree
+are inherited downward and intersected (never unioned) at every level below
+them: an SCP attached to the root applies to literally every account in the
+organization, and a more specific SCP on a nested OU can only further
+restrict what's already allowed above it, never re-grant something a
+parent-level SCP denied. This inheritance-and-intersection model is exactly
+why SCPs are described as a "permission ceiling" rather than a policy
+attachment in the IAM sense — they never interact with an account's own
+IAM policies directly; they simply bound what IAM is allowed to grant in
+the first place, evaluated as a completely separate step before IAM's own
+policy evaluation even runs.
+
+**Control Tower**'s "guardrails" are implemented as a curated, managed
+layer on top of this same SCP and AWS Config Rules machinery — a
+"preventive" guardrail is just a pre-built SCP, and a "detective" guardrail
+is a pre-built Config Rule; Control Tower's actual contribution is
+automating the account-vending workflow (an "Account Factory" that
+provisions a new account via the Organizations API, then automatically
+attaches the appropriate baseline SCPs, Config rules, and a
+cross-account CloudTrail/Config aggregation role) so that every new account
+in the organization starts from a consistent, audited baseline rather than
+each team configuring their own account from scratch.
+
+Cross-account resource sharing (via **Resource Access Manager**) works
+through a different mechanism than IAM roles entirely: RAM creates a
+resource share that grants specified principals (accounts, OUs) direct
+usage rights to a resource like a Transit Gateway attachment or a subnet,
+implemented as its own resource-based permission model that the owning
+service (EC2, in the subnet-sharing case) checks *in addition to* normal
+IAM evaluation — this is why a shared subnet lets another account launch
+instances into your VPC without ever assuming a role into your account:
+the permission lives on the resource itself, granted by RAM, not by STS.
+
 ## Exercise
 
 Design an OU structure (on paper) for an organization with three teams

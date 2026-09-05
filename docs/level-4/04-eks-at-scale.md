@@ -154,6 +154,40 @@ enforcement — the default AWS VPC CNI needs this explicitly enabled).
 | Isolate namespace traffic | `NetworkPolicy` |
 | Spot capacity in managed node groups | `--capacity-type SPOT` |
 
+## How It Actually Works
+
+Running EKS at scale exposes control-plane and data-plane bottlenecks that
+don't show up in a small cluster. The Kubernetes API server itself is the
+central bottleneck any large cluster contends with: every `kubectl` command,
+every controller reconcile loop, and every kubelet heartbeat all funnel
+through the same API server's request-handling and etcd-backed storage —
+EKS scales the control plane horizontally behind the scenes as load
+increases, but etcd's fundamentally consensus-based (Raft) write path means
+write-heavy workloads (a very high rate of pod churn, for instance) can
+still produce API latency that no amount of worker-node scaling fixes,
+because the bottleneck is in the control plane, not your nodes.
+
+**Cluster Autoscaler** and **Karpenter** solve node-level scaling with
+different mechanisms: Cluster Autoscaler works by watching for
+`Unschedulable` pods (ones the Kubernetes scheduler already tried and
+failed to place) and then scaling a specific, pre-defined Auto Scaling
+Group up to fit them — it's reactive to existing ASG shapes. Karpenter
+instead evaluates unschedulable pods' actual resource requests directly and
+provisions **exactly-fitting** EC2 capacity on demand via the EC2 API,
+without needing pre-defined ASGs or instance-type node groups at all —
+this is a fundamentally different provisioning model (direct
+just-in-time bin-packing vs. scaling a pre-shaped group) and is why
+Karpenter typically achieves tighter bin-packing and faster scale-out.
+
+At high pod density, the VPC CNI's IP-pre-allocation model (module 02 of
+this level's prerequisite) becomes the dominant constraint: large clusters
+routinely need either larger CIDR ranges, IPv6 (which sidesteps IPv4
+exhaustion by giving nodes a vastly larger allocatable address space), or
+an alternate CNI mode (prefix delegation, which allocates a whole `/28` IP
+prefix to a network interface at once instead of individual IPs) to avoid
+running out of assignable pod IPs before running out of actual node
+capacity.
+
 ## Exercise
 
 Install Karpenter on an EKS cluster, define a `NodePool` limited to

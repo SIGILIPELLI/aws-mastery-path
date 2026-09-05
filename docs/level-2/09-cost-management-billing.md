@@ -175,6 +175,38 @@ external tooling integration.
 | `aws resourcegroupstaggingapi tag-resources` | Apply tags across resources for later cost attribution. |
 | `aws cur put-report-definition` | Set up a granular daily/hourly Cost and Usage Report to S3. |
 
+## How It Actually Works
+
+AWS's billing pipeline is itself a distributed, asynchronous system, which
+is why cost data is never "live." Every billable action across every
+service emits **usage records** into an internal metering pipeline; these
+records are batched, aggregated by resource/usage-type/region, rated
+against your account's pricing (list price, Reserved Instance/Savings Plan
+discounts, volume tiers), and rolled up into the Cost Explorer/Cost and
+Usage Report datasets on a delay that's typically several hours, sometimes
+up to a day for less common usage types — this is why a just-terminated
+resource can still show incomplete or estimated charges for a while, and why
+Cost Explorer explicitly labels the current day's data as an estimate.
+
+**Reserved Instances and Savings Plans** don't change which physical
+resource you get — they're purely a billing-time optimization. AWS's
+billing engine, when rating your usage records at the end of the process,
+looks for eligible usage matching your commitment's attributes (instance
+family/region for RIs, or a dollar-per-hour commitment for Savings Plans)
+and *retroactively* applies the discounted rate to matching hourly usage —
+this is why RIs/Savings Plans have no effect on performance or availability,
+and why partial-month purchases still get pro-rated benefit for the hours
+that remain: the discount is applied at settlement time, not reserved
+capacity in the traditional sense (Regional RIs, notably, don't even
+guarantee capacity — only the billing discount).
+
+**Budgets and cost anomaly detection** poll this same lagging billing data
+rather than intercepting API calls in real time, which is the underlying
+reason a Budget alert can never prevent an overspend before it happens — it
+can only notify you after usage has already been metered and aggregated,
+making it a detection control, not a real-time enforcement control (Service
+Quotas and IAM deny policies are the actual preventive mechanisms).
+
 ## Exercise
 
 1. Create a monthly cost budget with an `ACTUAL` alert at 80% and a

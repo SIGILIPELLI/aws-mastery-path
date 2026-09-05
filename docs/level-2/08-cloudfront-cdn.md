@@ -200,6 +200,37 @@ the ALB, just with a different `HostedZoneId`.
 | `RefreshHit from cloudfront` | Cached copy was stale; revalidated with origin. |
 | `Error from cloudfront` | Origin returned an error, or CloudFront couldn't reach it. |
 
+## How It Actually Works
+
+CloudFront's speed comes from **edge caching at Points of Presence (PoPs)**
+distributed globally — when a request arrives, it's routed (via Route 53's
+latency-aware DNS, or Anycast IP for some distributions) to the
+geographically nearest PoP. That edge location checks its local cache for
+the object, keyed by the request URL plus whatever headers/cookies/query
+strings you've configured to be part of the **cache key**; a match is a
+"cache hit" served entirely from the edge with no trip back to your origin.
+A miss triggers a request from the edge PoP back to your origin (S3, an
+ALB, or any HTTP server), and CloudFront caches the response there for
+subsequent requests — this is why changing the cache key configuration
+(e.g. suddenly including a cookie) can cause your effective cache hit rate
+to collapse: every unique cookie value now produces a distinct cache entry.
+
+**Origin Shield** and the general two-tier structure exist to prevent the
+"thundering herd" problem: without it, dozens of edge PoPs each having a
+simultaneous cache miss for the same popular object would independently hit
+your origin at once; Origin Shield adds one additional caching layer
+between edge PoPs and the origin so only a single request per miss actually
+reaches your backend, with other PoPs' near-simultaneous requests coalesced
+and served once the shield's fetch completes.
+
+Cache invalidation is not instant deletion — an `invalidate` call marks
+objects as expired across every edge location, but this propagation itself
+takes time to reach the globally-distributed PoP fleet, which is why the
+recommended pattern for frequently-updated content is versioned file names
+(cache-busting via the URL) rather than invalidation, treating each edge
+cache entry as immutable once created rather than trying to mutate it in
+place.
+
 ## Exercise
 
 1. Upload a small static site to a new, private S3 bucket (block all

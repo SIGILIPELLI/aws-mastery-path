@@ -388,6 +388,36 @@ aws cloudformation wait stack-delete-complete --stack-name notes-app-stack
 | `aws cloudformation delete-stack` | Delete every resource a stack owns, in one command. |
 | Billing → Bills (Console) | See exactly what's currently accruing charges. |
 
+## How It Actually Works
+
+Stitching S3, Lambda, IAM, and CloudFormation together in one stack exposes
+how these control planes actually cooperate rather than merely coexist.
+When S3 invokes your Lambda function on an object-created event, it isn't
+"calling" Lambda directly the way your CLI does — S3 publishes an
+asynchronous event notification to the Lambda service's internal event
+queue, and a separate Lambda poller/dispatcher picks it up and performs the
+`Invoke` call on S3's behalf using a **resource-based policy** you granted
+(`lambda:AddPermission`), which is why S3-to-Lambda triggers need a
+resource policy on the *function*, not an IAM policy on any user — S3 isn't
+using your credentials at all, it's using its own service-linked
+permission to invoke on your behalf.
+
+Because that invocation path is asynchronous, Lambda's event-source
+integration for S3 includes automatic retries (with backoff) if your
+function errors or throttles, decoupling S3's upload throughput from your
+function's processing rate — this is also why duplicate invocations for the
+same event are possible and why capstone-style pipelines need to design for
+idempotency (e.g. checking if a derived object already exists before
+recomputing it).
+
+CloudFormation ties the whole thing together by resolving cross-resource
+references at deploy time: when your template does `Fn::GetAtt` to pass a
+freshly created Lambda function's ARN into an S3 bucket notification
+configuration, CloudFormation must sequence the Lambda creation, the
+`lambda:AddPermission` grant, and the S3 notification configuration in that
+exact order — getting this ordering wrong (missing the permission grant) is
+the most common real-world cause of an S3 trigger silently never firing.
+
 ## Exercise
 
 1. Build the notes app following the steps above: DynamoDB table, Lambda

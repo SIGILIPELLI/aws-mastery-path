@@ -159,6 +159,35 @@ output stays safe to share.
 | `aws ssm get-parameter --with-decryption` | Read a `SecureString` parameter's plaintext. |
 | `aws ssm get-parameters-by-path --recursive` | Fetch an entire config namespace at once. |
 
+## How It Actually Works
+
+Both services store data encrypted at rest via **AWS KMS envelope
+encryption**: rather than encrypting your secret directly with your KMS key
+(which would require a network call to KMS on every read), the service
+generates a random per-secret **data key**, encrypts your secret with it
+locally, then asks KMS to encrypt *that* data key with your chosen KMS key
+and stores the encrypted data key alongside the ciphertext. Decryption
+reverses this: on read, the service sends the encrypted data key to KMS to
+be decrypted (this call is what actually gets logged in CloudTrail and
+billed), then uses the returned plaintext data key locally to decrypt your
+secret — your actual secret value is never transmitted to KMS at all, only
+its wrapper key.
+
+Secrets Manager's headline feature, **automatic rotation**, works by
+invoking a Lambda function you (or AWS) provide on a schedule; that function
+implements a four-step protocol (`createSecret`, `setSecret`, `testSecret`,
+`finishSecret`) against the target service (e.g. RDS) so that a new
+credential is generated, applied to the database, verified to work, and
+only then promoted to "current" — the staged design exists specifically so
+a partial failure mid-rotation doesn't lock out every client using the old
+credential before the new one is confirmed working.
+
+Parameter Store is architecturally simpler and cheaper because it skips
+this workflow entirely — a `SecureString` parameter is just KMS envelope
+encryption with no built-in rotation orchestration, which is exactly the
+trade-off that makes it fine for static configuration but a poor fit for
+credentials that need to rotate on a schedule without human involvement.
+
 ## Exercise
 
 1. Store a fake database credential pair as a Secrets Manager secret, and

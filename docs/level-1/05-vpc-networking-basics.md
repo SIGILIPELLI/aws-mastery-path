@@ -159,6 +159,35 @@ the database.
 | `aws ec2 modify-subnet-attribute --subnet-id ID --map-public-ip-on-launch` | Auto-assign public IPs in a subnet. |
 | `aws ec2 describe-vpcs` / `describe-subnets` / `describe-route-tables` | Inspect what you've built. |
 
+## How It Actually Works
+
+A VPC is a **software-defined network** — there's no physical switch or
+router dedicated to your account. Route tables, subnets, and internet
+gateways are just control-plane objects; the actual packet forwarding is
+implemented by the Nitro Card on each instance's host, which consults a
+distributed, eventually-propagated mapping service (sometimes called the
+"VPC fabric" internally) to know how to encapsulate and route your traffic
+across AWS's physical network, which is shared by every customer's VPCs
+simultaneously but kept logically isolated through this mapping — two
+different customers can both use `10.0.0.0/16` in the same physical
+datacenter without ever seeing each other's traffic.
+
+Subnets are the reason "Availability Zone" matters: a subnet is pinned to
+exactly one AZ, because AZs are physically separate datacenters with their
+own power and networking, and the low-latency guarantees AWS makes about a
+subnet only hold within one facility. A route table lookup happens on every
+packet, on a **longest-prefix-match** basis (same algorithm as internet BGP
+routing) — this is why a `/32` route to a specific IP (e.g., a VPC endpoint)
+always wins over the broader `0.0.0.0/0` default route to the internet
+gateway, without needing any explicit priority field.
+
+Network ACLs and security groups look similar but sit at different layers of
+this same fabric: security groups are stateful and evaluated per elastic
+network interface, while NACLs are stateless and evaluated per subnet
+boundary — meaning a NACL needs explicit rules for both request and response
+traffic, and a packet can be dropped by the subnet's NACL before it ever
+reaches the instance's security group check.
+
 ## Exercise
 
 1. Create a VPC (`10.0.0.0/16`) with one public subnet (`10.0.1.0/24`) and

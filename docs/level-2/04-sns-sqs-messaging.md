@@ -173,6 +173,38 @@ costs to justify.
 | `aws sqs delete-message --receipt-handle H` | Acknowledge successful processing. |
 | `aws sns set-subscription-attributes --attribute-name FilterPolicy` | Restrict which messages a subscriber receives. |
 
+## How It Actually Works
+
+SQS achieves durability by writing each message to **multiple servers
+across the queue's storage backend** before returning success to the
+sender — the queue is not a single in-memory buffer. A standard queue's
+famous "at-least-once, best-effort ordering" behavior comes directly from
+this distributed design: because messages are redundantly stored, consuming
+a message doesn't delete it; it makes it **invisible** for the duration of
+your visibility timeout, and only a subsequent explicit `DeleteMessage` call
+removes it from the underlying store. If your consumer crashes before
+calling delete, the message reappears after the timeout — this is a
+deliberate design (guaranteeing delivery over guaranteeing exactly-once) and
+is why idempotent message processing is a hard requirement, not a
+nice-to-have, for standard queues.
+
+**FIFO queues** trade some throughput for the additional guarantee of
+ordering *within a message group*, implemented by internally partitioning
+message storage per group ID and using a message-deduplication ID (or
+content hash) to reject duplicate sends within a 5-minute window — this
+dedup is done at write time against a hash index, not by inspecting message
+bodies at consume time.
+
+SNS is a **fan-out publish/subscribe** system: publishing one message
+triggers SNS's delivery workers to push independently to every current
+subscriber (SQS queues, Lambda functions, HTTP endpoints, email) in
+parallel, each with its own retry policy — this is why an SNS→SQS fan-out
+pattern is so common for decoupling: SNS handles the "notify everyone who
+cares" broadcast problem, while each SQS queue on the receiving end
+independently handles the "buffer and retry until my specific consumer is
+ready" problem, and a slow or failing subscriber can't block delivery to the
+others.
+
 ## Exercise
 
 1. Create an SNS topic and two SQS queues: one main queue with a DLQ

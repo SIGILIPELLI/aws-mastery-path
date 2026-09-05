@@ -189,6 +189,35 @@ CloudFormation's mental model here transfers directly.
 | `aws cloudformation wait stack-delete-complete` | Block until deletion finishes. |
 | `!Ref`, `!GetAtt`, `!Sub` | Core template intrinsic functions. |
 
+## How It Actually Works
+
+CloudFormation doesn't "run your YAML" directly — it compiles a template
+into a dependency graph of resources (inferred from `Ref`/`Fn::GetAtt`
+references between them, plus any explicit `DependsOn`), then calls the
+same underlying service APIs (`RunInstances`, `CreateBucket`, etc.) that the
+CLI or Console would, in topologically-sorted order, and — critically — in
+**parallel** wherever the graph allows it. That's why two independent
+resources in a stack provision simultaneously while a resource depending on
+another's output (like an EC2 instance needing a security group's ID)
+correctly waits.
+
+A **stack update** works by diffing your new template against CloudFormation's
+recorded model of the last-known-good state, computing a **change set** —
+a list of exactly which resources will be created, updated in place, or
+replaced. Some property changes update a resource in place (e.g. adding a
+tag); others force a full replacement (e.g. changing an RDS instance's
+engine), because the underlying service API has no "modify" operation for
+that property — CloudFormation has to create the new resource and delete
+the old one, in an order it determines from whether the resource is
+referenced elsewhere.
+
+Rollback-on-failure is implemented via the same change-set mechanism run in
+reverse: if any resource in the middle of a create/update fails,
+CloudFormation reverts previously-applied changes in that stack operation by
+issuing the inverse API calls, which is why a failed stack update can leave
+resources briefly in `UPDATE_ROLLBACK_IN_PROGRESS` — it's actively undoing
+work, not just giving up.
+
 ## Exercise
 
 1. Write the `s3-website-stack.yaml` template above (or your own variant)

@@ -180,6 +180,33 @@ them. The tradeoffs versus EC2:
 | `aws lambda add-permission --principal apigateway.amazonaws.com` | Let API Gateway invoke the function. |
 | `aws lambda delete-function --function-name N` | Delete the function. |
 
+## How It Actually Works
+
+A Lambda function isn't a long-running process waiting for requests — each
+invocation runs inside a **MicroVM** (Firecracker, the same lightweight
+virtualization technology AWS open-sourced and also uses under Fargate),
+launched fresh, isolated at the hardware-virtualization level from every
+other customer's functions on the same host, with boot times measured in
+milliseconds rather than the seconds a full EC2 instance needs.
+
+The "cold start" you sometimes see is exactly this: on the first invocation
+(or the first after scaling up), Lambda has to spin up a new Firecracker
+MicroVM, load your deployment package, and initialize your language
+runtime and any top-level (outside-the-handler) code before the handler can
+run. A **warm** invocation reuses an already-initialized MicroVM and skips
+straight to the handler — which is also why code outside your handler
+function (a DB connection, an SDK client) only re-runs on cold starts, and
+why that's the recommended place to put expensive setup.
+
+Concurrency scaling works by Lambda's control plane launching additional
+MicroVMs in parallel, up to your account's concurrency limit, with no
+coordination needed between them — this is precisely why Lambda functions
+must be stateless and idempotent: two concurrent invocations of the same
+function are two entirely separate MicroVMs with no shared memory, and
+there's no guarantee the *same* MicroVM ever gets reused between calls, so
+anything you need to persist has to go to an external store like DynamoDB
+or S3.
+
 ## Exercise
 
 1. Write a Lambda function in Python that accepts a JSON body

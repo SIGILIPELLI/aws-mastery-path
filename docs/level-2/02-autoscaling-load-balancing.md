@@ -177,6 +177,37 @@ rolling deployment ECS does automatically (previous module).
 | `aws elbv2 describe-target-health` | Check which instances are passing health checks. |
 | `aws autoscaling start-instance-refresh` | Roll out a new launch template version gradually. |
 
+## How It Actually Works
+
+An Application Load Balancer doesn't just forward TCP connections — for
+each incoming request it **terminates** the client's TCP/TLS connection,
+parses the HTTP request, evaluates it against your listener rules
+(path/host-based routing), and opens a *separate* connection to the chosen
+backend target, potentially reusing a pooled keep-alive connection it
+already holds open to that target. This is why an ALB can route based on
+HTTP content (paths, headers) that a purely TCP-level Network Load Balancer
+physically cannot see, and also why the ALB itself is the TLS termination
+point unless you configure end-to-end encryption with a second certificate
+on the backend.
+
+Health checks work by the load balancer's own fleet of nodes independently
+polling each registered target on a schedule; a target only receives traffic
+once enough consecutive checks pass, and is pulled from rotation the same
+way — the "grace period" during scale-out exists because a freshly launched
+instance needs time to boot software before it can pass that check, and
+routing traffic to it earlier would just produce errors.
+
+**Auto Scaling Groups** don't monitor your application directly — they
+watch a CloudWatch metric (like average CPU utilization aggregated across
+the group) and evaluate scaling policies against it on a polling interval,
+then call `RunInstances`/`TerminateInstances` to converge the group's actual
+instance count toward the policy's target. Target-tracking policies work
+like a control-loop PID controller: the ASG doesn't just react to threshold
+crossings, it continuously estimates how many instances would bring the
+metric to the configured target and adjusts capacity toward that estimate,
+which is why scale-out often adds more than one instance at once under a
+sudden spike.
+
 ## Exercise
 
 1. Create a launch template with user data that installs and starts a web

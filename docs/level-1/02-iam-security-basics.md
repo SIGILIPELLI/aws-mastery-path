@@ -182,6 +182,37 @@ aws iam enable-mfa-device \
 | Check what a user can do | `aws iam list-attached-user-policies --user-name USER` |
 | Enable MFA | `aws iam enable-mfa-device --user-name USER --serial-number ARN --authentication-code1 X --authentication-code2 Y` |
 
+## How It Actually Works
+
+IAM is not a database of permissions you look up — it's a **policy
+evaluation engine** that runs on every single API call, re-derived from
+scratch each time (there is no session-level cache of "what can this
+principal do"). When a request arrives, IAM gathers every policy that could
+apply — identity-based policies attached to the user/role, resource-based
+policies (like an S3 bucket policy), permission boundaries, and any Service
+Control Policies from AWS Organizations — and evaluates them against one
+fixed algorithm:
+
+1. Start with an implicit **deny**.
+2. If any applicable statement is an explicit `Deny`, the call is denied,
+   full stop — no other statement can override it.
+3. Otherwise, if any applicable statement is an `Allow`, the call proceeds.
+4. If nothing matched, the implicit deny stands.
+
+This "explicit deny always wins" rule is why permission boundaries and SCPs
+work as guardrails: a boundary can't grant access by itself, but a `Deny`
+inside one silently caps what even an `AdministratorAccess`-attached user can
+do.
+
+Under the hood, roles and temporary credentials (`AssumeRole`) are built on
+the **Security Token Service (STS)**, which is really just a signing
+authority: assuming a role doesn't move or copy any permissions data — STS
+hands back a short-lived access key/secret/session-token triple, and *every
+subsequent call* still triggers the same full policy-evaluation walk against
+the role's policies at the moment of the call, not at the moment you assumed
+it. That's why revoking a role's policy takes effect on already-issued
+temporary credentials immediately, without needing to expire the session.
+
 ## Exercise
 
 1. Write a policy JSON file that allows only `s3:GetObject` and

@@ -153,6 +153,38 @@ entirely, trading safety for speed.
 | `aws deploy create-deployment` | Trigger a CodeDeploy deployment directly |
 | `aws codepipeline get-pipeline-state` | See which stage is currently running |
 
+## How It Actually Works
+
+CodePipeline is an **orchestrator of orchestrators** — it doesn't build,
+test, or deploy anything itself; each stage invokes a separate AWS service
+(CodeBuild for build/test, CodeDeploy or CloudFormation for deploy) and
+polls that service's own execution status through its API, advancing the
+pipeline only when the invoked service reports success. Between stages,
+CodePipeline's mechanism for passing data is an **S3 artifact bucket**: each
+stage's output isn't held in pipeline memory, it's zipped and uploaded to a
+pipeline-specific S3 location, and the next stage's action downloads that
+exact artifact before running — which is why a pipeline can pause for hours
+awaiting manual approval with zero compute running: there's nothing to keep
+alive, the state is durably parked in S3 and the pipeline definition itself.
+
+CodeBuild's isolation model is the same MicroVM-style pattern as Lambda and
+Fargate: each build runs in a freshly provisioned, ephemeral container
+environment pulled up for that build only, torn down afterward — this is
+why builds can't rely on any local caching unless you explicitly configure
+CodeBuild's S3 or local-cache options, and why two consecutive builds of
+the same project never share a filesystem.
+
+**Blue/green deployment** (via CodeDeploy) works by provisioning an entirely
+parallel set of targets (a second Auto Scaling Group, or a second ECS task
+set) running the new version, running your configured validation hooks
+against it while it receives zero production traffic, and only then
+atomically shifting the load balancer's target group registration (or, for
+Lambda, the alias's traffic-shifting weight) from old to new — the "cutover"
+is a load-balancer-level or router-level pointer swap, not a rolling
+in-place replacement, which is exactly what makes instant rollback possible:
+the old target set is simply left running until you're confident, and
+rollback is just re-pointing the same swap in the other direction.
+
 ## Exercise
 
 Write a `buildspec.yml` that runs `npm test`, fails the build if tests

@@ -136,6 +136,41 @@ rather than reconstructing history from logs after the fact.
 | `aws configservice put-conformance-pack` | Deploy a framework's rule bundle |
 | `aws auditmanager create-assessment` | Start continuous evidence collection |
 
+## How It Actually Works
+
+AWS Artifact and the shared-responsibility model reflect a genuine
+architectural split, not just a legal one: AWS's compliance certifications
+(SOC 2, ISO 27001, PCI-DSS, etc.) attest to controls over the physical
+infrastructure, hypervisor, and the managed-service control planes
+themselves — exactly the layer this course has spent nine modules showing
+you *don't* operate (the Nitro hypervisor, the S3 replication engine, the
+DynamoDB partition manager) — while everything you configure on top
+(IAM policies, security group rules, whether encryption is turned on,
+what's in your S3 bucket policies) falls outside those certifications and
+is squarely your responsibility to prove compliant, which is precisely why
+an auditor asks for *your* Config/CloudTrail evidence, not just AWS's
+compliance reports.
+
+**AWS Config's conformance packs** operationalize this: a conformance pack
+is a curated bundle of Config Rules (the same snapshot-driven evaluation
+mechanism from Level 3's security deep dive) mapped to a specific
+compliance framework's control objectives, deployable across an entire
+Organization via Control Tower/Config's multi-account aggregation — the
+compliance "score" you see is literally the aggregate pass/fail rate of
+these individual resource-snapshot evaluations, re-derived continuously as
+Config ingests new CloudTrail-triggered snapshots, not a periodic manual
+audit.
+
+**CloudTrail's** role as the audit backbone comes from a specific
+architectural guarantee: every control-plane API call, regardless of which
+service or which console/CLI/SDK path made it, passes through a common
+API-Gateway-like layer that CloudTrail taps to record the caller identity,
+source IP, and full request/response — this centralized capture point
+(rather than each service independently logging its own audit trail) is
+what makes CloudTrail a genuinely complete record of "who did what," and
+why enabling it organization-wide via Control Tower is treated as a
+foundational, non-optional guardrail rather than an optional feature.
+
 ## Exercise
 
 Enable AWS Config in a test account, add the
