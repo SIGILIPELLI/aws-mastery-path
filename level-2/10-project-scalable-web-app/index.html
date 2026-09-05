@@ -1467,6 +1467,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#stretch-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2393,6 +2404,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#stretch-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2676,6 +2698,31 @@ records → DynamoDB table → S3 buckets → ECR repository.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>This project's request path threads together several independent control
+planes that only <em>look</em> like one system from the outside. A request enters
+through Route 53's alias record (resolved inside Route 53's own
+infrastructure, with zero extra DNS hop), hits CloudFront's nearest edge
+PoP, and — on a cache miss — is forwarded to the ALB origin, which
+terminates the client connection and opens its own separate connection to
+whichever healthy target its independent health-check fleet has currently
+marked in-service. Each hop is a distinct network boundary with its own
+failure and retry semantics; there is no single component that "owns" the
+whole request end-to-end, which is exactly why a failure at any one layer
+(a bad health check, a stale CloudFront cache, a DNS TTL still pointing at
+an old alias) produces a different symptom than the others.</p>
+<p>The Auto Scaling Group's reaction to load is a closed feedback loop, not a
+direct response to user traffic: CloudWatch aggregates the target's metrics
+on its own polling interval, the ASG's target-tracking policy evaluates
+that aggregate against your target value, and only then does it call
+<code>RunInstances</code> — meaning there is an inherent lag between a real traffic
+spike and new capacity coming online, bounded below by instance boot time.
+Health checks at the ALB layer and the ASG's own EC2-status checks are
+separate systems that happen to cooperate: the ALB decides routing
+eligibility, while the ASG can independently decide an instance is unhealthy
+and replace it, and a misconfigured grace period is the classic reason a
+scale-out event turns into a replace-loop — new instances get killed for
+"failing" a health check before they've even finished booting.</p>
 <h2 id="stretch-goals">Stretch goals<a class="headerlink" href="#stretch-goals" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>HTTPS on the ALB</strong>: request an ACM certificate for

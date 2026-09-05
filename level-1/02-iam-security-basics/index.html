@@ -823,6 +823,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2305,6 +2316,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2544,6 +2566,34 @@ without MFA is a complete account takeover.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>IAM is not a database of permissions you look up — it's a <strong>policy
+evaluation engine</strong> that runs on every single API call, re-derived from
+scratch each time (there is no session-level cache of "what can this
+principal do"). When a request arrives, IAM gathers every policy that could
+apply — identity-based policies attached to the user/role, resource-based
+policies (like an S3 bucket policy), permission boundaries, and any Service
+Control Policies from AWS Organizations — and evaluates them against one
+fixed algorithm:</p>
+<ol>
+<li>Start with an implicit <strong>deny</strong>.</li>
+<li>If any applicable statement is an explicit <code>Deny</code>, the call is denied,
+   full stop — no other statement can override it.</li>
+<li>Otherwise, if any applicable statement is an <code>Allow</code>, the call proceeds.</li>
+<li>If nothing matched, the implicit deny stands.</li>
+</ol>
+<p>This "explicit deny always wins" rule is why permission boundaries and SCPs
+work as guardrails: a boundary can't grant access by itself, but a <code>Deny</code>
+inside one silently caps what even an <code>AdministratorAccess</code>-attached user can
+do.</p>
+<p>Under the hood, roles and temporary credentials (<code>AssumeRole</code>) are built on
+the <strong>Security Token Service (STS)</strong>, which is really just a signing
+authority: assuming a role doesn't move or copy any permissions data — STS
+hands back a short-lived access key/secret/session-token triple, and <em>every
+subsequent call</em> still triggers the same full policy-evaluation walk against
+the role's policies at the moment of the call, not at the moment you assumed
+it. That's why revoking a role's policy takes effect on already-issued
+temporary credentials immediately, without needing to expire the session.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Write a policy JSON file that allows only <code>s3:GetObject</code> and

@@ -1743,6 +1743,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2305,6 +2316,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2456,6 +2478,38 @@ payloads you want visible on a trace but don't need to query by.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>X-Ray reconstructs a distributed request's full call graph from
+independently-emitted <strong>trace segments</strong> — each service involved in
+handling a request (via the X-Ray SDK or auto-instrumentation) generates its
+own segment describing the work it did, tagged with a shared trace ID that's
+propagated forward through request headers (<code>X-Amzn-Trace-Id</code>) as the
+request hops between services. X-Ray's backend never sees the request
+travel end-to-end itself; it only receives these disconnected segments
+(often via a local X-Ray daemon that batches and forwards them
+asynchronously, specifically so tracing overhead doesn't block your
+application's actual response path) and reassembles them into one trace
+purely by matching that shared trace ID — which is exactly why a broken
+trace (a service that fails to propagate the header) produces a visibly
+truncated trace map rather than an error: X-Ray has no way to know a hop it
+was never told about exists.</p>
+<p><strong>Sampling</strong> exists because instrumenting and transmitting a segment for
+every single request at scale would itself become a meaningful source of
+load and cost; the default X-Ray sampling rule (1 request/second plus 5% of
+additional requests) is evaluated locally by the SDK per-request against a
+sampling decision cached from the X-Ray control plane, meaning the decision
+to trace a given request is made <em>before</em> the request executes, not
+after-the-fact based on whether something interesting happened to it —
+which is why intermittent errors can be invisible in X-Ray traces unless you
+tune sampling rules or force-sample on error conditions explicitly.</p>
+<p>CloudWatch's <strong>Container Insights / embedded metric format</strong> takes a
+different approach entirely: rather than a separate tracing pipeline,
+structured JSON log lines emitted by your application are parsed by
+CloudWatch Logs at ingestion time, with fields you mark as metrics
+extracted and written directly into the CloudWatch metrics store — meaning
+"custom metrics" from EMF logs are derived from log data after the fact by
+CloudWatch's own ingestion pipeline, not sent as a distinct metric API call
+from your code.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Enable <code>Active</code> X-Ray tracing on a Lambda function fronted by API
 Gateway, instrument one outbound call (e.g., to DynamoDB) with

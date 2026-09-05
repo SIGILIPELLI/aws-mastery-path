@@ -1204,6 +1204,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2371,6 +2382,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2659,6 +2681,31 @@ as one <code>t3.small</code>-class EC2 instance running 24/7, so right-size <cod
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>ECS is fundamentally a <strong>scheduler</strong> — a control loop, not a container
+runtime. The ECS control plane maintains the desired state you declare (a
+service wanting N running tasks of a given task definition) and continuously
+reconciles it against observed reality reported by agents running on your
+compute, launching or stopping tasks to close the gap — the same
+reconcile-loop pattern Kubernetes uses, just AWS-native and much simpler in
+scope.</p>
+<p>On <strong>EC2 launch type</strong>, the reconciliation is done by the <strong>ECS Container
+Agent</strong>, a process running on each cluster instance that registers the
+host's available CPU/memory with the control plane and receives task
+placement instructions back; the agent then talks to the local Docker daemon
+to actually start containers. On <strong>Fargate launch type</strong>, there's no
+visible host at all — AWS provisions a Firecracker MicroVM per task
+on-demand behind the scenes, meaning Fargate tasks get the same hardware
+isolation boundary as Lambda functions, at the cost of a startup delay
+(pulling the image and booting the MicroVM) that EC2-backed tasks avoid once
+a host already has the image cached.</p>
+<p>Task placement on EC2 launch type is a bin-packing problem the scheduler
+solves per your chosen strategy (<code>binpack</code>, <code>spread</code>, or <code>random</code>):
+<code>binpack</code> deliberately concentrates tasks onto the fewest possible instances
+to maximize utilization (and let auto scaling shrink the cluster), while
+<code>spread</code> distributes across AZs or instances for resilience — the scheduler
+is optimizing a real constraint-satisfaction problem against each instance's
+registered remaining CPU/memory headroom, not just round-robining.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Build a small HTTP app (any language) into a Docker image, push it to a

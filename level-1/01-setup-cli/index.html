@@ -806,6 +806,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2327,6 +2338,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2553,6 +2575,30 @@ instance).</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>The AWS CLI is a thin client over <strong>Signature Version 4 (SigV4)</strong> request
+signing and the same REST/JSON control-plane APIs the Console calls in your
+browser — there is no special "CLI protocol." Every <code>aws</code> command builds an
+HTTPS request, computes an HMAC-SHA256 signature derived from your secret
+access key, the request contents, the target region, and the current
+timestamp, and attaches it as an <code>Authorization</code> header. The signature binds
+the request to a 5-minute time window specifically to defeat replay attacks —
+if your clock drifts more than ~15 minutes from AWS's servers, every call
+starts failing with <code>RequestTimeTooSkewed</code> even though your credentials are
+fine.</p>
+<p>"Regions" are not just a routing label: each AWS region is an
+almost-fully-isolated deployment of the control plane, with its own instances
+of most services' metadata stores. When you create a bucket in
+<code>us-east-1</code>, that record genuinely does not exist in <code>eu-west-1</code> — there is
+no background replication of your resource inventory across regions unless a
+service explicitly offers cross-region replication as a feature. That's why
+switching <code>--region</code> mid-troubleshooting is the single most common cause of
+"my resource disappeared" confusion.</p>
+<p>Under <code>~/.aws/credentials</code>, a <strong>profile</strong> is nothing more than a named set of
+key material the CLI substitutes into the SigV4 signing step before the
+request ever leaves your machine — profile switching has zero server-side
+component; AWS never sees "profile B" as a concept, only the access key ID
+embedded in the signature.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Create a second IAM user called <code>readonly-test</code> with the AWS-managed

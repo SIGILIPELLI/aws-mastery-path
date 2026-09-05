@@ -1030,6 +1030,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2327,6 +2338,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2592,6 +2614,31 @@ CloudFormation's mental model here transfers directly.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>CloudFormation doesn't "run your YAML" directly — it compiles a template
+into a dependency graph of resources (inferred from <code>Ref</code>/<code>Fn::GetAtt</code>
+references between them, plus any explicit <code>DependsOn</code>), then calls the
+same underlying service APIs (<code>RunInstances</code>, <code>CreateBucket</code>, etc.) that the
+CLI or Console would, in topologically-sorted order, and — critically — in
+<strong>parallel</strong> wherever the graph allows it. That's why two independent
+resources in a stack provision simultaneously while a resource depending on
+another's output (like an EC2 instance needing a security group's ID)
+correctly waits.</p>
+<p>A <strong>stack update</strong> works by diffing your new template against CloudFormation's
+recorded model of the last-known-good state, computing a <strong>change set</strong> —
+a list of exactly which resources will be created, updated in place, or
+replaced. Some property changes update a resource in place (e.g. adding a
+tag); others force a full replacement (e.g. changing an RDS instance's
+engine), because the underlying service API has no "modify" operation for
+that property — CloudFormation has to create the new resource and delete
+the old one, in an order it determines from whether the resource is
+referenced elsewhere.</p>
+<p>Rollback-on-failure is implemented via the same change-set mechanism run in
+reverse: if any resource in the middle of a create/update fails,
+CloudFormation reverts previously-applied changes in that stack operation by
+issuing the inverse API calls, which is why a failed stack update can leave
+resources briefly in <code>UPDATE_ROLLBACK_IN_PROGRESS</code> — it's actively undoing
+work, not just giving up.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Write the <code>s3-website-stack.yaml</code> template above (or your own variant)

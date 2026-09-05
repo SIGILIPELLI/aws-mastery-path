@@ -1361,6 +1361,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2349,6 +2360,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2585,6 +2607,31 @@ never for a password or API key.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Both services store data encrypted at rest via <strong>AWS KMS envelope
+encryption</strong>: rather than encrypting your secret directly with your KMS key
+(which would require a network call to KMS on every read), the service
+generates a random per-secret <strong>data key</strong>, encrypts your secret with it
+locally, then asks KMS to encrypt <em>that</em> data key with your chosen KMS key
+and stores the encrypted data key alongside the ciphertext. Decryption
+reverses this: on read, the service sends the encrypted data key to KMS to
+be decrypted (this call is what actually gets logged in CloudTrail and
+billed), then uses the returned plaintext data key locally to decrypt your
+secret — your actual secret value is never transmitted to KMS at all, only
+its wrapper key.</p>
+<p>Secrets Manager's headline feature, <strong>automatic rotation</strong>, works by
+invoking a Lambda function you (or AWS) provide on a schedule; that function
+implements a four-step protocol (<code>createSecret</code>, <code>setSecret</code>, <code>testSecret</code>,
+<code>finishSecret</code>) against the target service (e.g. RDS) so that a new
+credential is generated, applied to the database, verified to work, and
+only then promoted to "current" — the staged design exists specifically so
+a partial failure mid-rotation doesn't lock out every client using the old
+credential before the new one is confirmed working.</p>
+<p>Parameter Store is architecturally simpler and cheaper because it skips
+this workflow entirely — a <code>SecureString</code> parameter is just KMS envelope
+encryption with no built-in rotation orchestration, which is exactly the
+trade-off that makes it fine for static configuration but a poor fit for
+credentials that need to rotate on a schedule without human involvement.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Store a fake database credential pair as a Secrets Manager secret, and

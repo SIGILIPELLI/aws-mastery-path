@@ -1333,6 +1333,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2349,6 +2360,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2573,6 +2595,34 @@ forgotten hand-built ASG + ALB.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Elastic Beanstalk is not a separate compute platform — it's an
+<strong>orchestration layer</strong> that generates and manages a standard
+CloudFormation stack of EC2 instances, an Auto Scaling Group, a load
+balancer, and security groups on your behalf, then layers a deployment
+agent onto each instance to pull and run your application code. Every
+"Beanstalk environment" you see in the console maps to a real
+CloudFormation stack you can inspect directly — Beanstalk is a convenience
+wrapper generating infrastructure-as-code for you, not a fundamentally
+different execution model.</p>
+<p>Deployments work through Beanstalk's own agent process running on each
+instance, which polls an internal Beanstalk-managed S3 location for new
+application versions and orchestrates the rollout according to your chosen
+deployment policy: <strong>all-at-once</strong> simply pushes new code and restarts every
+instance simultaneously (fast, but a downtime window); <strong>rolling</strong> takes
+instances out of the load balancer in configurable batches, updates them,
+and returns them to rotation before moving to the next batch, trading
+deployment time for continuous availability; <strong>immutable</strong> deployments
+launch an entirely parallel Auto Scaling Group with the new version,
+health-check it independently, and only then swap the load balancer over
+and terminate the old group — the safest option precisely because a failed
+deployment never touches instances currently serving production traffic.</p>
+<p>Configuration changes you make (environment variables, instance type,
+scaling triggers) are stored as versioned "saved configurations" and
+applied by Beanstalk issuing the equivalent CloudFormation stack update —
+which is also why some configuration changes cause a full environment
+rebuild while others apply in place: it follows the exact same
+create-vs-replace rules any CloudFormation resource update follows.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Create an application and upload a first version of a small web app as

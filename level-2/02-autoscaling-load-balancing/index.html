@@ -1210,6 +1210,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2327,6 +2338,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2565,6 +2587,33 @@ cleanup.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>An Application Load Balancer doesn't just forward TCP connections — for
+each incoming request it <strong>terminates</strong> the client's TCP/TLS connection,
+parses the HTTP request, evaluates it against your listener rules
+(path/host-based routing), and opens a <em>separate</em> connection to the chosen
+backend target, potentially reusing a pooled keep-alive connection it
+already holds open to that target. This is why an ALB can route based on
+HTTP content (paths, headers) that a purely TCP-level Network Load Balancer
+physically cannot see, and also why the ALB itself is the TLS termination
+point unless you configure end-to-end encryption with a second certificate
+on the backend.</p>
+<p>Health checks work by the load balancer's own fleet of nodes independently
+polling each registered target on a schedule; a target only receives traffic
+once enough consecutive checks pass, and is pulled from rotation the same
+way — the "grace period" during scale-out exists because a freshly launched
+instance needs time to boot software before it can pass that check, and
+routing traffic to it earlier would just produce errors.</p>
+<p><strong>Auto Scaling Groups</strong> don't monitor your application directly — they
+watch a CloudWatch metric (like average CPU utilization aggregated across
+the group) and evaluate scaling policies against it on a polling interval,
+then call <code>RunInstances</code>/<code>TerminateInstances</code> to converge the group's actual
+instance count toward the policy's target. Target-tracking policies work
+like a control-loop PID controller: the ASG doesn't just react to threshold
+crossings, it continuously estimates how many instances would bring the
+metric to the configured target and adjusts capacity toward that estimate,
+which is why scale-out often adds more than one instance at once under a
+sudden spike.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Create a launch template with user data that installs and starts a web

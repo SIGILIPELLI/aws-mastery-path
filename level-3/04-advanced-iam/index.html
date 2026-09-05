@@ -1620,6 +1620,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2462,6 +2484,39 @@ could accidentally trigger cross-customer access.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Permission boundaries</strong> and <strong>Service Control Policies</strong> both work by
+intersecting with identity policies rather than granting anything
+themselves — conceptually, IAM computes the effective permission as the
+logical AND of (identity policy) AND (permission boundary, if any) AND
+(every applicable SCP down the OU hierarchy), then still applies the
+explicit-deny-wins rule across all of them combined. This is why an SCP
+can only ever narrow what's possible in an account, never grant a
+permission — the account's IAM users/roles still need their own identity
+policy to actually allow anything; the SCP is a ceiling, evaluated entirely
+separately from, and prior to, the account's own IAM evaluation.</p>
+<p><strong>Cross-account access via <code>AssumeRole</code></strong> works through a trust policy
+(a resource-based policy attached to the role) that names which principals
+are allowed to call <code>sts:AssumeRole</code> against it — STS checks this trust
+policy first, independent of any permissions the calling principal has in
+its own account, then, if permitted, issues temporary credentials scoped
+by the role's own permission policies. Because both the trust decision and
+the resulting permissions are evaluated fresh on every assumption (and STS
+tokens can be as short as 15 minutes), revoking a role's trust policy or
+tightening its permissions takes effect on the next assumption attempt
+without needing to hunt down and invalidate already-issued sessions
+individually — though sessions already issued before the change keep their
+originally-granted permissions until they expire, which is the real reason
+"remove access immediately" sometimes means also using an SCP or explicit
+deny to catch already-active sessions.</p>
+<p><strong>Condition keys</strong> (like <code>aws:SourceIp</code> or <code>aws:MultiFactorAuthPresent</code>)
+are evaluated against the <em>request context</em> IAM builds for each API call —
+attributes like source IP, whether MFA was used for the underlying
+session, and the requested resource ARN are all captured at
+authentication/session time and carried through to every subsequent
+authorization check that call makes, which is why an MFA condition on a
+role's policy can enforce "MFA was used when this session started," not
+"MFA was used for this specific call."</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Write an SCP that denies <code>ec2:RunInstances</code> for any instance type other
 than <code>t3.micro</code> and <code>t3.small</code> account-wide (hint: use a <code>Condition</code> on

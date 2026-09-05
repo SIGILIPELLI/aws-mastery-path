@@ -1389,6 +1389,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2349,6 +2360,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2622,6 +2644,33 @@ config or none at all.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>CloudFront's speed comes from <strong>edge caching at Points of Presence (PoPs)</strong>
+distributed globally — when a request arrives, it's routed (via Route 53's
+latency-aware DNS, or Anycast IP for some distributions) to the
+geographically nearest PoP. That edge location checks its local cache for
+the object, keyed by the request URL plus whatever headers/cookies/query
+strings you've configured to be part of the <strong>cache key</strong>; a match is a
+"cache hit" served entirely from the edge with no trip back to your origin.
+A miss triggers a request from the edge PoP back to your origin (S3, an
+ALB, or any HTTP server), and CloudFront caches the response there for
+subsequent requests — this is why changing the cache key configuration
+(e.g. suddenly including a cookie) can cause your effective cache hit rate
+to collapse: every unique cookie value now produces a distinct cache entry.</p>
+<p><strong>Origin Shield</strong> and the general two-tier structure exist to prevent the
+"thundering herd" problem: without it, dozens of edge PoPs each having a
+simultaneous cache miss for the same popular object would independently hit
+your origin at once; Origin Shield adds one additional caching layer
+between edge PoPs and the origin so only a single request per miss actually
+reaches your backend, with other PoPs' near-simultaneous requests coalesced
+and served once the shield's fetch completes.</p>
+<p>Cache invalidation is not instant deletion — an <code>invalidate</code> call marks
+objects as expired across every edge location, but this propagation itself
+takes time to reach the globally-distributed PoP fleet, which is why the
+recommended pattern for frequently-updated content is versioned file names
+(cache-busting via the URL) rather than invalidation, treating each edge
+cache entry as immutable once created rather than trying to mutate it in
+place.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Upload a small static site to a new, private S3 bucket (block all

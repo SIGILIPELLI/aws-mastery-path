@@ -873,6 +873,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2349,6 +2360,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2620,6 +2642,31 @@ don't get a surprise bill.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Launching an EC2 instance is not "starting a server" in the traditional
+sense — it's a scheduling decision made by AWS's fleet-wide <strong>placement</strong>
+system. When you call <code>RunInstances</code>, the request goes to a control-plane
+service that picks a physical host in the target Availability Zone with
+enough spare capacity for your instance type, taking into account the
+underlying <strong>Nitro hypervisor</strong> architecture: on Nitro-based instance types,
+nearly all traditional hypervisor work (networking, storage virtualization,
+security) is offloaded to dedicated Nitro Cards (custom silicon), leaving a
+minimal, stripped-down hypervisor on the host CPU. That's why modern instance
+types get near bare-metal performance — your guest OS isn't sharing CPU
+cycles with a heavyweight software hypervisor doing packet processing.</p>
+<p>A security group is not a firewall rule list evaluated top-to-bottom like a
+traditional ACL — it's a <strong>stateful</strong>, allow-only object evaluated by the
+Nitro Card itself at the network-interface level, before packets ever reach
+your instance's virtual NIC. "Stateful" means only the initiating direction
+needs an explicit rule; return traffic is tracked and auto-permitted via
+connection tracking, which is also why security groups have no explicit-deny
+rules — only allows, unioned across every group attached to the interface.</p>
+<p>Instance metadata (the <code>169.254.169.254</code> link-local address) is served by a
+per-instance metadata service running on the Nitro hypervisor, not fetched
+over the internet or even your VPC's routing — it's why IMDS calls work even
+with no internet gateway, and why IMDSv2's session-token requirement (a
+<code>PUT</code> before any <code>GET</code>) closes off SSRF attacks that could otherwise trick a
+vulnerable app into leaking that role's temporary credentials.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Launch a <code>t3.micro</code> Amazon Linux instance with a security group that

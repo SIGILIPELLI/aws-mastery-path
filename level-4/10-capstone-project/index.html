@@ -2195,6 +2195,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#stretch-goals" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2340,6 +2351,17 @@
     <span class="md-ellipsis">
       
         Gotchas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
       
     </span>
   </a>
@@ -2519,6 +2541,38 @@ blast radius and off-peak timing.</p>
   and incurs real cost; treat every command here as a verified-syntax
   starting point, not a tested deployment.</li>
 </ul>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>This capstone's full request and deployment path composes nearly every
+mechanism covered across all four levels into one system, and its
+end-to-end behavior only makes sense once you trace each boundary
+individually. A request still resolves through Route 53's in-infrastructure
+alias lookup, lands at a CloudFront edge PoP or Global Accelerator Anycast
+IP, and reaches compute (EKS pods behind an ALB, or Fargate tasks) whose
+actual placement was decided by the Kubernetes scheduler or ECS's
+bin-packing algorithm against real-time reported capacity — none of these
+layers share a single control plane; each is independently reconciling its
+own piece of desired state against observed reality, which is why a
+capstone-scale outage investigation means tracing distinct
+failure/recovery mechanisms at each boundary rather than looking for one
+root cause.</p>
+<p>Multi-account guardrails (SCPs intersecting with IAM, Config conformance
+packs re-evaluating on every CloudTrail-captured change) and chaos-tested
+resilience (FIS-injected faults exercising the same Multi-AZ/ASG/Route 53
+failover logic modules earlier in this course covered in isolation) are
+what make this capstone a genuine test of whether those individual
+mechanisms compose correctly under real, coordinated failure — a guardrail
+that works fine tested alone can still interact badly with an
+auto-remediation Config rule or a Terraform apply running concurrently,
+exactly the kind of emergent, cross-system behavior that only shows up when
+every mechanism from this course is running together, under load, at once.</p>
+<p>The billing and cost-optimization layer (Savings Plans rating, Spot
+capacity reclamation, Intelligent-Tiering's access-pattern monitoring) is
+likewise still operating asynchronously underneath this whole system the
+entire time — none of it observable in real time from inside the
+architecture itself, only after the fact once usage records propagate
+through AWS's metering pipeline, which is exactly why a capstone's
+cost-guardrail step has to rely on Budgets/Config as detective controls
+layered on top, not a live cost readout wired into the request path.</p>
 <h2 id="stretch-goals">Stretch goals<a class="headerlink" href="#stretch-goals" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Add a second region to the prod account and extend the FIS game day

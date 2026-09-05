@@ -1266,6 +1266,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2327,6 +2338,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2585,6 +2607,34 @@ point of view. Design consumers so processing the same message twice
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>SQS achieves durability by writing each message to <strong>multiple servers
+across the queue's storage backend</strong> before returning success to the
+sender — the queue is not a single in-memory buffer. A standard queue's
+famous "at-least-once, best-effort ordering" behavior comes directly from
+this distributed design: because messages are redundantly stored, consuming
+a message doesn't delete it; it makes it <strong>invisible</strong> for the duration of
+your visibility timeout, and only a subsequent explicit <code>DeleteMessage</code> call
+removes it from the underlying store. If your consumer crashes before
+calling delete, the message reappears after the timeout — this is a
+deliberate design (guaranteeing delivery over guaranteeing exactly-once) and
+is why idempotent message processing is a hard requirement, not a
+nice-to-have, for standard queues.</p>
+<p><strong>FIFO queues</strong> trade some throughput for the additional guarantee of
+ordering <em>within a message group</em>, implemented by internally partitioning
+message storage per group ID and using a message-deduplication ID (or
+content hash) to reject duplicate sends within a 5-minute window — this
+dedup is done at write time against a hash index, not by inspecting message
+bodies at consume time.</p>
+<p>SNS is a <strong>fan-out publish/subscribe</strong> system: publishing one message
+triggers SNS's delivery workers to push independently to every current
+subscriber (SQS queues, Lambda functions, HTTP endpoints, email) in
+parallel, each with its own retry policy — this is why an SNS→SQS fan-out
+pattern is so common for decoupling: SNS handles the "notify everyone who
+cares" broadcast problem, while each SQS queue on the receiving end
+independently handles the "buffer and retry until my specific consumer is
+ready" problem, and a slow or failing subscriber can't block delivery to the
+others.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Create an SNS topic and two SQS queues: one main queue with a DLQ

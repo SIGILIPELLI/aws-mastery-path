@@ -1058,6 +1058,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2327,6 +2338,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2740,6 +2762,32 @@ right now, service by service.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Stitching S3, Lambda, IAM, and CloudFormation together in one stack exposes
+how these control planes actually cooperate rather than merely coexist.
+When S3 invokes your Lambda function on an object-created event, it isn't
+"calling" Lambda directly the way your CLI does — S3 publishes an
+asynchronous event notification to the Lambda service's internal event
+queue, and a separate Lambda poller/dispatcher picks it up and performs the
+<code>Invoke</code> call on S3's behalf using a <strong>resource-based policy</strong> you granted
+(<code>lambda:AddPermission</code>), which is why S3-to-Lambda triggers need a
+resource policy on the <em>function</em>, not an IAM policy on any user — S3 isn't
+using your credentials at all, it's using its own service-linked
+permission to invoke on your behalf.</p>
+<p>Because that invocation path is asynchronous, Lambda's event-source
+integration for S3 includes automatic retries (with backoff) if your
+function errors or throttles, decoupling S3's upload throughput from your
+function's processing rate — this is also why duplicate invocations for the
+same event are possible and why capstone-style pipelines need to design for
+idempotency (e.g. checking if a derived object already exists before
+recomputing it).</p>
+<p>CloudFormation ties the whole thing together by resolving cross-resource
+references at deploy time: when your template does <code>Fn::GetAtt</code> to pass a
+freshly created Lambda function's ARN into an S3 bucket notification
+configuration, CloudFormation must sequence the Lambda creation, the
+<code>lambda:AddPermission</code> grant, and the S3 notification configuration in that
+exact order — getting this ordering wrong (missing the permission grant) is
+the most common real-world cause of an S3 trigger silently never firing.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Build the notes app following the steps above: DynamoDB table, Lambda

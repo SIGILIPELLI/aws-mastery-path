@@ -980,6 +980,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2509,6 +2531,31 @@ log content with a small purpose-built query language:</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>CloudWatch metrics are not sampled continuously in the way a local
+monitoring agent might poll — they're <strong>published as discrete data points</strong>
+by the service or agent emitting them (EC2's hypervisor emits CPU/network
+metrics every 1 or 5 minutes depending on "detailed monitoring"; your own
+<code>put-metric-data</code> calls create points whenever you call them), and
+CloudWatch's storage layer is really a time-series database that
+aggregates points landing in the same period into statistics (Average, Sum,
+MO, p99, etc.) rather than storing every raw point forever — which is why
+older data is only queryable at coarser resolution: CloudWatch automatically
+rolls 1-minute data up into 5-minute, then 1-hour aggregates as it ages out,
+trading precision for storage cost.</p>
+<p><strong>Alarms</strong> are a state machine, not a continuous check: an alarm evaluates
+on a schedule (your period × evaluation-periods), and only transitions
+between <code>OK</code>, <code>ALARM</code>, and <code>INSUFFICIENT_DATA</code> when enough consecutive
+periods meet the threshold — this deliberate delay (not reacting to a single
+spike) is what prevents flapping, but it's also exactly why an alarm can
+lag several minutes behind a real, ongoing incident.</p>
+<p>Logs work on a completely different backend: CloudWatch Logs ingests
+line-oriented events into <strong>log streams</strong> grouped by <strong>log group</strong>, storing
+them append-only and indexing them for Logs Insights queries, which is why
+Insights queries scan compressed data proportional to the time range you
+select rather than doing a live grep — querying a wide time window across a
+high-volume log group is a genuine (and billed) full-text scan, not an
+instant lookup.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Set a 14-day retention policy on the log group for your <code>training-hello</code>

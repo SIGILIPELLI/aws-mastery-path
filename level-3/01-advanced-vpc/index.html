@@ -1525,6 +1525,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2261,6 +2272,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2433,6 +2455,34 @@ one VPN serve every VPC on the TGW.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>VPC Peering and Transit Gateway solve the same connectivity problem with
+fundamentally different underlying mechanisms. A peering connection is a
+<strong>point-to-point, non-transitive</strong> route: each side simply adds a static
+route in its route table pointing the peer's CIDR at the peering connection
+ID, and the VPC fabric handles direct routing between the two VPCs' hosts —
+non-transitivity isn't a policy restriction, it's structural: VPC A has no
+route entry to VPC C's CIDR just because it peers with VPC B, so traffic
+genuinely has nowhere to go without an explicit peering connection (or a
+Transit Gateway) between A and C directly.</p>
+<p><strong>Transit Gateway</strong> replaces this N² mesh problem with a real, managed
+routing hub: it's implemented as a regional, highly-available router service
+with its own route tables, to which VPCs, VPNs, and Direct Connect
+attachments all connect as spokes. Because Transit Gateway performs its own
+route table lookups and propagation, transitive routing (A through the
+gateway to C) works by default — the gateway is doing genuine Layer-3
+routing decisions per attachment, not just relaying peering-style static
+routes, which is also what lets you segment traffic by attaching different
+VPCs to different Transit Gateway route tables for network isolation.</p>
+<p><strong>PrivateLink / VPC endpoints</strong> work through an entirely different
+mechanism: an interface endpoint provisions an elastic network interface
+inside your subnet backed by AWS PrivateLink's infrastructure, which proxies
+traffic to the target service over Amazon's internal network without ever
+routing through an internet gateway, NAT gateway, or the public internet at
+all — DNS resolution for the service name is silently redirected (via
+Route 53 Resolver rules PrivateLink installs) to that private ENI's IP,
+which is why enabling private DNS on an endpoint requires no application
+code changes: the same hostname just now resolves somewhere else.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Sketch (on paper or in a text file) a three-VPC topology — <code>prod</code>,
 <code>staging</code>, and <code>shared-services</code> — connected through a single Transit

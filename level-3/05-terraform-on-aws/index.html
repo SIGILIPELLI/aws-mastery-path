@@ -1659,6 +1659,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2305,6 +2316,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2531,6 +2553,34 @@ different variables instead of copy-pasting HCL.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>Terraform's core mechanism is a <strong>declarative diff-and-apply engine</strong> built
+on a dependency graph, conceptually similar to CloudFormation but
+implemented entirely client-side (or in your chosen remote runner) rather
+than as an AWS-native control-plane feature. <code>terraform plan</code> builds this
+graph from your <code>.tf</code> files (edges inferred from resource references), then
+compares each resource's desired attributes against the last-known state
+recorded in the <strong>state file</strong> — not against AWS's live API each time for
+every attribute; it uses the state file as its source of truth for "what did
+I create," refreshing it against real AWS resources first specifically to
+detect drift.</p>
+<p>The <strong>provider</strong> is what actually talks to AWS: it's a separate binary
+implementing Terraform's plugin protocol, translating each resource block
+into the equivalent AWS API calls (via the same underlying SDK the CLI
+uses), and mapping API responses back into the schema Terraform tracks in
+state — this indirection is why a manual Console change to a
+Terraform-managed resource causes drift: Terraform's state file still
+records the old values, and the next <code>plan</code> will propose "fixing" it back,
+because Terraform has no mechanism to detect out-of-band changes except by
+diffing against its own recorded state.</p>
+<p>State file locking (typically via DynamoDB when using an S3 backend) exists
+because concurrent <code>apply</code> runs manipulating the same state file
+non-atomically could corrupt it or produce conflicting operations against
+the same real resources — the lock is a simple conditional-write mutex in
+DynamoDB, acquired before Terraform reads state and released after the
+operation completes, which is exactly the same coordination problem
+distributed databases solve with compare-and-swap, applied to
+infrastructure tooling.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Write a Terraform configuration that creates an S3 bucket and a DynamoDB
 table (for a future state backend), using variables for the bucket name

@@ -2080,6 +2080,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2283,6 +2294,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2473,6 +2495,32 @@ that CloudFront can't handle.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p><strong>Direct Connect</strong> bypasses the public internet entirely by provisioning a
+dedicated physical (or hosted, sub-rate) fiber connection from your
+router/colocation facility into an AWS Direct Connect location, where it
+terminates onto AWS's own network hardware — from that point on, your
+traffic to a VPC travels over AWS's private backbone rather than transiting
+any public internet exchange point, which is the actual mechanism behind
+Direct Connect's more predictable latency and jitter compared to a VPN over
+the public internet (a VPN's tunnel still rides over the unpredictable,
+shared public internet path underneath the encryption).</p>
+<p>A <strong>Direct Connect Gateway</strong> exists because a raw DX connection alone can
+only reach VPCs in the <em>same region</em> as the DX location — the gateway is a
+global routing construct that lets one physical DX connection's BGP
+sessions be associated with Virtual Private Gateways or Transit Gateways
+across <em>multiple</em> regions, effectively projecting one physical link's reach
+across your whole global VPC footprint via AWS's internal backbone rather
+than requiring a separate physical connection per region.</p>
+<p><strong>Global Accelerator</strong> works through Anycast IP addressing: it advertises
+the same static IP addresses from every AWS edge location worldwide
+simultaneously, and relies on internet BGP routing itself to send a given
+client's traffic to whichever advertising edge location is topologically
+nearest — once traffic lands at that edge, it travels the rest of the way to
+your actual resources over AWS's private backbone rather than the public
+internet, similar in spirit to CloudFront but optimized for non-HTTP TCP/UDP
+traffic and for a static IP that doesn't change even as you add or remove
+backend endpoints across regions.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <p>Design (no need to provision) a resilient hybrid network for a company
 with one data center: two Direct Connect connections at different

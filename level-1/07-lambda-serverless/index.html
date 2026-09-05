@@ -985,6 +985,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2349,6 +2360,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#how-it-actually-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Actually Works
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exercise" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2600,6 +2622,29 @@ them. The tradeoffs versus EC2:</p>
 </tr>
 </tbody>
 </table>
+<h2 id="how-it-actually-works">How It Actually Works<a class="headerlink" href="#how-it-actually-works" title="Permanent link">&para;</a></h2>
+<p>A Lambda function isn't a long-running process waiting for requests — each
+invocation runs inside a <strong>MicroVM</strong> (Firecracker, the same lightweight
+virtualization technology AWS open-sourced and also uses under Fargate),
+launched fresh, isolated at the hardware-virtualization level from every
+other customer's functions on the same host, with boot times measured in
+milliseconds rather than the seconds a full EC2 instance needs.</p>
+<p>The "cold start" you sometimes see is exactly this: on the first invocation
+(or the first after scaling up), Lambda has to spin up a new Firecracker
+MicroVM, load your deployment package, and initialize your language
+runtime and any top-level (outside-the-handler) code before the handler can
+run. A <strong>warm</strong> invocation reuses an already-initialized MicroVM and skips
+straight to the handler — which is also why code outside your handler
+function (a DB connection, an SDK client) only re-runs on cold starts, and
+why that's the recommended place to put expensive setup.</p>
+<p>Concurrency scaling works by Lambda's control plane launching additional
+MicroVMs in parallel, up to your account's concurrency limit, with no
+coordination needed between them — this is precisely why Lambda functions
+must be stateless and idempotent: two concurrent invocations of the same
+function are two entirely separate MicroVMs with no shared memory, and
+there's no guarantee the <em>same</em> MicroVM ever gets reused between calls, so
+anything you need to persist has to go to an external store like DynamoDB
+or S3.</p>
 <h2 id="exercise">Exercise<a class="headerlink" href="#exercise" title="Permanent link">&para;</a></h2>
 <ol>
 <li>Write a Lambda function in Python that accepts a JSON body
