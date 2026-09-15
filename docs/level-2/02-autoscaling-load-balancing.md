@@ -212,6 +212,12 @@ metric to the configured target and adjusts capacity toward that estimate,
 which is why scale-out often adds more than one instance at once under a
 sudden spike.
 
+## 🔀 Related lessons on other tracks
+
+- [IBM Cloud — 02 · Load Balancing & Auto Scaling](https://sigilipelli.github.io/ibm-cloud-mastery-path/level-2/02-load-balancing-autoscaling/)
+- [GCP — 02 · Autoscaling & Load Balancing](https://sigilipelli.github.io/gcp-mastery-path/level-2/02-autoscaling-load-balancing/)
+- [Kubernetes — 02 · Ingress & Load Balancing](https://sigilipelli.github.io/kubernetes-mastery-path/level-2/02-ingress-load-balancing/)
+
 ## Exercise
 
 1. Create a launch template with user data that installs and starts a web

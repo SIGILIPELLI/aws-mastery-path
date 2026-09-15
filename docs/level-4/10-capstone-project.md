@@ -225,3 +225,8 @@ layered on top, not a live cost readout wired into the request path.
 - Add a fourth account (`Sandbox`) with a tightly scoped SCP and a
   short-lived resource budget, and automate its cleanup with a
   scheduled Lambda that terminates anything older than 48 hours.
+
+## 🔀 Related lessons on other tracks
+
+- [GCP — 10 · Capstone Project — Production-Grade Cloud Architecture](https://sigilipelli.github.io/gcp-mastery-path/level-4/10-capstone-project/)
+- [Kubernetes — 06 · Designing Production-Grade Cluster Architecture](https://sigilipelli.github.io/kubernetes-mastery-path/level-4/06-production-cluster-architecture/)

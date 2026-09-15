@@ -172,6 +172,12 @@ record's TTL) keep hitting the failed region until that TTL expires, which
 is why RTO in a DNS-failover design is never zero even after the failover
 itself completes instantly.
 
+## 🔀 Related lessons on other tracks
+
+- [GCP — 07 · Multi-Region & Disaster Recovery](https://sigilipelli.github.io/gcp-mastery-path/level-3/07-multi-region-disaster-recovery/)
+- [IBM Cloud — 06 · Multi-Region & Disaster Recovery](https://sigilipelli.github.io/ibm-cloud-mastery-path/level-3/06-multi-region-dr/)
+- [Azure — 07 · High Availability & Disaster Recovery](https://sigilipelli.github.io/azure-mastery-path/level-3/07-ha-disaster-recovery/)
+
 ## Exercise
 
 Given a single-region web app (ALB + ASG + RDS) with an RTO requirement

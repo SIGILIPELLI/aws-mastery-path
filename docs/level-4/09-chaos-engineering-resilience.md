@@ -165,6 +165,12 @@ exercise these same code paths (real termination, real throttling) on your
 own schedule, with the guardrails above in place, so the first time a
 failover mechanism runs isn't during a real outage.
 
+## 🔀 Related lessons on other tracks
+
+- [GCP — 09 · Chaos Engineering & Resilience Testing](https://sigilipelli.github.io/gcp-mastery-path/level-4/09-chaos-engineering-resilience/)
+- [Azure — 06 · Performance Engineering & Load Testing](https://sigilipelli.github.io/azure-mastery-path/level-4/06-performance-load-testing/)
+- [Server Ops — 08 · Chaos Engineering Basics](https://sigilipelli.github.io/server-ops-mastery-path/level-3/08-chaos-engineering-basics/)
+
 ## Exercise
 
 Write an FIS experiment template that terminates exactly one EC2

@@ -317,3 +317,7 @@ scale-out event turns into a replace-loop — new instances get killed for
 - **Cost check**: use module 9's Cost Explorer grouped by tag to confirm
   this stack's actual daily cost matches your expectations before you
   leave it running for any length of time.
+
+## 🔀 Related lessons on other tracks
+
+- [GCP — 10 · Project — Scalable Web App](https://sigilipelli.github.io/gcp-mastery-path/level-2/10-project-scalable-web-app/)

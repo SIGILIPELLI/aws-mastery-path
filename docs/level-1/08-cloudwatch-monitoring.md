@@ -203,6 +203,10 @@ select rather than doing a live grep — querying a wide time window across a
 high-volume log group is a genuine (and billed) full-text scan, not an
 instant lookup.
 
+## 🔀 Related lessons on other tracks
+
+- [GCP — 08 · Cloud Monitoring & Logging](https://sigilipelli.github.io/gcp-mastery-path/level-1/08-monitoring-logging/)
+
 ## Exercise
 
 1. Set a 14-day retention policy on the log group for your `training-hello`

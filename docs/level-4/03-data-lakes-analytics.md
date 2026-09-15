@@ -192,6 +192,11 @@ the same prefix (a new column added halfway through) can produce a crawler
 run that either merges or conflicts on the column definition, requiring
 schema evolution handling downstream.
 
+## 🔀 Related lessons on other tracks
+
+- [GCP — 03 · Data Analytics (BigQuery, Dataflow, Dataproc)](https://sigilipelli.github.io/gcp-mastery-path/level-4/03-data-analytics-bigquery/)
+- [ETL & Data Lake — 03 · Security & Access Control Patterns for Data Lakes](https://sigilipelli.github.io/etl-datalake-mastery-path/level-4/03-security-access-control/)
+
 ## Exercise
 
 Upload a small CSV to S3 partitioned by `year=2026/month=08/`, crawl it

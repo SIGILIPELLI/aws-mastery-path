@@ -171,6 +171,10 @@ internet, similar in spirit to CloudFront but optimized for non-HTTP TCP/UDP
 traffic and for a static IP that doesn't change even as you add or remove
 backend endpoints across regions.
 
+## 🔀 Related lessons on other tracks
+
+- [IBM Cloud — 02 · Advanced Networking (Transit Gateway, VPN, Direct Link)](https://sigilipelli.github.io/ibm-cloud-mastery-path/level-3/02-advanced-networking/)
+
 ## Exercise
 
 Design (no need to provision) a resilient hybrid network for a company

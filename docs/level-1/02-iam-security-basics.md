@@ -217,6 +217,11 @@ the role's policies at the moment of the call, not at the moment you assumed
 it. That's why revoking a role's policy takes effect on already-issued
 temporary credentials immediately, without needing to expire the session.
 
+## 🔀 Related lessons on other tracks
+
+- [GCP — 02 · IAM & Security Basics](https://sigilipelli.github.io/gcp-mastery-path/level-1/02-iam-security/)
+- [IBM Cloud — 02 · IAM & Security Basics](https://sigilipelli.github.io/ibm-cloud-mastery-path/level-1/02-iam-security/)
+
 ## Exercise
 
 1. Write a policy JSON file that allows only `s3:GetObject` and

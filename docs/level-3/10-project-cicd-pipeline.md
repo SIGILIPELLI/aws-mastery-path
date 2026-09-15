@@ -195,3 +195,7 @@ itself.
   (module 3) on pipeline failure to page an on-call engineer.
 - Extend the deployment group to multiple regions using the DR patterns
   from module 7, so a prod promotion updates a warm-standby region too.
+
+## 🔀 Related lessons on other tracks
+
+- [GCP — 10 · Project — Multi-Tier CI/CD Pipeline](https://sigilipelli.github.io/gcp-mastery-path/level-3/10-project-cicd-pipeline/)

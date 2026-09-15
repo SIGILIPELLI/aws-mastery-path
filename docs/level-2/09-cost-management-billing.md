@@ -211,6 +211,12 @@ can only notify you after usage has already been metered and aggregated,
 making it a detection control, not a real-time enforcement control (Service
 Quotas and IAM deny policies are the actual preventive mechanisms).
 
+## 🔀 Related lessons on other tracks
+
+- [GCP — 09 · Cost Management & Billing](https://sigilipelli.github.io/gcp-mastery-path/level-2/09-cost-management-billing/)
+- [Azure — 09 · Cost Management & Optimization](https://sigilipelli.github.io/azure-mastery-path/level-3/09-cost-management-optimization/)
+- [IBM Cloud — 07 · Cost Management & Governance](https://sigilipelli.github.io/ibm-cloud-mastery-path/level-3/07-cost-management-governance/)
+
 ## Exercise
 
 1. Create a monthly cost budget with an `ACTUAL` alert at 80% and a

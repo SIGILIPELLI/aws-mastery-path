@@ -192,6 +192,11 @@ boundary — meaning a NACL needs explicit rules for both request and response
 traffic, and a packet can be dropped by the subnet's NACL before it ever
 reaches the instance's security group check.
 
+## 🔀 Related lessons on other tracks
+
+- [GCP — 05 · VPC Networking Basics](https://sigilipelli.github.io/gcp-mastery-path/level-1/05-vpc-networking/)
+- [IBM Cloud — 05 · VPC Networking Basics](https://sigilipelli.github.io/ibm-cloud-mastery-path/level-1/05-vpc-networking/)
+
 ## Exercise
 
 1. Create a VPC (`10.0.0.0/16`) with one public subnet (`10.0.1.0/24`) and

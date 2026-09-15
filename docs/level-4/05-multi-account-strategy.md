@@ -175,6 +175,10 @@ IAM evaluation — this is why a shared subnet lets another account launch
 instances into your VPC without ever assuming a role into your account:
 the permission lives on the resource itself, granted by RAM, not by STS.
 
+## 🔀 Related lessons on other tracks
+
+- [GCP — 05 · Multi-Project Strategy (Organizations, Folders)](https://sigilipelli.github.io/gcp-mastery-path/level-4/05-multi-project-strategy/)
+
 ## Exercise
 
 Design an OU structure (on paper) for an organization with three teams

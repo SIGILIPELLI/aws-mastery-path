@@ -175,6 +175,12 @@ what makes CloudTrail a genuinely complete record of "who did what," and
 why enabling it organization-wide via Control Tower is treated as a
 foundational, non-optional guardrail rather than an optional feature.
 
+## 🔀 Related lessons on other tracks
+
+- [Server Ops — 07 · Compliance & Audit Considerations for Ops](https://sigilipelli.github.io/server-ops-mastery-path/level-4/07-compliance-audit-considerations/)
+- [AI Manager — 02 · AI Governance & Compliance](https://sigilipelli.github.io/ai-manager-mastery-path/level-3/02-ai-governance-compliance/)
+- [Data Engineering — 04 · Advanced Data Governance & Compliance](https://sigilipelli.github.io/data-engineering-mastery-path/level-4/04-advanced-governance-compliance/)
+
 ## Exercise
 
 Enable AWS Config in a test account, add the
