@@ -1,3 +1,7 @@
+---
+description: "Containers on AWS (ECS/Fargate) — Level 1 ran your code on EC2 instances (module 3) and inside Lambda (module 7). Containers sit between those two worlds…"
+---
+
 # 01 · Containers on AWS (ECS/Fargate)
 
 Level 1 ran your code on EC2 instances (module 3) and inside Lambda

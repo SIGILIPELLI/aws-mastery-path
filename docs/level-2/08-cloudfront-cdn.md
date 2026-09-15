@@ -1,3 +1,7 @@
+---
+description: "CloudFront & CDN Basics — The S3 static website from Level 1 (module 4) and the ALB from module 2 both serve every request from one region. CloudFront is…"
+---
+
 # 08 · CloudFront & CDN Basics
 
 The S3 static website from Level 1 (module 4) and the ALB from module 2

@@ -1,3 +1,7 @@
+---
+description: "EC2 Compute — EC2 (Elastic Compute Cloud) rents you virtual machines — 'instances' — by the second. It's the most fundamental compute building block in…"
+---
+
 # 03 · EC2 Compute
 
 EC2 (Elastic Compute Cloud) rents you virtual machines — "instances" — by

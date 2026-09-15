@@ -1,3 +1,7 @@
+---
+description: "S3 Storage — S3 (Simple Storage Service) is object storage: you store arbitrary files ('objects') inside named containers ('buckets'), addressed by key…"
+---
+
 # 04 · S3 Storage
 
 S3 (Simple Storage Service) is object storage: you store arbitrary files

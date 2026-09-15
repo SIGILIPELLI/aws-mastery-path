@@ -1,3 +1,7 @@
+---
+description: "Advanced VPC (Peering, Transit Gateway, VPN) — Level 1 gave you a single VPC with public/private subnets. Real organizations run dozens of VPCs — one per…"
+---
+
 # Advanced VPC (Peering, Transit Gateway, VPN)
 
 Level 1 gave you a single VPC with public/private subnets. Real

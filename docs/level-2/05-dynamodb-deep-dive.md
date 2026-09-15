@@ -1,3 +1,7 @@
+---
+description: "DynamoDB Deep Dive — The Level 1 capstone used DynamoDB with a single-attribute key just to store and fetch notes by ID. That barely scratches what…"
+---
+
 # 05 · DynamoDB Deep Dive
 
 The Level 1 capstone used DynamoDB with a single-attribute key just to

@@ -1,3 +1,7 @@
+---
+description: "Secrets Manager & Parameter Store — The Level 1 Lambda module set configuration with plain environment variables (STAGE=training) — fine for non-sensitive…"
+---
+
 # 07 · Secrets Manager & Parameter Store
 
 The Level 1 Lambda module set configuration with plain environment

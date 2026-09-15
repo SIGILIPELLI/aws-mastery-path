@@ -1,3 +1,7 @@
+---
+description: "Capstone — Serverless Web App — Time to combine everything from this level into one real, working application: a static frontend hosted on S3, calling a…"
+---
+
 # 10 · Capstone — Serverless Web App
 
 Time to combine everything from this level into one real, working

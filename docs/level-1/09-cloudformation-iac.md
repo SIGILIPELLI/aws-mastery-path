@@ -1,3 +1,7 @@
+---
+description: "CloudFormation & IaC Intro — Every module so far has provisioned resources by running CLI commands one at a time — which works, but leaves no single…"
+---
+
 # 09 · CloudFormation & IaC Intro
 
 Every module so far has provisioned resources by running CLI commands one

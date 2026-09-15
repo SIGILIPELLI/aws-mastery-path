@@ -1,3 +1,7 @@
+---
+description: "Lambda & Serverless — Lambda runs your code in response to an event — an HTTP request, a file landing in S3, a schedule — without you provisioning or…"
+---
+
 # 07 · Lambda & Serverless
 
 Lambda runs your code in response to an event — an HTTP request, a file

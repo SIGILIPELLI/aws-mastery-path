@@ -1,3 +1,7 @@
+---
+description: "Route 53 & DNS — Every AWS resource you've built so far is reachable by an AWS-assigned address — an EC2 public IP, an ALB's DNSName, an API Gateway…"
+---
+
 # 03 · Route 53 & DNS
 
 Every AWS resource you've built so far is reachable by an AWS-assigned

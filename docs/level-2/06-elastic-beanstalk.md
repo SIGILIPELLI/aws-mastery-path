@@ -1,3 +1,7 @@
+---
+description: "Elastic Beanstalk — Module 2 built an EC2 fleet, ASG, and ALB by hand — several separate resources you wired together yourself. Elastic Beanstalk is a…"
+---
+
 # 06 · Elastic Beanstalk
 
 Module 2 built an EC2 fleet, ASG, and ALB by hand — several separate

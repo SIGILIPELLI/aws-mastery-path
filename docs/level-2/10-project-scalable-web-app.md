@@ -1,3 +1,7 @@
+---
+description: "Project — Scalable Web App — The Level 1 capstone combined S3, API Gateway, Lambda, and DynamoDB into one serverless system. This project combines…"
+---
+
 # 10 · Project — Scalable Web App
 
 The Level 1 capstone combined S3, API Gateway, Lambda, and DynamoDB into

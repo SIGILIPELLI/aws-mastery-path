@@ -1,3 +1,7 @@
+---
+description: "Multi-Region & Disaster Recovery — Everything so far ran in one region. If that region has an outage — rare, but it happens — a single-region architecture…"
+---
+
 # Multi-Region & Disaster Recovery
 
 Everything so far ran in one region. If that region has an outage —

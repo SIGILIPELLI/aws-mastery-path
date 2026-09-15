@@ -1,3 +1,7 @@
+---
+description: "RDS Databases — RDS (Relational Database Service) gives you a managed relational database — MySQL, PostgreSQL, MariaDB, SQL Server, or Oracle — where AWS…"
+---
+
 # 06 · RDS Databases
 
 RDS (Relational Database Service) gives you a managed relational database —

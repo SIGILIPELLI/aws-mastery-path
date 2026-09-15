@@ -1,3 +1,7 @@
+---
+description: "CloudWatch Monitoring & Logging — CloudWatch is AWS's monitoring and observability service: every service you've touched so far — EC2, RDS, Lambda …"
+---
+
 # 08 · CloudWatch Monitoring & Logging
 
 CloudWatch is AWS's monitoring and observability service: every service

@@ -1,3 +1,7 @@
+---
+description: "Step Functions & Orchestration — Level 1 wired individual Lambda functions to triggers. Real workflows chain many steps together — call function A, branch…"
+---
+
 # Step Functions & Orchestration
 
 Level 1 wired individual Lambda functions to triggers. Real workflows

@@ -1,3 +1,7 @@
+---
+description: "Advanced IAM (SCPs, Permission Boundaries) — Level 1 covered IAM users, roles, and policies within a single account. Once an organization runs multiple…"
+---
+
 # Advanced IAM (SCPs, Permission Boundaries)
 
 Level 1 covered IAM users, roles, and policies within a single account.

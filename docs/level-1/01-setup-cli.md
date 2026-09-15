@@ -1,3 +1,7 @@
+---
+description: "Setup & AWS CLI — Every module in this course assumes you have an AWS account and a working AWS CLI on your machine. This module walks through creating…"
+---
+
 # 01 · Setup & AWS CLI
 
 Every module in this course assumes you have an AWS account and a working

@@ -1,3 +1,7 @@
+---
+description: "Cost Management & Billing — Every warning box in this course so far has ended with some version of 'clean up so you don't get billed' — this module gives…"
+---
+
 # 09 · Cost Management & Billing
 
 Every warning box in this course so far has ended with some version of

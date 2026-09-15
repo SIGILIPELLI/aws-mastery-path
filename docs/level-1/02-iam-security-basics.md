@@ -1,3 +1,7 @@
+---
+description: "IAM & Security Basics — IAM (Identity and Access Management) is the service that controls who can do what in your AWS account — it's global (not…"
+---
+
 # 02 · IAM & Security Basics
 
 IAM (Identity and Access Management) is the service that controls *who* can

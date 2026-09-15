@@ -1,3 +1,7 @@
+---
+description: "Chaos Engineering & Resilience Testing — Level 3 module 7 designed DR strategies on paper (backup/restore, pilot light, warm standby, active-active).…"
+---
+
 # Chaos Engineering & Resilience Testing
 
 Level 3 module 7 designed DR strategies on paper (backup/restore,

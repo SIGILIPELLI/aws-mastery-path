@@ -1,3 +1,7 @@
+---
+description: "VPC Networking Basics — A VPC (Virtual Private Cloud) is your own isolated slice of AWS network — every EC2 instance, RDS database, and Lambda function…"
+---
+
 # 05 · VPC Networking Basics
 
 A VPC (Virtual Private Cloud) is your own isolated slice of AWS network —

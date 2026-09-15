@@ -1,3 +1,7 @@
+---
+description: "Kubernetes at Scale (EKS Production Patterns) — Level 3 got a working EKS cluster with one static node group. Running EKS in production means the cluster…"
+---
+
 # Kubernetes at Scale (EKS Production Patterns)
 
 Level 3 got a working EKS cluster with one static node group. Running

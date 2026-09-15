@@ -1,3 +1,7 @@
+---
+description: "Kubernetes on AWS (EKS) — ECS and Fargate (Level 2) are AWS's opinionated container schedulers. EKS (Elastic Kubernetes Service) is AWS's managed control…"
+---
+
 # Kubernetes on AWS (EKS)
 
 ECS and Fargate (Level 2) are AWS's opinionated container schedulers.

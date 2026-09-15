@@ -1,3 +1,7 @@
+---
+description: "Capstone Project — Production-Grade Cloud Architecture — This capstone pulls together the full path: multi-account structure (module 5), IaC (Level 3…"
+---
+
 # Capstone Project — Production-Grade Cloud Architecture
 
 This capstone pulls together the full path: multi-account structure

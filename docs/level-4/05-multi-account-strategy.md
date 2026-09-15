@@ -1,3 +1,7 @@
+---
+description: "Multi-Account Strategy (Organizations, Control Tower) — Level 3 module 4 covered SCPs assuming an Organization already exists. This module covers building…"
+---
+
 # Multi-Account Strategy (Organizations, Control Tower)
 
 Level 3 module 4 covered SCPs assuming an Organization already exists.

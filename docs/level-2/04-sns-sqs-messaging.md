@@ -1,3 +1,7 @@
+---
+description: "SNS & SQS Messaging — So far every service has talked to another synchronously — a caller waits for a direct response. Messaging services decouple that: a…"
+---
+
 # 04 · SNS & SQS Messaging
 
 So far every service has talked to another synchronously — a caller waits

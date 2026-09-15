@@ -1,3 +1,7 @@
+---
+description: "Advanced Networking (Direct Connect, Global Accelerator) — Level 3 module 1 connected networks over the public internet via VPN. This module covers two…"
+---
+
 # Advanced Networking (Direct Connect, Global Accelerator)
 
 Level 3 module 1 connected networks over the public internet via VPN.

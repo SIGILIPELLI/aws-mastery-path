@@ -1,3 +1,7 @@
+---
+description: "Data Lakes & Analytics (S3, Athena, Glue, Redshift) — Operational databases (RDS, DynamoDB) are optimized for transactional reads/writes on current data.…"
+---
+
 # Data Lakes & Analytics (S3, Athena, Glue, Redshift)
 
 Operational databases (RDS, DynamoDB) are optimized for transactional

@@ -1,3 +1,7 @@
+---
+description: "Advanced Serverless (EventBridge at Scale) — Level 1 used EventBridge (or its predecessor CloudWatch Events) for simple scheduled triggers. At scale…"
+---
+
 # Advanced Serverless (EventBridge at Scale)
 
 Level 1 used EventBridge (or its predecessor CloudWatch Events) for

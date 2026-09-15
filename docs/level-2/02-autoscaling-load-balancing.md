@@ -1,3 +1,7 @@
+---
+description: "Auto Scaling & Load Balancing — A single EC2 instance (Level 1, module 3) is a single point of failure and a fixed amount of capacity. This module fixes…"
+---
+
 # 02 · Auto Scaling & Load Balancing
 
 A single EC2 instance (Level 1, module 3) is a single point of failure and

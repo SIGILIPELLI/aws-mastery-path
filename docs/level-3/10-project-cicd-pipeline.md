@@ -1,3 +1,7 @@
+---
+description: "Project — Multi-Tier CI/CD Pipeline — This project combines modules 2 (EKS/ECS), 4 (IAM), and 6 (CodePipeline) into one working release pipeline: a…"
+---
+
 # Project — Multi-Tier CI/CD Pipeline
 
 This project combines modules 2 (EKS/ECS), 4 (IAM), and 6 (CodePipeline)

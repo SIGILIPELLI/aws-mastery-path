@@ -1,3 +1,7 @@
+---
+description: "Cost Optimization at Scale — Small workloads can eyeball their AWS bill. At scale — hundreds of instances, many accounts — cost optimization becomes…"
+---
+
 # Cost Optimization at Scale
 
 Small workloads can eyeball their AWS bill. At scale — hundreds of

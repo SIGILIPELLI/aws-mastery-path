@@ -1,3 +1,7 @@
+---
+description: "CI/CD (CodePipeline, CodeBuild, CodeDeploy) — Every module so far deployed manually via CLI or IaC apply. A CI/CD pipeline automates that: a commit to…"
+---
+
 # CI/CD (CodePipeline, CodeBuild, CodeDeploy)
 
 Every module so far deployed manually via CLI or IaC apply. A CI/CD

@@ -1,3 +1,7 @@
+---
+description: "Compliance & Governance (Config, Audit Manager) — Level 3 module 9 covered detecting active threats. Compliance is a related but distinct concern…"
+---
+
 # Compliance & Governance (Config, Audit Manager)
 
 Level 3 module 9 covered detecting active threats. Compliance is a
