@@ -167,9 +167,9 @@ failover mechanism runs isn't during a real outage.
 
 ## 🔀 Related lessons on other tracks
 
-- [GCP — 09 · Chaos Engineering & Resilience Testing](https://sigilipelli.github.io/gcp-mastery-path/level-4/09-chaos-engineering-resilience/)
-- [Azure — 06 · Performance Engineering & Load Testing](https://sigilipelli.github.io/azure-mastery-path/level-4/06-performance-load-testing/)
-- [Server Ops — 08 · Chaos Engineering Basics](https://sigilipelli.github.io/server-ops-mastery-path/level-3/08-chaos-engineering-basics/)
+- [GCP — 09 · Chaos Engineering & Resilience Testing](https://learnmasterypath.com/gcp-mastery-path/level-4/09-chaos-engineering-resilience/)
+- [Azure — 06 · Performance Engineering & Load Testing](https://learnmasterypath.com/azure-mastery-path/level-4/06-performance-load-testing/)
+- [Server Ops — 08 · Chaos Engineering Basics](https://learnmasterypath.com/server-ops-mastery-path/level-3/08-chaos-engineering-basics/)
 
 ## Exercise
 

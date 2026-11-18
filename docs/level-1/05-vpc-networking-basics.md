@@ -194,8 +194,8 @@ reaches the instance's security group check.
 
 ## 🔀 Related lessons on other tracks
 
-- [GCP — 05 · VPC Networking Basics](https://sigilipelli.github.io/gcp-mastery-path/level-1/05-vpc-networking/)
-- [IBM Cloud — 05 · VPC Networking Basics](https://sigilipelli.github.io/ibm-cloud-mastery-path/level-1/05-vpc-networking/)
+- [GCP — 05 · VPC Networking Basics](https://learnmasterypath.com/gcp-mastery-path/level-1/05-vpc-networking/)
+- [IBM Cloud — 05 · VPC Networking Basics](https://learnmasterypath.com/ibm-cloud-mastery-path/level-1/05-vpc-networking/)
 
 ## Exercise
 

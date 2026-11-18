@@ -213,9 +213,9 @@ Quotas and IAM deny policies are the actual preventive mechanisms).
 
 ## 🔀 Related lessons on other tracks
 
-- [GCP — 09 · Cost Management & Billing](https://sigilipelli.github.io/gcp-mastery-path/level-2/09-cost-management-billing/)
-- [Azure — 09 · Cost Management & Optimization](https://sigilipelli.github.io/azure-mastery-path/level-3/09-cost-management-optimization/)
-- [IBM Cloud — 07 · Cost Management & Governance](https://sigilipelli.github.io/ibm-cloud-mastery-path/level-3/07-cost-management-governance/)
+- [GCP — 09 · Cost Management & Billing](https://learnmasterypath.com/gcp-mastery-path/level-2/09-cost-management-billing/)
+- [Azure — 09 · Cost Management & Optimization](https://learnmasterypath.com/azure-mastery-path/level-3/09-cost-management-optimization/)
+- [IBM Cloud — 07 · Cost Management & Governance](https://learnmasterypath.com/ibm-cloud-mastery-path/level-3/07-cost-management-governance/)
 
 ## Exercise
 

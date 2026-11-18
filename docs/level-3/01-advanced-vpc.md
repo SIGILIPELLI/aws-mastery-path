@@ -172,9 +172,9 @@ code changes: the same hostname just now resolves somewhere else.
 
 ## 🔀 Related lessons on other tracks
 
-- [IBM Cloud — 02 · Advanced Networking (Transit Gateway, VPN, Direct Link)](https://sigilipelli.github.io/ibm-cloud-mastery-path/level-3/02-advanced-networking/)
-- [Azure — 01 · Advanced Networking (VPN Gateway, ExpressRoute)](https://sigilipelli.github.io/azure-mastery-path/level-3/01-advanced-networking/)
-- [GCP — 01 · Advanced VPC (Peering, Shared VPC, Interconnect)](https://sigilipelli.github.io/gcp-mastery-path/level-3/01-advanced-vpc/)
+- [IBM Cloud — 02 · Advanced Networking (Transit Gateway, VPN, Direct Link)](https://learnmasterypath.com/ibm-cloud-mastery-path/level-3/02-advanced-networking/)
+- [Azure — 01 · Advanced Networking (VPN Gateway, ExpressRoute)](https://learnmasterypath.com/azure-mastery-path/level-3/01-advanced-networking/)
+- [GCP — 01 · Advanced VPC (Peering, Shared VPC, Interconnect)](https://learnmasterypath.com/gcp-mastery-path/level-3/01-advanced-vpc/)
 
 ## Exercise
 

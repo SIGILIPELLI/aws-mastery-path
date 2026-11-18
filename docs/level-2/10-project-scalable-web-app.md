@@ -320,4 +320,4 @@ scale-out event turns into a replace-loop — new instances get killed for
 
 ## 🔀 Related lessons on other tracks
 
-- [GCP — 10 · Project — Scalable Web App](https://sigilipelli.github.io/gcp-mastery-path/level-2/10-project-scalable-web-app/)
+- [GCP — 10 · Project — Scalable Web App](https://learnmasterypath.com/gcp-mastery-path/level-2/10-project-scalable-web-app/)

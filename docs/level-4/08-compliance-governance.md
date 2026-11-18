@@ -177,9 +177,9 @@ foundational, non-optional guardrail rather than an optional feature.
 
 ## 🔀 Related lessons on other tracks
 
-- [Server Ops — 07 · Compliance & Audit Considerations for Ops](https://sigilipelli.github.io/server-ops-mastery-path/level-4/07-compliance-audit-considerations/)
-- [AI Manager — 02 · AI Governance & Compliance](https://sigilipelli.github.io/ai-manager-mastery-path/level-3/02-ai-governance-compliance/)
-- [Data Engineering — 04 · Advanced Data Governance & Compliance](https://sigilipelli.github.io/data-engineering-mastery-path/level-4/04-advanced-governance-compliance/)
+- [Server Ops — 07 · Compliance & Audit Considerations for Ops](https://learnmasterypath.com/server-ops-mastery-path/level-4/07-compliance-audit-considerations/)
+- [AI Manager — 02 · AI Governance & Compliance](https://learnmasterypath.com/ai-manager-mastery-path/level-3/02-ai-governance-compliance/)
+- [Data Engineering — 04 · Advanced Data Governance & Compliance](https://learnmasterypath.com/data-engineering-mastery-path/level-4/04-advanced-governance-compliance/)
 
 ## Exercise
 

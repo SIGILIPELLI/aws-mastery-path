@@ -173,7 +173,7 @@ backend endpoints across regions.
 
 ## 🔀 Related lessons on other tracks
 
-- [IBM Cloud — 02 · Advanced Networking (Transit Gateway, VPN, Direct Link)](https://sigilipelli.github.io/ibm-cloud-mastery-path/level-3/02-advanced-networking/)
+- [IBM Cloud — 02 · Advanced Networking (Transit Gateway, VPN, Direct Link)](https://learnmasterypath.com/ibm-cloud-mastery-path/level-3/02-advanced-networking/)
 
 ## Exercise
 

@@ -205,7 +205,7 @@ instant lookup.
 
 ## 🔀 Related lessons on other tracks
 
-- [GCP — 08 · Cloud Monitoring & Logging](https://sigilipelli.github.io/gcp-mastery-path/level-1/08-monitoring-logging/)
+- [GCP — 08 · Cloud Monitoring & Logging](https://learnmasterypath.com/gcp-mastery-path/level-1/08-monitoring-logging/)
 
 ## Exercise
 

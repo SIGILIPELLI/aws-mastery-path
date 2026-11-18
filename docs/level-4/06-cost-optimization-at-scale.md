@@ -192,9 +192,9 @@ tier-decision computation instead of doing the tiering analysis yourself.
 
 ## 🔀 Related lessons on other tracks
 
-- [AI/ML — 08 · Cost Optimization & Efficient Inference](https://sigilipelli.github.io/ai-ml-mastery-path/level-4/08-efficient-inference/)
-- [Azure — 09 · Cost Management & Optimization](https://sigilipelli.github.io/azure-mastery-path/level-3/09-cost-management-optimization/)
-- [Data Engineering — 05 · Cost Optimization for Data Platforms](https://sigilipelli.github.io/data-engineering-mastery-path/level-4/05-cost-optimization/)
+- [AI/ML — 08 · Cost Optimization & Efficient Inference](https://learnmasterypath.com/ai-ml-mastery-path/level-4/08-efficient-inference/)
+- [Azure — 09 · Cost Management & Optimization](https://learnmasterypath.com/azure-mastery-path/level-3/09-cost-management-optimization/)
+- [Data Engineering — 05 · Cost Optimization for Data Platforms](https://learnmasterypath.com/data-engineering-mastery-path/level-4/05-cost-optimization/)
 
 ## Exercise
 

@@ -214,9 +214,9 @@ sudden spike.
 
 ## 🔀 Related lessons on other tracks
 
-- [IBM Cloud — 02 · Load Balancing & Auto Scaling](https://sigilipelli.github.io/ibm-cloud-mastery-path/level-2/02-load-balancing-autoscaling/)
-- [GCP — 02 · Autoscaling & Load Balancing](https://sigilipelli.github.io/gcp-mastery-path/level-2/02-autoscaling-load-balancing/)
-- [Kubernetes — 02 · Ingress & Load Balancing](https://sigilipelli.github.io/kubernetes-mastery-path/level-2/02-ingress-load-balancing/)
+- [IBM Cloud — 02 · Load Balancing & Auto Scaling](https://learnmasterypath.com/ibm-cloud-mastery-path/level-2/02-load-balancing-autoscaling/)
+- [GCP — 02 · Autoscaling & Load Balancing](https://learnmasterypath.com/gcp-mastery-path/level-2/02-autoscaling-load-balancing/)
+- [Kubernetes — 02 · Ingress & Load Balancing](https://learnmasterypath.com/kubernetes-mastery-path/level-2/02-ingress-load-balancing/)
 
 ## Exercise
 

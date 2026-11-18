@@ -174,9 +174,9 @@ itself completes instantly.
 
 ## 🔀 Related lessons on other tracks
 
-- [GCP — 07 · Multi-Region & Disaster Recovery](https://sigilipelli.github.io/gcp-mastery-path/level-3/07-multi-region-disaster-recovery/)
-- [IBM Cloud — 06 · Multi-Region & Disaster Recovery](https://sigilipelli.github.io/ibm-cloud-mastery-path/level-3/06-multi-region-dr/)
-- [Azure — 07 · High Availability & Disaster Recovery](https://sigilipelli.github.io/azure-mastery-path/level-3/07-ha-disaster-recovery/)
+- [GCP — 07 · Multi-Region & Disaster Recovery](https://learnmasterypath.com/gcp-mastery-path/level-3/07-multi-region-disaster-recovery/)
+- [IBM Cloud — 06 · Multi-Region & Disaster Recovery](https://learnmasterypath.com/ibm-cloud-mastery-path/level-3/06-multi-region-dr/)
+- [Azure — 07 · High Availability & Disaster Recovery](https://learnmasterypath.com/azure-mastery-path/level-3/07-ha-disaster-recovery/)
 
 ## Exercise
 

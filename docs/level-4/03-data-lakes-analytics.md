@@ -194,8 +194,8 @@ schema evolution handling downstream.
 
 ## 🔀 Related lessons on other tracks
 
-- [GCP — 03 · Data Analytics (BigQuery, Dataflow, Dataproc)](https://sigilipelli.github.io/gcp-mastery-path/level-4/03-data-analytics-bigquery/)
-- [ETL & Data Lake — 03 · Security & Access Control Patterns for Data Lakes](https://sigilipelli.github.io/etl-datalake-mastery-path/level-4/03-security-access-control/)
+- [GCP — 03 · Data Analytics (BigQuery, Dataflow, Dataproc)](https://learnmasterypath.com/gcp-mastery-path/level-4/03-data-analytics-bigquery/)
+- [ETL & Data Lake — 03 · Security & Access Control Patterns for Data Lakes](https://learnmasterypath.com/etl-datalake-mastery-path/level-4/03-security-access-control/)
 
 ## Exercise
 

@@ -219,8 +219,8 @@ temporary credentials immediately, without needing to expire the session.
 
 ## 🔀 Related lessons on other tracks
 
-- [GCP — 02 · IAM & Security Basics](https://sigilipelli.github.io/gcp-mastery-path/level-1/02-iam-security/)
-- [IBM Cloud — 02 · IAM & Security Basics](https://sigilipelli.github.io/ibm-cloud-mastery-path/level-1/02-iam-security/)
+- [GCP — 02 · IAM & Security Basics](https://learnmasterypath.com/gcp-mastery-path/level-1/02-iam-security/)
+- [IBM Cloud — 02 · IAM & Security Basics](https://learnmasterypath.com/ibm-cloud-mastery-path/level-1/02-iam-security/)
 
 ## Exercise
 

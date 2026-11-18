@@ -198,4 +198,4 @@ itself.
 
 ## 🔀 Related lessons on other tracks
 
-- [GCP — 10 · Project — Multi-Tier CI/CD Pipeline](https://sigilipelli.github.io/gcp-mastery-path/level-3/10-project-cicd-pipeline/)
+- [GCP — 10 · Project — Multi-Tier CI/CD Pipeline](https://learnmasterypath.com/gcp-mastery-path/level-3/10-project-cicd-pipeline/)
