@@ -1,3 +1,7 @@
+---
+description: "Level 2 (Intermediate) of the free AWS Mastery Path: Containers on AWS (ECS/Fargate), Auto Scaling & Load Balancing, Route 53 & DNS, SNS & SQS Messaging…"
+---
+
 # Level 2 · Intermediate
 
 ## Modules

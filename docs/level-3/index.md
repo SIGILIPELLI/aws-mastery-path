@@ -1,3 +1,7 @@
+---
+description: "Level 3 (Advanced) of the free AWS Mastery Path: Advanced VPC (Peering, Transit Gateway, VPN), Kubernetes on AWS (EKS), Step Functions & Orchestration…"
+---
+
 # Level 3 · Advanced
 
 ## Modules

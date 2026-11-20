@@ -1,6 +1,6 @@
 ---
 title: "Learn AWS Free: Beginner to Master Cloud Course"
-description: "Free AWS course from beginner to advanced -- hands-on cloud lessons with real capstone projects. Part of a 37-course free learning library."
+description: "Free AWS course from beginner to advanced -- hands-on cloud lessons with real capstone projects. Part of a 100+ course free learning library."
 ---
 
 # AWS Mastery Path

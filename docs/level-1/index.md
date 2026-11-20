@@ -1,3 +1,7 @@
+---
+description: "Level 1 (Entry) of the free AWS Mastery Path. Get comfortable with the AWS CLI and console, understand the core services almost every architecture is built…"
+---
+
 # Level 1 · Entry <span class="level-badge">Foundations</span>
 
 Goal: get comfortable with the AWS CLI and console, understand the core

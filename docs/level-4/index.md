@@ -1,3 +1,7 @@
+---
+description: "Level 4 (Master) of the free AWS Mastery Path: AWS Well-Architected Framework, Advanced Serverless (EventBridge at Scale), Data Lakes & Analytics (S3…"
+---
+
 # Level 4 · Master
 
 ## Modules
