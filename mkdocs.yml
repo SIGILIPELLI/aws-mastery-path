@@ -53,9 +53,11 @@ markdown_extensions:
 extra_css:
   - stylesheets/extra.css
   - stylesheets/progress-tracker.css
+  - stylesheets/final-quiz.css
 
 extra_javascript:
   - javascripts/progress-tracker.js
+  - javascripts/final-quiz.js
 
 
 
@@ -125,3 +127,5 @@ nav:
       - "Compliance & Governance (Config, Audit Manager)": level-4/08-compliance-governance.md
       - "Chaos Engineering & Resilience Testing": level-4/09-chaos-engineering-resilience.md
       - "Capstone Project — Production-Grade Cloud Architecture": level-4/10-capstone-project.md
+  - "🎯 Final Quiz": quiz.md
+
