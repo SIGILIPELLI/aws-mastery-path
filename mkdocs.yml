@@ -81,8 +81,8 @@ not_in_nav: |
 
 nav:
   - Home: index.md
-  - "💼 Interview Questions": interview-questions.md
-  - "📋 Cheat Sheet": cheat-sheet.md
+  - Interview Questions: interview-questions.md
+  - Cheat Sheet: cheat-sheet.md
   - "Level 1 · Entry":
       - Overview: level-1/index.md
       - "01 · Setup & AWS CLI": level-1/01-setup-cli.md
@@ -131,5 +131,5 @@ nav:
       - "Compliance & Governance (Config, Audit Manager)": level-4/08-compliance-governance.md
       - "Chaos Engineering & Resilience Testing": level-4/09-chaos-engineering-resilience.md
       - "Capstone Project — Production-Grade Cloud Architecture": level-4/10-capstone-project.md
-  - "🎯 Final Quiz": quiz.md
+  - Final Quiz: quiz.md
 
