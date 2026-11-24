@@ -94,7 +94,7 @@ nav:
       - "07 · Lambda & Serverless": level-1/07-lambda-serverless.md
       - "08 · CloudWatch Monitoring & Logging": level-1/08-cloudwatch-monitoring.md
       - "09 · CloudFormation & IaC Intro": level-1/09-cloudformation-iac.md
-      - "10 · Capstone — Serverless Web App": level-1/10-capstone-project.md
+      - "10 · Project — Serverless Web App": level-1/10-capstone-project.md
   - "Level 2 · Intermediate":
       - Overview: level-2/index.md
       - "01 · Containers on AWS (ECS/Fargate)": level-2/01-ecs-containers.md
