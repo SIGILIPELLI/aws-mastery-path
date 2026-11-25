@@ -8,7 +8,7 @@ description: "Free AWS course from beginner to advanced -- hands-on cloud lesson
 A structured, module-wise AWS training program that takes you from creating
 your first IAM user to designing production-grade, master-level cloud
 architecture — with runnable CLI commands and real configuration in every
-module, and a hands-on project at the end of each level.
+module, and a hands-on project at the end of Levels 1–3 and a capstone at the end of Level 4.
 
 ## How the program is organized
 
@@ -25,7 +25,7 @@ module, and a hands-on project at the end of each level.
 - Every topic page has runnable AWS CLI commands and config snippets — copy
   them into your own terminal (with `aws configure` already set up) to follow
   along.
-- Each level ends with a project that combines everything learned in that level.
+- Levels 1–3 each end with a project that combines everything learned in that level, and Level 4 ends with the course capstone.
 - Many Level 1 modules provision real AWS resources. **Free tier covers most
   of it, but always tear down what you create** — the capstone module has an
   explicit cleanup checklist, and it's worth forming that habit early.
