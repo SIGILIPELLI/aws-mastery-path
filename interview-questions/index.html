@@ -1,0 +1,3997 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="180 AWS interview questions with answers and explanations, from beginner to advanced, organised by level. Free, from the AWS Mastery Path.">
+      
+      
+      
+        <link rel="canonical" href="https://learnmasterypath.com/aws-mastery-path/interview-questions/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../cheat-sheet/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/favicon.svg">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.8.2">
+    
+    
+  
+  <title>AWS Interview Questions and Answers (180 Questions) – AWS Course</title>
+
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.57a0d79d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.fb2fffe2.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../stylesheets/progress-tracker.css">
+    
+      <link rel="stylesheet" href="../stylesheets/final-quiz.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-05VBGCXN12"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-05VBGCXN12');
+  </script>
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mastery Path">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:title" content="AWS Interview Questions and Answers (180 Questions) – AWS Course">
+  <meta property="og:description" content="180 AWS interview questions with answers and explanations, from beginner to advanced, organised by level. Free, from the AWS Mastery Path.">
+  <meta property="og:url" content="https://learnmasterypath.com/aws-mastery-path/interview-questions/">
+  <meta property="og:image" content="https://learnmasterypath.com/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Mastery Path: free structured courses, beginner to master">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AWS Interview Questions and Answers (180 Questions) – AWS Course">
+  <meta name="twitter:description" content="180 AWS interview questions with answers and explanations, from beginner to advanced, organised by level. Free, from the AWS Mastery Path.">
+  <meta name="twitter:image" content="https://learnmasterypath.com/og-image.png">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9440969811959397"
+     crossorigin="anonymous"></script><script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Mastery Path", "item": "https://learnmasterypath.com/"},
+      {"@type": "ListItem", "position": 2, "name": "AWS Mastery Path", "item": "https://learnmasterypath.com/aws-mastery-path/"},
+      {"@type": "ListItem", "position": 3, "name": "Interview Questions", "item": "https://learnmasterypath.com/aws-mastery-path/interview-questions/"}
+    ]
+  }
+  </script>
+  <style>
+    .md-banner a:hover { text-decoration: underline !important; }
+    .mp-related { margin-top: 2.4rem; padding-top: 1rem; border-top: 1px solid var(--md-default-fg-color--lightest); font-size: .78rem; }
+    .mp-related h2 { font-size: .9rem; margin: 0 0 .5rem; }
+    .mp-related ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .4rem .9rem; }
+    .mp-related li { margin: 0 !important; }
+  </style>
+  <script type="application/json" id="mp-course-meta">{"home": false, "id": "aws-mastery-path", "name": "AWS Mastery Path", "repo": "https://github.com/SIGILIPELLI/aws-mastery-path", "src": "interview-questions.md", "url": "https://learnmasterypath.com/aws-mastery-path/"}</script>
+  <link rel="stylesheet" href="https://learnmasterypath.com/assets/learn.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+  <link rel="stylesheet" href="https://learnmasterypath.com/assets/course.css?v=1">
+  <script src="https://learnmasterypath.com/assets/learn.js" defer></script>
+  <script src="https://learnmasterypath.com/assets/signup.js" defer></script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#aws-interview-questions-and-answers" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <a href="https://learnmasterypath.com/" style="color: inherit; text-decoration: none;">
+    &larr; Mastery Path &middot; all 100+ free courses
+  </a>
+  <span style="opacity: .6; margin: 0 .6em;">|</span>
+  <a href="https://learnmasterypath.com/search/" style="color: inherit; text-decoration: none;">Search all courses</a>
+  <span style="opacity: .6; margin: 0 .6em;">|</span>
+  <a href="https://learnmasterypath.com/resume/" style="color: inherit; font-weight: 700; text-decoration: none;">
+    Got the skills? Free resume ATS check &rarr;
+  </a>
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AWS Mastery Path" class="md-header__button md-logo" aria-label="AWS Mastery Path" data-md-component="logo">
+      <svg class="mp-mark" viewBox="0 0 160 160" role="img" aria-label="Mastery Path logo">
+  <circle cx="80" cy="80" r="74" fill="#FAF7EF" stroke="#2FA98D" stroke-width="5"/>
+  <rect class="mp-bar mp-bar-1" x="36" y="90" width="17" height="24" rx="5" fill="#2FA98D"/>
+  <rect class="mp-bar mp-bar-2" x="59" y="74" width="17" height="40" rx="5" fill="#7FC9B7"/>
+  <rect class="mp-bar mp-bar-3" x="82" y="56" width="17" height="58" rx="5" fill="#E0B457"/>
+  <rect class="mp-bar mp-bar-4" x="105" y="38" width="17" height="76" rx="5" fill="#C97B4A"/>
+  <circle class="mp-dot" cx="44.5" cy="82" r="7" fill="#22261f"/>
+</svg>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AWS Mastery Path
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              AWS Interview Questions and Answers (180 Questions)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/SIGILIPELLI/aws-mastery-path" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    aws-mastery-path
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Interview Questions
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../cheat-sheet/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Cheat Sheet
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../level-1/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 1 · Entry
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../level-2/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 2 · Intermediate
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../level-3/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 3 · Advanced
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../level-4/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Level 4 · Master
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../quiz/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Final Quiz
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AWS Mastery Path" class="md-nav__button md-logo" aria-label="AWS Mastery Path" data-md-component="logo">
+      <svg class="mp-mark" viewBox="0 0 160 160" role="img" aria-label="Mastery Path logo">
+  <circle cx="80" cy="80" r="74" fill="#FAF7EF" stroke="#2FA98D" stroke-width="5"/>
+  <rect class="mp-bar mp-bar-1" x="36" y="90" width="17" height="24" rx="5" fill="#2FA98D"/>
+  <rect class="mp-bar mp-bar-2" x="59" y="74" width="17" height="40" rx="5" fill="#7FC9B7"/>
+  <rect class="mp-bar mp-bar-3" x="82" y="56" width="17" height="58" rx="5" fill="#E0B457"/>
+  <rect class="mp-bar mp-bar-4" x="105" y="38" width="17" height="76" rx="5" fill="#C97B4A"/>
+  <circle class="mp-dot" cx="44.5" cy="82" r="7" fill="#22261f"/>
+</svg>
+    </a>
+    AWS Mastery Path
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/SIGILIPELLI/aws-mastery-path" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    aws-mastery-path
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Questions
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Interview Questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#level-1-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 1 · Entry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 1 · Entry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-setup-aws-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Setup &amp; AWS CLI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-iam-security-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · IAM &amp; Security Basics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-ec2-compute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · EC2 Compute
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-s3-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · S3 Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-vpc-networking-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · VPC Networking Basics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-rds-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · RDS Databases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-lambda-serverless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Lambda &amp; Serverless
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-cloudwatch-monitoring-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · CloudWatch Monitoring &amp; Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-cloudformation-iac-intro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · CloudFormation &amp; IaC Intro
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-capstone-serverless-web-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Capstone — Serverless Web App
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-2-intermediate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 2 · Intermediate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 2 · Intermediate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-containers-on-aws-ecsfargate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Containers on AWS (ECS/Fargate)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-auto-scaling-load-balancing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Auto Scaling &amp; Load Balancing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-route-53-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Route 53 &amp; DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-sns-sqs-messaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · SNS &amp; SQS Messaging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-dynamodb-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · DynamoDB Deep Dive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-elastic-beanstalk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Elastic Beanstalk
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-secrets-manager-parameter-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Secrets Manager &amp; Parameter Store
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-cloudfront-cdn-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · CloudFront &amp; CDN Basics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-cost-management-billing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Cost Management &amp; Billing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-project-scalable-web-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Project — Scalable Web App
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-3-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 3 · Advanced
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 3 · Advanced">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advanced-vpc-peering-transit-gateway-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced VPC (Peering, Transit Gateway, VPN)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes-on-aws-eks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kubernetes on AWS (EKS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-functions-orchestration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step Functions &amp; Orchestration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-iam-scps-permission-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced IAM (SCPs, Permission Boundaries)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terraform-on-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terraform on AWS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cicd-codepipeline-codebuild-codedeploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD (CodePipeline, CodeBuild, CodeDeploy)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-region-disaster-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Region &amp; Disaster Recovery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-monitoring-x-ray-tracing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Monitoring (X-Ray &amp; Tracing)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-deep-dive-guardduty-waf-security-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Deep Dive (GuardDuty, WAF, Security Hub)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-multi-tier-cicd-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project — Multi-Tier CI/CD Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-4-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 4 · Master
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 4 · Master">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-well-architected-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Well-Architected Framework
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-serverless-eventbridge-at-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Serverless (EventBridge at Scale)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-lakes-analytics-s3-athena-glue-redshift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Lakes &amp; Analytics (S3, Athena, Glue, Redshift)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes-at-scale-eks-production-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kubernetes at Scale (EKS Production Patterns)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-account-strategy-organizations-control-tower" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Account Strategy (Organizations, Control Tower)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cost-optimization-at-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cost Optimization at Scale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-networking-direct-connect-global-accelerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Networking (Direct Connect, Global Accelerator)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compliance-governance-config-audit-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compliance &amp; Governance (Config, Audit Manager)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chaos-engineering-resilience-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chaos Engineering &amp; Resilience Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capstone-project-production-grade-cloud-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capstone Project — Production-Grade Cloud Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mixed-questions-across-all-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mixed questions across all levels
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cheat-sheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cheat Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../level-1/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 1 · Entry
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 1 · Entry
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/01-setup-cli/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Setup & AWS CLI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/02-iam-security-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · IAM & Security Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/03-ec2-compute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · EC2 Compute
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/04-s3-storage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · S3 Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/05-vpc-networking-basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · VPC Networking Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/06-rds-databases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · RDS Databases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/07-lambda-serverless/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Lambda & Serverless
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/08-cloudwatch-monitoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · CloudWatch Monitoring & Logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/09-cloudformation-iac/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · CloudFormation & IaC Intro
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-1/10-capstone-project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Project — Serverless Web App
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../level-2/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 2 · Intermediate
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 2 · Intermediate
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/01-ecs-containers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    01 · Containers on AWS (ECS/Fargate)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/02-autoscaling-load-balancing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    02 · Auto Scaling & Load Balancing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/03-route53-dns/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    03 · Route 53 & DNS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/04-sns-sqs-messaging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    04 · SNS & SQS Messaging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/05-dynamodb-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    05 · DynamoDB Deep Dive
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/06-elastic-beanstalk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    06 · Elastic Beanstalk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/07-secrets-parameter-store/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    07 · Secrets Manager & Parameter Store
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/08-cloudfront-cdn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    08 · CloudFront & CDN Basics
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/09-cost-management-billing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    09 · Cost Management & Billing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-2/10-project-scalable-web-app/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10 · Project — Scalable Web App
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../level-3/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 3 · Advanced
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 3 · Advanced
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/01-advanced-vpc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced VPC (Peering, Transit Gateway, VPN)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/02-eks-kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes on AWS (EKS)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/03-step-functions-orchestration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Step Functions & Orchestration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/04-advanced-iam/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced IAM (SCPs, Permission Boundaries)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/05-terraform-on-aws/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Terraform on AWS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/06-cicd-codepipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CI/CD (CodePipeline, CodeBuild, CodeDeploy)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/07-multi-region-disaster-recovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Region & Disaster Recovery
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/08-advanced-monitoring-xray/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Monitoring (X-Ray & Tracing)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/09-security-deep-dive/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security Deep Dive (GuardDuty, WAF, Security Hub)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-3/10-project-cicd-pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Project — Multi-Tier CI/CD Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../level-4/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Level 4 · Master
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Level 4 · Master
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/01-well-architected-framework/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AWS Well-Architected Framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/02-advanced-serverless-eventbridge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Serverless (EventBridge at Scale)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/03-data-lakes-analytics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Lakes & Analytics (S3, Athena, Glue, Redshift)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/04-eks-at-scale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubernetes at Scale (EKS Production Patterns)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/05-multi-account-strategy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Multi-Account Strategy (Organizations, Control Tower)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/06-cost-optimization-at-scale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cost Optimization at Scale
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/07-advanced-networking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Advanced Networking (Direct Connect, Global Accelerator)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/08-compliance-governance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Compliance & Governance (Config, Audit Manager)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/09-chaos-engineering-resilience/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chaos Engineering & Resilience Testing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../level-4/10-capstone-project/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capstone Project — Production-Grade Cloud Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quiz/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Final Quiz
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#level-1-entry" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 1 · Entry
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 1 · Entry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-setup-aws-cli" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Setup &amp; AWS CLI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-iam-security-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · IAM &amp; Security Basics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-ec2-compute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · EC2 Compute
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-s3-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · S3 Storage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-vpc-networking-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · VPC Networking Basics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-rds-databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · RDS Databases
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-lambda-serverless" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Lambda &amp; Serverless
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-cloudwatch-monitoring-logging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · CloudWatch Monitoring &amp; Logging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-cloudformation-iac-intro" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · CloudFormation &amp; IaC Intro
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-capstone-serverless-web-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Capstone — Serverless Web App
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-2-intermediate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 2 · Intermediate
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 2 · Intermediate">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#01-containers-on-aws-ecsfargate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        01 · Containers on AWS (ECS/Fargate)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#02-auto-scaling-load-balancing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        02 · Auto Scaling &amp; Load Balancing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#03-route-53-dns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        03 · Route 53 &amp; DNS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#04-sns-sqs-messaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        04 · SNS &amp; SQS Messaging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#05-dynamodb-deep-dive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        05 · DynamoDB Deep Dive
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#06-elastic-beanstalk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        06 · Elastic Beanstalk
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#07-secrets-manager-parameter-store" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07 · Secrets Manager &amp; Parameter Store
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#08-cloudfront-cdn-basics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        08 · CloudFront &amp; CDN Basics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#09-cost-management-billing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        09 · Cost Management &amp; Billing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-project-scalable-web-app" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10 · Project — Scalable Web App
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-3-advanced" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 3 · Advanced
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 3 · Advanced">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#advanced-vpc-peering-transit-gateway-vpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced VPC (Peering, Transit Gateway, VPN)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes-on-aws-eks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kubernetes on AWS (EKS)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-functions-orchestration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step Functions &amp; Orchestration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-iam-scps-permission-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced IAM (SCPs, Permission Boundaries)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#terraform-on-aws" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Terraform on AWS
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cicd-codepipeline-codebuild-codedeploy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CI/CD (CodePipeline, CodeBuild, CodeDeploy)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-region-disaster-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Region &amp; Disaster Recovery
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-monitoring-x-ray-tracing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Monitoring (X-Ray &amp; Tracing)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#security-deep-dive-guardduty-waf-security-hub" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security Deep Dive (GuardDuty, WAF, Security Hub)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#project-multi-tier-cicd-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project — Multi-Tier CI/CD Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#level-4-master" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Level 4 · Master
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Level 4 · Master">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aws-well-architected-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AWS Well-Architected Framework
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-serverless-eventbridge-at-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Serverless (EventBridge at Scale)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-lakes-analytics-s3-athena-glue-redshift" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data Lakes &amp; Analytics (S3, Athena, Glue, Redshift)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes-at-scale-eks-production-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kubernetes at Scale (EKS Production Patterns)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multi-account-strategy-organizations-control-tower" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Account Strategy (Organizations, Control Tower)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cost-optimization-at-scale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cost Optimization at Scale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advanced-networking-direct-connect-global-accelerator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advanced Networking (Direct Connect, Global Accelerator)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#compliance-governance-config-audit-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Compliance &amp; Governance (Config, Audit Manager)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#chaos-engineering-resilience-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Chaos Engineering &amp; Resilience Testing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capstone-project-production-grade-cloud-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capstone Project — Production-Grade Cloud Architecture
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mixed-questions-across-all-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mixed questions across all levels
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+              
+              <article class="md-content__inner md-typeset">
+                
+  
+                  
+
+
+  
+  
+
+
+<h1 id="aws-interview-questions-and-answers">AWS Interview Questions and Answers<a class="headerlink" href="#aws-interview-questions-and-answers" title="Permanent link">&para;</a></h1>
+<p><strong>180 questions</strong> with the correct answer and a short explanation, organised from beginner (Level 1) to advanced (Level 4). Every question comes from a lesson in the free AWS Mastery Path, so you can open the lesson to go deeper.</p>
+<div class="admonition tip">
+<p class="admonition-title">Practise, don't just read</p>
+<p>Each lesson also ends with an interactive quiz, and the <a href="../quiz/">final quiz</a> tests all four levels. Try to answer each question below before reading the answer.</p>
+</div>
+<h2 id="level-1-entry">Level 1 · Entry<a class="headerlink" href="#level-1-entry" title="Permanent link">&para;</a></h2>
+<h3 id="01-setup-aws-cli"><a href="../level-1/01-setup-cli/">01 · Setup &amp; AWS CLI</a><a class="headerlink" href="#01-setup-aws-cli" title="Permanent link">&para;</a></h3>
+<p><strong>Q1.</strong> What does the course say to do with the root user after creating the account?</p>
+<p><strong>Answer:</strong> Use it only to create your first IAM user, then stop using it for daily work</p>
+<p>The root user cannot be restricted by any policy, so a leak gives full control of the account and bill.</p>
+<p><strong>Q2.</strong> When is the secret access key shown?</p>
+<p><strong>Answer:</strong> Only once, at creation, so save it in a password manager</p>
+<p>Create the key with the CLI use case and store it safely.</p>
+<p><strong>Q3.</strong> Why attach AdministratorAccess to your own IAM user in this lesson?</p>
+<p><strong>Answer:</strong> It is your day-to-day login, not a service credential; least privilege for service roles comes later</p>
+<p>The policy is broad on purpose for this personal user.</p>
+<p><strong>Q4.</strong> Which two beginner mistakes does the module aim to prevent?</p>
+<p><strong>Answer:</strong> Using the root user day-to-day, and not understanding regions/profiles</p>
+<p>Confusion about regions and profiles causes 'where did my resource go?' bugs.</p>
+<h3 id="02-iam-security-basics"><a href="../level-1/02-iam-security-basics/">02 · IAM &amp; Security Basics</a><a class="headerlink" href="#02-iam-security-basics" title="Permanent link">&para;</a></h3>
+<p><strong>Q5.</strong> Which IAM identity uses temporary credentials and is assumed by users or AWS services?</p>
+<p><strong>Answer:</strong> Role</p>
+<p>There is no long-lived secret to leak.</p>
+<p><strong>Q6.</strong> Why attach policies to a group rather than to each user?</p>
+<p><strong>Answer:</strong> You manage permissions for a team without repeating yourself</p>
+<p>Add users to the group and they inherit its policies.</p>
+<p><strong>Q7.</strong> What are the parts of a policy statement?</p>
+<p><strong>Answer:</strong> Effect (Allow/Deny), Actions and Resources</p>
+<p>The example grants read-only access to exactly one bucket.</p>
+<p><strong>Q8.</strong> Is IAM region-scoped?</p>
+<p><strong>Answer:</strong> No, it is global</p>
+<p>It's the most important service to understand before provisioning anything else.</p>
+<h3 id="03-ec2-compute"><a href="../level-1/03-ec2-compute/">03 · EC2 Compute</a><a class="headerlink" href="#03-ec2-compute" title="Permanent link">&para;</a></h3>
+<p><strong>Q9.</strong> What is an AMI?</p>
+<p><strong>Answer:</strong> A template of OS and pre-installed software an instance boots from</p>
+<p>The instance type is the hardware profile, such as t3.micro.</p>
+<p><strong>Q10.</strong> Why chmod 400 the .pem private key?</p>
+<p><strong>Answer:</strong> SSH refuses a private key file that other users could read</p>
+<p>AWS cannot give the private key back, so losing it means creating a new key pair.</p>
+<p><strong>Q11.</strong> What does it mean that security groups are stateful?</p>
+<p><strong>Answer:</strong> A response to an allowed inbound request is automatically allowed back out</p>
+<p>You rarely need explicit outbound rules for typical request/response traffic.</p>
+<p><strong>Q12.</strong> Why allow SSH only from your own IP /32 rather than 0.0.0.0/0?</p>
+<p><strong>Answer:</strong> It's safer: only your address can attempt to connect</p>
+<p>HTTP on port 80 from anywhere is the web-server exception in the lesson.</p>
+<h3 id="04-s3-storage"><a href="../level-1/04-s3-storage/">04 · S3 Storage</a><a class="headerlink" href="#04-s3-storage" title="Permanent link">&para;</a></h3>
+<p><strong>Q13.</strong> What must be true of an S3 bucket name?</p>
+<p><strong>Answer:</strong> Globally unique across all of AWS</p>
+<p>Not just unique in your own account.</p>
+<p><strong>Q14.</strong> What does aws s3 sync do?</p>
+<p><strong>Answer:</strong> Uploads only changed or new files from a directory</p>
+<p>It's the efficient way to push a whole local directory.</p>
+<p><strong>Q15.</strong> What does enabling versioning do?</p>
+<p><strong>Answer:</strong> Keeps every version of an object instead of overwriting, at the cost of storing (and billing) each version</p>
+<p>It protects against accidental deletes and overwrites.</p>
+<p><strong>Q16.</strong> When do you use aws s3api instead of aws s3?</p>
+<p><strong>Answer:</strong> For lower-level operations like bucket policies and versioning configuration</p>
+<p>aws s3 is the friendly high-level command set.</p>
+<h3 id="05-vpc-networking-basics"><a href="../level-1/05-vpc-networking-basics/">05 · VPC Networking Basics</a><a class="headerlink" href="#05-vpc-networking-basics" title="Permanent link">&para;</a></h3>
+<p><strong>Q17.</strong> What makes a subnet public?</p>
+<p><strong>Answer:</strong> It has a route to an Internet Gateway</p>
+<p>Resources there can have public IPs; private subnets have no direct route to the internet.</p>
+<p><strong>Q18.</strong> What does a NAT Gateway allow?</p>
+<p><strong>Answer:</strong> Private-subnet resources to make outbound internet calls without being reachable from outside</p>
+<p>It's used for databases and internal services that need to reach out.</p>
+<p><strong>Q19.</strong> Why did Module 3's EC2 instance work without networking setup?</p>
+<p><strong>Answer:</strong> It landed in the default VPC, pre-wired with public subnets</p>
+<p>New accounts get a default VPC in every region.</p>
+<p><strong>Q20.</strong> A /16 VPC CIDR provides how many addresses?</p>
+<p><strong>Answer:</strong> 65,536</p>
+<p>A /24 subnet provides 256.</p>
+<h3 id="06-rds-databases"><a href="../level-1/06-rds-databases/">06 · RDS Databases</a><a class="headerlink" href="#06-rds-databases" title="Permanent link">&para;</a></h3>
+<p><strong>Q21.</strong> What does RDS handle for you?</p>
+<p><strong>Answer:</strong> Patching, backups and failover</p>
+<p>You focus on schema and queries instead of database administration.</p>
+<p><strong>Q22.</strong> Why does RDS require a DB subnet group with two subnets in different AZs?</p>
+<p><strong>Answer:</strong> It requires at least two AZs even for a single-AZ instance</p>
+<p>The lesson creates a second private subnet in us-east-1b.</p>
+<p><strong>Q23.</strong> What does --source-group do in the database security group rule?</p>
+<p><strong>Answer:</strong> Allows traffic from anything in the app security group instead of specific IPs</p>
+<p>It's the standard 'app tier talks to data tier' pattern.</p>
+<p><strong>Q24.</strong> What is the trade-off of RDS versus installing a database on EC2 yourself?</p>
+<p><strong>Answer:</strong> Less low-level control: you can't SSH into the underlying OS</p>
+<p>In exchange you get automatic backups with point-in-time recovery, patching and Multi-AZ failover.</p>
+<h3 id="07-lambda-serverless"><a href="../level-1/07-lambda-serverless/">07 · Lambda &amp; Serverless</a><a class="headerlink" href="#07-lambda-serverless" title="Permanent link">&para;</a></h3>
+<p><strong>Q25.</strong> What do you pay for in Lambda?</p>
+<p><strong>Answer:</strong> The milliseconds your code actually executes</p>
+<p>It scales from zero to thousands of concurrent invocations.</p>
+<p><strong>Q26.</strong> What determines what a Lambda function can access?</p>
+<p><strong>Answer:</strong> Its execution role, not the caller's identity</p>
+<p>The role is assumed by the Lambda service via a trust policy.</p>
+<p><strong>Q27.</strong> What is a cold start?</p>
+<p><strong>Answer:</strong> The latency of provisioning a fresh execution environment for the first invocation or after scaling up</p>
+<p>It's one of the core Lambda concepts.</p>
+<p><strong>Q28.</strong> What is the bare minimum policy every Lambda function needs?</p>
+<p><strong>Answer:</strong> AWSLambdaBasicExecutionRole, to write logs</p>
+<p>Add more permissions only as the function actually needs them.</p>
+<h3 id="08-cloudwatch-monitoring-logging"><a href="../level-1/08-cloudwatch-monitoring/">08 · CloudWatch Monitoring &amp; Logging</a><a class="headerlink" href="#08-cloudwatch-monitoring-logging" title="Permanent link">&para;</a></h3>
+<p><strong>Q29.</strong> What are CloudWatch namespaces?</p>
+<p><strong>Answer:</strong> Groups of metrics such as AWS/Lambda, AWS/EC2 and AWS/RDS</p>
+<p>Every AWS service publishes metrics grouped into namespaces.</p>
+<p><strong>Q30.</strong> Where does Lambda's print()/logging output land?</p>
+<p><strong>Answer:</strong> A CloudWatch log group /aws/lambda/&lt;function-name&gt;, created automatically</p>
+<p>No setup is required on your part.</p>
+<p><strong>Q31.</strong> Which command tails a Lambda's most recent log events live?</p>
+<p><strong>Answer:</strong> aws logs tail /aws/lambda/training-hello --follow</p>
+<p>It's great for live-debugging.</p>
+<p><strong>Q32.</strong> What does a CloudWatch alarm do?</p>
+<p><strong>Answer:</strong> Notifies you when a metric crosses a threshold</p>
+<p>The module sets one up alongside reading metrics and logs.</p>
+<h3 id="09-cloudformation-iac-intro"><a href="../level-1/09-cloudformation-iac/">09 · CloudFormation &amp; IaC Intro</a><a class="headerlink" href="#09-cloudformation-iac-intro" title="Permanent link">&para;</a></h3>
+<p><strong>Q33.</strong> What is the difference between a CloudFormation template and a stack?</p>
+<p><strong>Answer:</strong> A template is the YAML/JSON description; a stack is the running set of resources created from it</p>
+<p>CloudFormation tracks the stack's resources together so it can update or delete them as a unit.</p>
+<p><strong>Q34.</strong> What does 'drift' mean in the IaC table?</p>
+<p><strong>Answer:</strong> Console clicks that change resources invisibly; diffing against the template reveals them</p>
+<p>Manual changes are invisible without an IaC record.</p>
+<p><strong>Q35.</strong> How do you tear down everything a template created?</p>
+<p><strong>Answer:</strong> One command deletes the stack and its resources</p>
+<p>Manual teardown means remembering every resource.</p>
+<p><strong>Q36.</strong> What does !Ref BucketName do in the template?</p>
+<p><strong>Answer:</strong> Inserts the value of the BucketName parameter</p>
+<p>Parameters make templates reusable across environments.</p>
+<h3 id="10-capstone-serverless-web-app"><a href="../level-1/10-capstone-project/">10 · Capstone — Serverless Web App</a><a class="headerlink" href="#10-capstone-serverless-web-app" title="Permanent link">&para;</a></h3>
+<p><strong>Q37.</strong> What are the pieces of the capstone's architecture?</p>
+<p><strong>Answer:</strong> S3 static site, API Gateway, Lambda and DynamoDB</p>
+<p>It's a notes app where visitors add and read notes.</p>
+<p><strong>Q38.</strong> Why PAY_PER_REQUEST billing for the DynamoDB table?</p>
+<p><strong>Answer:</strong> It charges only for reads/writes actually made, with no capacity to provision, right for low traffic</p>
+<p>On-demand billing is the right default for a training app.</p>
+<p><strong>Q39.</strong> Why does the lesson stress the Teardown section?</p>
+<p><strong>Answer:</strong> Free tier is free below a usage threshold, and only 12 months on some resources, so leftover resources can bill you</p>
+<p>Tear down every time you finish working, not just at the end of the course.</p>
+<p><strong>Q40.</strong> How does DynamoDB compare with RDS conceptually?</p>
+<p><strong>Answer:</strong> Both are managed with no server to patch, but DynamoDB is key-value/document shaped rather than relational</p>
+<p>It's new in this module but parallel to Module 6.</p>
+<h2 id="level-2-intermediate">Level 2 · Intermediate<a class="headerlink" href="#level-2-intermediate" title="Permanent link">&para;</a></h2>
+<h3 id="01-containers-on-aws-ecsfargate"><a href="../level-2/01-ecs-containers/">01 · Containers on AWS (ECS/Fargate)</a><a class="headerlink" href="#01-containers-on-aws-ecsfargate" title="Permanent link">&para;</a></h3>
+<p><strong>Q41.</strong> What does the Fargate launch type remove?</p>
+<p><strong>Answer:</strong> Provisioning and patching the underlying EC2 instances</p>
+<p>You specify vCPU and memory per task and AWS handles the host.</p>
+<p><strong>Q42.</strong> What is a task definition?</p>
+<p><strong>Answer:</strong> A JSON blueprint of images, CPU/memory, ports, roles and logging</p>
+<p>A task is a running instance of it.</p>
+<p><strong>Q43.</strong> What does an ECS service do?</p>
+<p><strong>Answer:</strong> Keeps a desired number of tasks running, replacing any that die</p>
+<p>It can also register tasks with a load balancer.</p>
+<p><strong>Q44.</strong> Why do CI pipelines re-authenticate to ECR each run?</p>
+<p><strong>Answer:</strong> The get-login-password token is valid for 12 hours</p>
+<p>They don't cache the token.</p>
+<h3 id="02-auto-scaling-load-balancing"><a href="../level-2/02-autoscaling-load-balancing/">02 · Auto Scaling &amp; Load Balancing</a><a class="headerlink" href="#02-auto-scaling-load-balancing" title="Permanent link">&para;</a></h3>
+<p><strong>Q45.</strong> What does an Auto Scaling Group do?</p>
+<p><strong>Answer:</strong> Keeps a fleet of identical instances running, replaces failed ones and scales with demand</p>
+<p>It maintains the fleet between min/max size.</p>
+<p><strong>Q46.</strong> What does an ALB health check do?</p>
+<p><strong>Answer:</strong> Probes targets, and failing ones stop receiving traffic</p>
+<p>It's defined on the target group.</p>
+<p><strong>Q47.</strong> Why must UserData be base64-encoded in the JSON launch-template example?</p>
+<p><strong>Answer:</strong> The CLI does not encode it for you when embedded in a JSON string</p>
+<p>Each instance runs the script once at boot.</p>
+<p><strong>Q48.</strong> What is a launch template?</p>
+<p><strong>Answer:</strong> A reusable blueprint of AMI, instance type, security groups and user data</p>
+<p>The ASG creates instances from it.</p>
+<h3 id="03-route-53-dns"><a href="../level-2/03-route53-dns/">03 · Route 53 &amp; DNS</a><a class="headerlink" href="#03-route-53-dns" title="Permanent link">&para;</a></h3>
+<p><strong>Q49.</strong> Why use an alias record rather than a CNAME for a zone apex?</p>
+<p><strong>Answer:</strong> Alias records work at the zone apex and point at AWS resources like an ALB, CloudFront or S3 website</p>
+<p>It's a Route 53-specific record type.</p>
+<p><strong>Q50.</strong> What is a hosted zone?</p>
+<p><strong>Answer:</strong> A container for DNS records for one domain, with its own 4 name servers</p>
+<p>For a real subdomain you'd add those name servers as NS records at your registrar.</p>
+<p><strong>Q51.</strong> What does TTL control?</p>
+<p><strong>Answer:</strong> How long resolvers cache a record before re-querying</p>
+<p>Time-to-live.</p>
+<p><strong>Q52.</strong> What is --caller-reference for?</p>
+<p><strong>Answer:</strong> A unique value per call so retried requests aren't treated as duplicates</p>
+<p>A timestamp works.</p>
+<h3 id="04-sns-sqs-messaging"><a href="../level-2/04-sns-sqs-messaging/">04 · SNS &amp; SQS Messaging</a><a class="headerlink" href="#04-sns-sqs-messaging" title="Permanent link">&para;</a></h3>
+<p><strong>Q53.</strong> How do SNS and SQS differ?</p>
+<p><strong>Answer:</strong> SNS is pub/sub fan-out to many subscribers; SQS is a queue where each message is processed by one consumer</p>
+<p>Combining SNS → multiple SQS queues is the fan-out pattern.</p>
+<p><strong>Q54.</strong> What does the visibility timeout do?</p>
+<p><strong>Answer:</strong> Hides a received-but-not-deleted message from other consumers to avoid double-processing</p>
+<p>The lesson sets it to 30 seconds.</p>
+<p><strong>Q55.</strong> What does maxReceiveCount: 5 mean?</p>
+<p><strong>Answer:</strong> A message received and left unprocessed 5 times moves to the dead-letter queue</p>
+<p>The DLQ stops failing messages blocking the queue forever.</p>
+<p><strong>Q56.</strong> How does a FIFO queue differ from a standard queue?</p>
+<p><strong>Answer:</strong> Ordered, exactly-once processing (.fifo suffix) versus at-least-once, best-effort order</p>
+<p>Standard queues are the default.</p>
+<h3 id="05-dynamodb-deep-dive"><a href="../level-2/05-dynamodb-deep-dive/">05 · DynamoDB Deep Dive</a><a class="headerlink" href="#05-dynamodb-deep-dive" title="Permanent link">&para;</a></h3>
+<p><strong>Q57.</strong> What does a composite key of customerId (partition) + orderId (sort) enable?</p>
+<p><strong>Answer:</strong> Fetching all orders for one customer in a single efficient query</p>
+<p>Items sharing a partition key are stored together and range-queryable by sort key.</p>
+<p><strong>Q58.</strong> What is a GSI?</p>
+<p><strong>Answer:</strong> An alternate partition/sort key over the same table, queryable independently with its own eventually-consistent copy</p>
+<p>It's the main tool for querying by something other than the primary key.</p>
+<p><strong>Q59.</strong> How does an LSI differ from a GSI?</p>
+<p><strong>Answer:</strong> Uses the same partition key with an alternate sort key, created only at table creation, supporting strongly consistent reads</p>
+<p>From the lesson's concept table.</p>
+<p><strong>Q60.</strong> When is PROVISIONED capacity cheaper than on-demand?</p>
+<p><strong>Answer:</strong> At steady high volume</p>
+<p>PAY_PER_REQUEST charges per read/write; PROVISIONED reserves RCU/WCU.</p>
+<h3 id="06-elastic-beanstalk"><a href="../level-2/06-elastic-beanstalk/">06 · Elastic Beanstalk</a><a class="headerlink" href="#06-elastic-beanstalk" title="Permanent link">&para;</a></h3>
+<p><strong>Q61.</strong> What does Elastic Beanstalk do?</p>
+<p><strong>Answer:</strong> Provisions and manages EC2, ASG, ALB and security groups from a single application upload</p>
+<p>You deploy code; Beanstalk manages the servers, while still allowing access to the underlying resources.</p>
+<p><strong>Q62.</strong> What is an application version?</p>
+<p><strong>Answer:</strong> One uploaded, deployable build (a zip in S3) with a kept history</p>
+<p>An environment runs one version.</p>
+<p><strong>Q63.</strong> What are .ebextensions?</p>
+<p><strong>Answer:</strong> Config files in your bundle that customize the environment's resources</p>
+<p>They can add packages, config and resources.</p>
+<p><strong>Q64.</strong> What do the web server and worker environment tiers do?</p>
+<p><strong>Answer:</strong> Web handles HTTP traffic; worker processes an SQS queue in the background</p>
+<p>Choose per environment.</p>
+<h3 id="07-secrets-manager-parameter-store"><a href="../level-2/07-secrets-parameter-store/">07 · Secrets Manager &amp; Parameter Store</a><a class="headerlink" href="#07-secrets-manager-parameter-store" title="Permanent link">&para;</a></h3>
+<p><strong>Q65.</strong> Why avoid putting a database password in a Lambda environment variable?</p>
+<p><strong>Answer:</strong> It's visible to anyone with read access to the function configuration and never rotates</p>
+<p>Use Secrets Manager or Parameter Store instead.</p>
+<p><strong>Q66.</strong> What does Secrets Manager offer that plain Parameter Store focuses less on?</p>
+<p><strong>Answer:</strong> Secrets with built-in automatic rotation</p>
+<p>Rotation is done via a Lambda function on a schedule.</p>
+<p><strong>Q67.</strong> What does get-secret-value return by default?</p>
+<p><strong>Answer:</strong> The AWSCURRENT version</p>
+<p>Every write creates a new version, and prior versions remain retrievable.</p>
+<p><strong>Q68.</strong> What does a SecureString parameter use?</p>
+<p><strong>Answer:</strong> KMS encryption</p>
+<p>String and StringList are plain.</p>
+<h3 id="08-cloudfront-cdn-basics"><a href="../level-2/08-cloudfront-cdn/">08 · CloudFront &amp; CDN Basics</a><a class="headerlink" href="#08-cloudfront-cdn-basics" title="Permanent link">&para;</a></h3>
+<p><strong>Q69.</strong> What does CloudFront do?</p>
+<p><strong>Answer:</strong> Caches content at edge locations so repeat requests are served near the visitor</p>
+<p>It also provides managed HTTPS in front of an S3 bucket.</p>
+<p><strong>Q70.</strong> What does Origin Access Control (OAC) allow?</p>
+<p><strong>Answer:</strong> CloudFront to authenticate to a private S3 bucket so the bucket stays non-public</p>
+<p>This is the CloudFront-recommended pattern, unlike the Level 1 public bucket policy.</p>
+<p><strong>Q71.</strong> What is an invalidation?</p>
+<p><strong>Answer:</strong> A request to purge specific paths from edge caches before the TTL expires</p>
+<p>It's used when content changes before the cache would naturally refresh.</p>
+<p><strong>Q72.</strong> What is a cache behavior?</p>
+<p><strong>Answer:</strong> Per-path-pattern rules: origin, what varies the cache key, and TTLs</p>
+<p>It lives inside the distribution configuration.</p>
+<h3 id="09-cost-management-billing"><a href="../level-2/09-cost-management-billing/">09 · Cost Management &amp; Billing</a><a class="headerlink" href="#09-cost-management-billing" title="Permanent link">&para;</a></h3>
+<p><strong>Q73.</strong> What does an AWS Budget do when the threshold is crossed?</p>
+<p><strong>Answer:</strong> Only notifies, unless you wire it to an automated action</p>
+<p>Crossing 100% does not stop anything from running or accruing cost.</p>
+<p><strong>Q74.</strong> What is Cost Explorer?</p>
+<p><strong>Answer:</strong> A queryable view of historical spend, groupable by service, tag or account</p>
+<p>It also provides forecasts.</p>
+<p><strong>Q75.</strong> What does a cost allocation tag enable?</p>
+<p><strong>Answer:</strong> Attributing spend to a project, team or environment in billing reports</p>
+<p>For example Project=training, activated for billing.</p>
+<p><strong>Q76.</strong> What is the Cost and Usage Report?</p>
+<p><strong>Answer:</strong> The most granular billing export, one row per line item, dumped to S3</p>
+<p>It's a CSV or Parquet dump.</p>
+<h3 id="10-project-scalable-web-app"><a href="../level-2/10-project-scalable-web-app/">10 · Project — Scalable Web App</a><a class="headerlink" href="#10-project-scalable-web-app" title="Permanent link">&para;</a></h3>
+<p><strong>Q77.</strong> How does the Level 2 project differ from the Level 1 capstone?</p>
+<p><strong>Answer:</strong> Containerized, load-balanced and globally distributed rather than serverless</p>
+<p>It uses ECS/Fargate, ALB, DynamoDB, Route 53 and CloudFront.</p>
+<p><strong>Q78.</strong> How does the API reach DynamoDB without credentials?</p>
+<p><strong>Answer:</strong> Via an IAM task role</p>
+<p>Secrets Manager would only hold third-party API keys.</p>
+<p><strong>Q79.</strong> What serves the static frontend?</p>
+<p><strong>Answer:</strong> CloudFront in front of a private S3 bucket via OAC</p>
+<p>It's cached at the edge.</p>
+<p><strong>Q80.</strong> What does the byRecency GSI support?</p>
+<p><strong>Answer:</strong> Querying recent notes across all users</p>
+<p>The base key is userId + noteId.</p>
+<h2 id="level-3-advanced">Level 3 · Advanced<a class="headerlink" href="#level-3-advanced" title="Permanent link">&para;</a></h2>
+<h3 id="advanced-vpc-peering-transit-gateway-vpn"><a href="../level-3/01-advanced-vpc/">Advanced VPC (Peering, Transit Gateway, VPN)</a><a class="headerlink" href="#advanced-vpc-peering-transit-gateway-vpn" title="Permanent link">&para;</a></h3>
+<p><strong>Q81.</strong> What does it mean that VPC peering is non-transitive?</p>
+<p><strong>Answer:</strong> If A peers with B and B with C, A cannot reach C through B</p>
+<p>Each pair needs its own connection.</p>
+<p><strong>Q82.</strong> After accepting a peering connection, what else is required?</p>
+<p><strong>Answer:</strong> Route table entries on each side and security groups allowing the traffic</p>
+<p>Accepting isn't enough.</p>
+<p><strong>Q83.</strong> Why use Transit Gateway instead of full-mesh peering?</p>
+<p><strong>Answer:</strong> Peering grows O(n²) (10 VPCs need 45 connections); TGW is hub-and-spoke with one attachment per VPC</p>
+<p>TGW also supports multicast and cross-region peering.</p>
+<p><strong>Q84.</strong> What must be true of VPC CIDR ranges to connect them?</p>
+<p><strong>Answer:</strong> They must not overlap</p>
+<p>Peering and Transit Gateway cannot route between colliding ranges.</p>
+<h3 id="kubernetes-on-aws-eks"><a href="../level-3/02-eks-kubernetes/">Kubernetes on AWS (EKS)</a><a class="headerlink" href="#kubernetes-on-aws-eks" title="Permanent link">&para;</a></h3>
+<p><strong>Q85.</strong> When should you choose EKS over ECS?</p>
+<p><strong>Answer:</strong> For multi-cloud portability, existing Kubernetes expertise or ecosystem tools that assume Kubernetes APIs</p>
+<p>ECS has a lower learning curve but is AWS-only.</p>
+<p><strong>Q86.</strong> How is the EKS control plane billed?</p>
+<p><strong>Answer:</strong> A flat hourly rate per cluster regardless of size, plus your worker compute</p>
+<p>It also takes 10–15 minutes to provision.</p>
+<p><strong>Q87.</strong> What does kubectl authentication rely on after update-kubeconfig?</p>
+<p><strong>Answer:</strong> aws eks get-token, so it fails if your AWS CLI credentials expire</p>
+<p>No long-lived credentials are stored in ~/.kube/config.</p>
+<p><strong>Q88.</strong> What does a managed node group handle?</p>
+<p><strong>Answer:</strong> AMI selection, patching and draining</p>
+<p>For serverless pods, use Fargate profiles instead.</p>
+<h3 id="step-functions-orchestration"><a href="../level-3/03-step-functions-orchestration/">Step Functions &amp; Orchestration</a><a class="headerlink" href="#step-functions-orchestration" title="Permanent link">&para;</a></h3>
+<p><strong>Q89.</strong> Why use Step Functions instead of chaining Lambdas in code?</p>
+<p><strong>Answer:</strong> The flow, retries and error handling become a visible first-class resource, not buried in code</p>
+<p>It also doesn't bill compute while waiting.</p>
+<p><strong>Q90.</strong> What language defines a state machine?</p>
+<p><strong>Answer:</strong> Amazon States Language (ASL), a JSON dialect</p>
+<p>The example defines ValidateOrder → IsValid → ProcessPayment → ShipOrder.</p>
+<p><strong>Q91.</strong> What do Retry and Catch provide?</p>
+<p><strong>Answer:</strong> Per-state exponential backoff and error branching without try/except code</p>
+<p>For example IntervalSeconds 2, MaxAttempts 3, BackoffRate 2.0.</p>
+<p><strong>Q92.</strong> What does the Choice state do?</p>
+<p><strong>Answer:</strong> Branches on a condition, e.g. $.valid being true, with a Default branch</p>
+<p>Invalid orders go to RejectOrder.</p>
+<h3 id="advanced-iam-scps-permission-boundaries"><a href="../level-3/04-advanced-iam/">Advanced IAM (SCPs, Permission Boundaries)</a><a class="headerlink" href="#advanced-iam-scps-permission-boundaries" title="Permanent link">&para;</a></h3>
+<p><strong>Q93.</strong> What can a Service Control Policy do?</p>
+<p><strong>Answer:</strong> Set a ceiling on what an account or OU can do; it never grants permissions</p>
+<p>A user with AdministratorAccess still can't do what an SCP denies.</p>
+<p><strong>Q94.</strong> What does a permission boundary cap?</p>
+<p><strong>Answer:</strong> The maximum permissions of an individual role or user, even if admin policies are attached</p>
+<p>It lets teams create roles without privilege escalation.</p>
+<p><strong>Q95.</strong> Effective permissions are the ____ of the attached policy and the boundary.</p>
+<p><strong>Answer:</strong> intersection</p>
+<p>AdministratorAccess on a bounded role is still capped at S3, Lambda and Logs.</p>
+<p><strong>Q96.</strong> What does NotAction with Deny in the region SCP do?</p>
+<p><strong>Answer:</strong> Denies everything except a short list of global services, outside the approved regions</p>
+<p>Common pattern for region lockdown.</p>
+<h3 id="terraform-on-aws"><a href="../level-3/05-terraform-on-aws/">Terraform on AWS</a><a class="headerlink" href="#terraform-on-aws" title="Permanent link">&para;</a></h3>
+<p><strong>Q97.</strong> Which Terraform command previews changes before applying them?</p>
+<p><strong>Answer:</strong> terraform plan</p>
+<p>It is the equivalent of CloudFormation change sets; always read it before apply.</p>
+<p><strong>Q98.</strong> What is the biggest conceptual shift from CloudFormation?</p>
+<p><strong>Answer:</strong> Terraform uses an explicit .tfstate file that you own</p>
+<p>Losing or corrupting it leads to Terraform and AWS disagreeing about what exists.</p>
+<p><strong>Q99.</strong> Why store state remotely (S3 with DynamoDB locking) in production?</p>
+<p><strong>Answer:</strong> Local state breaks when two people apply at once</p>
+<p>Locking prevents concurrent applies.</p>
+<p><strong>Q100.</strong> How does Terraform differ from CloudFormation in rollback on failure?</p>
+<p><strong>Answer:</strong> Terraform has no built-in rollback (manual), CloudFormation rolls back automatically</p>
+<p>From the comparison table.</p>
+<h3 id="cicd-codepipeline-codebuild-codedeploy"><a href="../level-3/06-cicd-codepipeline/">CI/CD (CodePipeline, CodeBuild, CodeDeploy)</a><a class="headerlink" href="#cicd-codepipeline-codebuild-codedeploy" title="Permanent link">&para;</a></h3>
+<p><strong>Q101.</strong> What are the roles of CodePipeline, CodeBuild and CodeDeploy?</p>
+<p><strong>Answer:</strong> Orchestration, build/test and deployment respectively</p>
+<p>Together they form AWS's native pipeline.</p>
+<p><strong>Q102.</strong> Where does CodeBuild read its commands from?</p>
+<p><strong>Answer:</strong> buildspec.yml in the repo root</p>
+<p>It has install, pre_build, build and post_build phases.</p>
+<p><strong>Q103.</strong> Why tag images with the commit SHA (CODEBUILD_RESOLVED_SOURCE_VERSION) instead of latest?</p>
+<p><strong>Answer:</strong> It makes rollbacks to a specific prior build possible</p>
+<p>CodeBuild injects that variable automatically.</p>
+<p><strong>Q104.</strong> What stages does the example pipeline move an artifact through?</p>
+<p><strong>Answer:</strong> Source → Build → Deploy</p>
+<p>CodePipeline defines the stages.</p>
+<h3 id="multi-region-disaster-recovery"><a href="../level-3/07-multi-region-disaster-recovery/">Multi-Region &amp; Disaster Recovery</a><a class="headerlink" href="#multi-region-disaster-recovery" title="Permanent link">&para;</a></h3>
+<p><strong>Q105.</strong> What is RTO?</p>
+<p><strong>Answer:</strong> How long you can tolerate being down</p>
+<p>RPO is how much data you can tolerate losing.</p>
+<p><strong>Q106.</strong> Which DR strategy keeps only the database running in the DR region with compute scaled to zero?</p>
+<p><strong>Answer:</strong> Pilot Light</p>
+<p>On failover you promote the replica and scale up compute.</p>
+<p><strong>Q107.</strong> Which is the cheapest strategy and what is its RTO?</p>
+<p><strong>Answer:</strong> Backup &amp; Restore, with hours of RTO</p>
+<p>Nothing runs in the DR region until a declared disaster.</p>
+<p><strong>Q108.</strong> How should you pick a DR strategy?</p>
+<p><strong>Answer:</strong> Work backward from business requirements, not default to the most expensive</p>
+<p>Costs rise with faster recovery.</p>
+<h3 id="advanced-monitoring-x-ray-tracing"><a href="../level-3/08-advanced-monitoring-xray/">Advanced Monitoring (X-Ray &amp; Tracing)</a><a class="headerlink" href="#advanced-monitoring-x-ray-tracing" title="Permanent link">&para;</a></h3>
+<p><strong>Q109.</strong> What does X-Ray provide that per-resource logs don't?</p>
+<p><strong>Answer:</strong> Distributed tracing: one trace ID follows a request across every service it touches</p>
+<p>Segments sharing a trace ID are stitched into one trace shown as a service map.</p>
+<p><strong>Q110.</strong> What does Mode=PassThrough do on Lambda?</p>
+<p><strong>Answer:</strong> Traces only if the incoming request already carries a trace header</p>
+<p>Mode=Active traces invocations subject to the sampling rule.</p>
+<p><strong>Q111.</strong> What does patch_all() do?</p>
+<p><strong>Answer:</strong> Auto-instruments libraries such as boto3 and requests so calls appear as subsegments</p>
+<p>A DynamoDB get_item shows up with its own latency.</p>
+<p><strong>Q112.</strong> What does filter-expression 'service("validateOrder") { fault }' find?</p>
+<p><strong>Answer:</strong> Traces where that service raised an error</p>
+<p>You can also filter by response time, status or annotations.</p>
+<h3 id="security-deep-dive-guardduty-waf-security-hub"><a href="../level-3/09-security-deep-dive/">Security Deep Dive (GuardDuty, WAF, Security Hub)</a><a class="headerlink" href="#security-deep-dive-guardduty-waf-security-hub" title="Permanent link">&para;</a></h3>
+<p><strong>Q113.</strong> What does GuardDuty analyze?</p>
+<p><strong>Answer:</strong> VPC Flow Logs, DNS logs and CloudTrail events against threat intelligence and anomaly models, with no agents to install</p>
+<p>Findings are scored 1–10 by severity.</p>
+<p><strong>Q114.</strong> How does WAF differ from a security group?</p>
+<p><strong>Answer:</strong> WAF inspects HTTP request content (SQLi patterns, rate limits, geo blocks); security groups filter by IP/port</p>
+<p>WAF attaches to CloudFront, ALB or API Gateway.</p>
+<p><strong>Q115.</strong> What does Security Hub provide?</p>
+<p><strong>Answer:</strong> Centralized findings</p>
+<p>It aggregates findings from services like GuardDuty.</p>
+<p><strong>Q116.</strong> How can high-severity GuardDuty findings trigger automated response?</p>
+<p><strong>Answer:</strong> Route them to EventBridge with a rule on severity</p>
+<p>The example matches severity &gt;= 7.</p>
+<h3 id="project-multi-tier-cicd-pipeline"><a href="../level-3/10-project-cicd-pipeline/">Project — Multi-Tier CI/CD Pipeline</a><a class="headerlink" href="#project-multi-tier-cicd-pipeline" title="Permanent link">&para;</a></h3>
+<p><strong>Q117.</strong> Why does the project promote the same image from staging to prod by SHA tag?</p>
+<p><strong>Answer:</strong> The exact image tested in staging is what is promoted, never a rebuild</p>
+<p>Two clusters share one ECR repository.</p>
+<p><strong>Q118.</strong> What does the Manual Approval stage do?</p>
+<p><strong>Answer:</strong> A human approves in the console or CLI before Deploy-Prod</p>
+<p>It sits between Deploy-Staging and Deploy-Prod.</p>
+<p><strong>Q119.</strong> What does least privilege mean for the CodeBuild role here?</p>
+<p><strong>Answer:</strong> It can push to ECR, write logs and read source, but cannot call ecs:UpdateService</p>
+<p>Each role gets only what its stage needs.</p>
+<p><strong>Q120.</strong> How is production deployed in the pipeline?</p>
+<p><strong>Answer:</strong> Blue/green via CodeDeploy to ECS</p>
+<p>Deploy-Prod targets the prod cluster.</p>
+<h2 id="level-4-master">Level 4 · Master<a class="headerlink" href="#level-4-master" title="Permanent link">&para;</a></h2>
+<h3 id="aws-well-architected-framework"><a href="../level-4/01-well-architected-framework/">AWS Well-Architected Framework</a><a class="headerlink" href="#aws-well-architected-framework" title="Permanent link">&para;</a></h3>
+<p><strong>Q121.</strong> How many pillars does the Well-Architected Framework have?</p>
+<p><strong>Answer:</strong> Six</p>
+<p>Operational Excellence, Security, Reliability, Performance Efficiency, Cost Optimization and Sustainability.</p>
+<p><strong>Q122.</strong> Which pillar asks 'Are you spending money only where it delivers value?'</p>
+<p><strong>Answer:</strong> Cost Optimization</p>
+<p>Each pillar has a core question.</p>
+<p><strong>Q123.</strong> What does a Well-Architected review make you do about trade-offs?</p>
+<p><strong>Answer:</strong> State them deliberately rather than by accident</p>
+<p>Higher reliability usually costs more.</p>
+<p><strong>Q124.</strong> What do unanswered questions surface as?</p>
+<p><strong>Answer:</strong> Risks, flagged as High or Medium Risk Issues</p>
+<p>The lens review report summarizes high and medium risks per pillar.</p>
+<h3 id="advanced-serverless-eventbridge-at-scale"><a href="../level-4/02-advanced-serverless-eventbridge/">Advanced Serverless (EventBridge at Scale)</a><a class="headerlink" href="#advanced-serverless-eventbridge-at-scale" title="Permanent link">&para;</a></h3>
+<p><strong>Q125.</strong> Why create custom event buses per domain?</p>
+<p><strong>Answer:</strong> So application events don't mix with AWS service events, and cross-account access can be scoped per bus</p>
+<p>The default bus receives AWS service events.</p>
+<p><strong>Q126.</strong> What does put-permission allow?</p>
+<p><strong>Answer:</strong> Another AWS account to publish to your bus without sharing credentials</p>
+<p>The shipping account uses its own IAM role.</p>
+<p><strong>Q127.</strong> What does content-based pattern matching on detail.tier achieve?</p>
+<p><strong>Answer:</strong> priorityFulfillment fires only for enterprise orders with no tier check in code</p>
+<p>The filtering happens at the bus level.</p>
+<p><strong>Q128.</strong> What does the schema registry offer?</p>
+<p><strong>Answer:</strong> Inferred schemas and generated typed code bindings, turning field knowledge from tribal to explicit</p>
+<p>For example OrderPlaced schemas for consumers.</p>
+<h3 id="data-lakes-analytics-s3-athena-glue-redshift"><a href="../level-4/03-data-lakes-analytics/">Data Lakes &amp; Analytics (S3, Athena, Glue, Redshift)</a><a class="headerlink" href="#data-lakes-analytics-s3-athena-glue-redshift" title="Permanent link">&para;</a></h3>
+<p><strong>Q129.</strong> What is the data lake pattern in this lesson?</p>
+<p><strong>Answer:</strong> Raw data in S3, described by the Glue Data Catalog and queried in place by Athena</p>
+<p>No data movement and no cluster to manage for ad-hoc queries.</p>
+<p><strong>Q130.</strong> Why partition S3 data by folders like year=2026/month=08/?</p>
+<p><strong>Answer:</strong> Query engines skip irrelevant partitions, which cuts cost since Athena bills per byte scanned</p>
+<p>Columnar compressed formats such as Parquet help too.</p>
+<p><strong>Q131.</strong> What does a Glue crawler do?</p>
+<p><strong>Answer:</strong> Infers schema and partitions from the S3 layout and registers a table in the Data Catalog</p>
+<p>Athena, Redshift Spectrum and EMR can all use the same catalog entry.</p>
+<p><strong>Q132.</strong> How is Athena billed?</p>
+<p><strong>Answer:</strong> Per query, by bytes scanned</p>
+<p>It has no persistent infrastructure to provision.</p>
+<h3 id="kubernetes-at-scale-eks-production-patterns"><a href="../level-4/04-eks-at-scale/">Kubernetes at Scale (EKS Production Patterns)</a><a class="headerlink" href="#kubernetes-at-scale-eks-production-patterns" title="Permanent link">&para;</a></h3>
+<p><strong>Q133.</strong> How does Karpenter differ from Cluster Autoscaler?</p>
+<p><strong>Answer:</strong> It provisions right-sized nodes directly for pending pods without ASGs, within seconds</p>
+<p>It can mix spot and on-demand and consolidates underutilized nodes.</p>
+<p><strong>Q134.</strong> What does a Karpenter NodePool define?</p>
+<p><strong>Answer:</strong> What kinds of nodes it's allowed to launch, e.g. instance categories and capacity types, with limits</p>
+<p>The example allows c, m and r categories on spot or on-demand.</p>
+<p><strong>Q135.</strong> What does GitOps with Argo CD mean?</p>
+<p><strong>Answer:</strong> The cluster continuously reconciles from a Git repo instead of kubectl apply from a laptop</p>
+<p>The Application points at a repoURL, revision and path.</p>
+<p><strong>Q136.</strong> What do managed node groups do that self-managed ones don't?</p>
+<p><strong>Answer:</strong> Handle draining and rolling updates for you</p>
+<p>Self-managed gives full control but requires reimplementing that lifecycle.</p>
+<h3 id="multi-account-strategy-organizations-control-tower"><a href="../level-4/05-multi-account-strategy/">Multi-Account Strategy (Organizations, Control Tower)</a><a class="headerlink" href="#multi-account-strategy-organizations-control-tower" title="Permanent link">&para;</a></h3>
+<p><strong>Q137.</strong> Why use multiple AWS accounts?</p>
+<p><strong>Answer:</strong> Hard blast-radius boundaries: billing, quotas and IAM are already account-scoped</p>
+<p>One team's mistake can't affect another's production.</p>
+<p><strong>Q138.</strong> What does Control Tower automate?</p>
+<p><strong>Answer:</strong> The landing zone: log archive and audit accounts, baseline SCPs and an Account Factory for compliant new accounts</p>
+<p>New accounts are compliant from creation.</p>
+<p><strong>Q139.</strong> What is the difference between detective and preventive guardrails?</p>
+<p><strong>Answer:</strong> Detective flags non-compliant resources via Config rules; preventive blocks actions outright via SCPs</p>
+<p>Control Tower enforces both.</p>
+<p><strong>Q140.</strong> Which is a typical OU?</p>
+<p><strong>Answer:</strong> Security, Infrastructure, Workloads/Prod, Workloads/NonProd, Sandbox</p>
+<p>Each OU carries its own SCPs.</p>
+<h3 id="cost-optimization-at-scale"><a href="../level-4/06-cost-optimization-at-scale/">Cost Optimization at Scale</a><a class="headerlink" href="#cost-optimization-at-scale" title="Permanent link">&para;</a></h3>
+<p><strong>Q141.</strong> Which commitment is the most flexible?</p>
+<p><strong>Answer:</strong> Compute Savings Plans, applying across EC2, Fargate and Lambda</p>
+<p>They give a slightly lower discount than instance-family-locked options.</p>
+<p><strong>Q142.</strong> What do Spot Instances offer and risk?</p>
+<p><strong>Answer:</strong> The largest discount, but they can be reclaimed</p>
+<p>Use them for interruption-tolerant workloads.</p>
+<p><strong>Q143.</strong> What does capacityOptimized allocation pick?</p>
+<p><strong>Answer:</strong> Spot pools with the deepest available capacity (lowest interruption risk) rather than the cheapest price</p>
+<p>Mixing several instance types widens the pool.</p>
+<p><strong>Q144.</strong> What does get-savings-plans-purchase-recommendation do?</p>
+<p><strong>Answer:</strong> Analyzes recent usage and recommends a commitment level that covers steady state without over-committing</p>
+<p>It looks back 30 or 60 days.</p>
+<h3 id="advanced-networking-direct-connect-global-accelerator"><a href="../level-4/07-advanced-networking/">Advanced Networking (Direct Connect, Global Accelerator)</a><a class="headerlink" href="#advanced-networking-direct-connect-global-accelerator" title="Permanent link">&para;</a></h3>
+<p><strong>Q145.</strong> How does Direct Connect differ from a VPN?</p>
+<p><strong>Answer:</strong> A dedicated physical connection that bypasses the public internet; a VPN still traverses it</p>
+<p>VPN has variable latency and shared bandwidth.</p>
+<p><strong>Q146.</strong> Why does Direct Connect provisioning take days to weeks?</p>
+<p><strong>Answer:</strong> It is physical: a provider uses AWS's Letter of Authorization to cross-connect at the location</p>
+<p>Unlike every other resource in the path.</p>
+<p><strong>Q147.</strong> What does a public VIF reach?</p>
+<p><strong>Answer:</strong> AWS public service endpoints such as S3 and DynamoDB over the dedicated link</p>
+<p>A private VIF connects to a VPC; a transit VIF to a Direct Connect gateway.</p>
+<p><strong>Q148.</strong> What is the production practice for Direct Connect resiliency?</p>
+<p><strong>Answer:</strong> Keep a Site-to-Site VPN as backup, failing over via BGP route priority</p>
+<p>The highest resiliency is separate connections at two locations with diverse providers.</p>
+<h3 id="compliance-governance-config-audit-manager"><a href="../level-4/08-compliance-governance/">Compliance &amp; Governance (Config, Audit Manager)</a><a class="headerlink" href="#compliance-governance-config-audit-manager" title="Permanent link">&para;</a></h3>
+<p><strong>Q149.</strong> What does AWS Config do?</p>
+<p><strong>Answer:</strong> Records every resource's configuration and changes and evaluates them against rules</p>
+<p>A NON_COMPLIANT finding shows which resource drifted and when.</p>
+<p><strong>Q150.</strong> How can Config rules be evaluated?</p>
+<p><strong>Answer:</strong> On change (near-real-time) or on a periodic schedule</p>
+<p>Unlike a point-in-time manual audit.</p>
+<p><strong>Q151.</strong> What is the lesson's advice on auto-remediation?</p>
+<p><strong>Answer:</strong> Good for well-understood low-risk fixes; test with Automatic: false first and review before auto-apply</p>
+<p>It could disrupt legitimate configurations.</p>
+<p><strong>Q152.</strong> How does compliance differ from threat detection?</p>
+<p><strong>Answer:</strong> Compliance verifies resources stay configured as policy requires and produces audit evidence</p>
+<p>Examples: encryption enabled, no public S3 buckets.</p>
+<h3 id="chaos-engineering-resilience-testing"><a href="../level-4/09-chaos-engineering-resilience/">Chaos Engineering &amp; Resilience Testing</a><a class="headerlink" href="#chaos-engineering-resilience-testing" title="Permanent link">&para;</a></h3>
+<p><strong>Q153.</strong> What is chaos engineering?</p>
+<p><strong>Answer:</strong> Deliberately injecting failures in a controlled way to see if the design survives them</p>
+<p>It's better than finding out in a real outage.</p>
+<p><strong>Q154.</strong> What makes FIS experiments safe on real infrastructure?</p>
+<p><strong>Answer:</strong> stopConditions, such as a CloudWatch alarm that halts the experiment</p>
+<p>FIS halts if the high-error-rate alarm fires.</p>
+<p><strong>Q155.</strong> Which action simulates a network partition between AZs?</p>
+<p><strong>Answer:</strong> aws:network:disrupt-connectivity</p>
+<p>It directly tests multi-AZ reliability claims.</p>
+<p><strong>Q156.</strong> What does PERCENT(50) selectionMode do in the template?</p>
+<p><strong>Answer:</strong> Targets half of the matching tagged instances</p>
+<p>The resourceTags select staging training-app instances.</p>
+<h3 id="capstone-project-production-grade-cloud-architecture"><a href="../level-4/10-capstone-project/">Capstone Project — Production-Grade Cloud Architecture</a><a class="headerlink" href="#capstone-project-production-grade-cloud-architecture" title="Permanent link">&para;</a></h3>
+<p><strong>Q157.</strong> What goes in the log-archive account?</p>
+<p><strong>Answer:</strong> Org CloudTrail and the Config aggregator</p>
+<p>It sits in the Security OU.</p>
+<p><strong>Q158.</strong> How is the Transit Gateway shared to workload accounts?</p>
+<p><strong>Answer:</strong> Via RAM (Resource Access Manager) to the Workloads OU</p>
+<p>The network account owns the TGW.</p>
+<p><strong>Q159.</strong> Why does remote Terraform state with DynamoDB locking live in a shared account bucket?</p>
+<p><strong>Answer:</strong> Both staging and prod pipelines share the same backend safely</p>
+<p>It prevents concurrent applies from corrupting state.</p>
+<p><strong>Q160.</strong> What do the OU-level SCPs do in the capstone?</p>
+<p><strong>Answer:</strong> Restrict regions and block root-user API calls org-wide</p>
+<p>New accounts come from Control Tower's Account Factory.</p>
+<h2 id="mixed-questions-across-all-levels">Mixed questions across all levels<a class="headerlink" href="#mixed-questions-across-all-levels" title="Permanent link">&para;</a></h2>
+<p><strong>Q161.</strong> You must give a new teammate access to deploy but not to billing or IAM. What is the best IAM approach?</p>
+<p><strong>Answer:</strong> Add them to a group with a least-privilege policy</p>
+<p>Groups carry policies for a team, and least privilege limits blast radius.</p>
+<p><strong>Q162.</strong> The root user's credentials leak. Why is that worse than a normal IAM user leak?</p>
+<p><strong>Answer:</strong> The root user cannot be restricted by any policy</p>
+<p>It has unrestricted access to everything, including billing.</p>
+<p><strong>Q163.</strong> A Lambda function needs to read one S3 bucket. Where should that permission live?</p>
+<p><strong>Answer:</strong> On the function's execution role</p>
+<p>The execution role, not the caller, determines what the function can access.</p>
+<p><strong>Q164.</strong> You want SSH to an EC2 instance only from your own IP. Which security group rule?</p>
+<p><strong>Answer:</strong> Inbound TCP 22 from your IP /32</p>
+<p>Restricting the source reduces who can even attempt to connect.</p>
+<p><strong>Q165.</strong> Your RDS database must accept connections only from your app servers. What is the standard pattern?</p>
+<p><strong>Answer:</strong> Allow port 5432 from the app's security group (--source-group)</p>
+<p>Source-group rules cover every current and future member of the app tier.</p>
+<p><strong>Q166.</strong> A private-subnet instance must download updates but never be reachable from the internet. What do you add?</p>
+<p><strong>Answer:</strong> A NAT Gateway</p>
+<p>NAT lets private resources make outbound calls only.</p>
+<p><strong>Q167.</strong> Your static site on S3 needs managed HTTPS, global caching and a bucket that stays private. What do you use?</p>
+<p><strong>Answer:</strong> CloudFront with Origin Access Control</p>
+<p>OAC lets CloudFront read a private bucket.</p>
+<p><strong>Q168.</strong> Traffic to your web tier spikes at night, and one instance is a single point of failure. What combination fixes both?</p>
+<p><strong>Answer:</strong> An Auto Scaling Group behind an Application Load Balancer</p>
+<p>The ASG replaces failed instances and scales; the ALB spreads traffic and health-checks targets.</p>
+<p><strong>Q169.</strong> Orders must be processed by one of many workers, and failed messages must not block the queue forever. What do you use?</p>
+<p><strong>Answer:</strong> SQS with a dead-letter queue</p>
+<p>SQS delivers each message to one consumer; the DLQ catches repeated failures.</p>
+<p><strong>Q170.</strong> One order event must trigger email, inventory and analytics independently. Which pattern?</p>
+<p><strong>Answer:</strong> SNS fan-out to multiple SQS queues</p>
+<p>SNS copies the message to every subscriber.</p>
+<p><strong>Q171.</strong> A DynamoDB table must return all orders for one customer in one efficient query. How do you model the key?</p>
+<p><strong>Answer:</strong> Partition key customerId and sort key orderId</p>
+<p>Items sharing a partition key are stored together and range-queryable.</p>
+<p><strong>Q172.</strong> A password for your database must be rotated automatically every 30 days. Which service?</p>
+<p><strong>Answer:</strong> Secrets Manager with rotation</p>
+<p>Secrets Manager supports automatic rotation via a Lambda function.</p>
+<p><strong>Q173.</strong> You want to be warned before your monthly spend passes 80% of $50, but a budget alone won't stop resources. What does it do?</p>
+<p><strong>Answer:</strong> Notifies you; stopping resources needs an extra automated action</p>
+<p>A budget only notifies unless wired to an action.</p>
+<p><strong>Q174.</strong> You describe your infrastructure in a template so it can be recreated and torn down with one command. What is this called and which native service does it?</p>
+<p><strong>Answer:</strong> Infrastructure as Code with CloudFormation</p>
+<p>The stack is created and deleted as a unit.</p>
+<p><strong>Q175.</strong> Several teams share one AWS account and one team's mistake took down another's production. What is the structural fix?</p>
+<p><strong>Answer:</strong> Separate accounts under Organizations</p>
+<p>Accounts give hard blast-radius boundaries for billing, quotas and IAM.</p>
+<p><strong>Q176.</strong> You want to stop anyone in an OU from using regions outside us-east-1 and us-west-2 even if they are administrators. What do you use?</p>
+<p><strong>Answer:</strong> A Service Control Policy</p>
+<p>SCPs set a ceiling for accounts and OUs.</p>
+<p><strong>Q177.</strong> A request passes through API Gateway, Lambda, DynamoDB and SQS and is slow somewhere. Which service shows where?</p>
+<p><strong>Answer:</strong> X-Ray tracing</p>
+<p>One trace ID follows the request across services.</p>
+<p><strong>Q178.</strong> Your RTO is minutes and your RPO is seconds, and you have a moderate budget. Which DR strategy fits best?</p>
+<p><strong>Answer:</strong> Warm standby</p>
+<p>Backup and restore takes hours; warm standby recovers in minutes with seconds-minutes of data loss.</p>
+<p><strong>Q179.</strong> Ad-hoc queries over years of S3 data should only be billed for what they scan. Which pairing fits?</p>
+<p><strong>Answer:</strong> Athena with a partitioned columnar format like Parquet</p>
+<p>Athena bills per byte scanned; partitions and columnar formats cut it.</p>
+<p><strong>Q180.</strong> Your pipeline builds a Docker image per commit. How should it tag images so you can roll back to a specific build?</p>
+<p><strong>Answer:</strong> With the commit SHA</p>
+<p>A SHA tag identifies exactly which build is running.</p>
+<hr />
+<p>More free practice: the <a href="../">AWS Mastery Path</a> curriculum, the <a href="https://learnmasterypath.com/interview-pack/">Interview Prep Pack</a> and the <a href="https://learnmasterypath.com/resume/">free resume ATS check</a>.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+  
+  <nav class="mp-related" aria-label="Related free courses">
+    <h2>Related free courses</h2>
+    <ul>
+      <li><a href="https://learnmasterypath.com/azure-mastery-path/">Azure</a></li><li><a href="https://learnmasterypath.com/gcp-mastery-path/">GCP</a></li><li><a href="https://learnmasterypath.com/ibm-cloud-mastery-path/">IBM Cloud</a></li><li><a href="https://learnmasterypath.com/adobe-mastery-path/">Adobe</a></li>
+      <li><a href="https://learnmasterypath.com/">All 100+ courses &rarr;</a></li>
+    </ul>
+  </nav>
+  
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: Home">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Home
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../cheat-sheet/" class="md-footer__link md-footer__link--next" aria-label="Next: Cheat Sheet">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Cheat Sheet
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+  <div class="mp-foot">
+    <div class="mp-foot-inner">
+      <a class="mp-foot-brand" href="https://learnmasterypath.com/"><svg class="mp-mark" viewBox="0 0 160 160" role="img" aria-label="Mastery Path logo">
+  <circle cx="80" cy="80" r="74" fill="#FAF7EF" stroke="#2FA98D" stroke-width="5"/>
+  <rect class="mp-bar mp-bar-1" x="36" y="90" width="17" height="24" rx="5" fill="#2FA98D"/>
+  <rect class="mp-bar mp-bar-2" x="59" y="74" width="17" height="40" rx="5" fill="#7FC9B7"/>
+  <rect class="mp-bar mp-bar-3" x="82" y="56" width="17" height="58" rx="5" fill="#E0B457"/>
+  <rect class="mp-bar mp-bar-4" x="105" y="38" width="17" height="76" rx="5" fill="#C97B4A"/>
+  <circle class="mp-dot" cx="44.5" cy="82" r="7" fill="#22261f"/>
+</svg><span>Mastery Path</span></a>
+      <nav class="mp-sitelinks" aria-label="Site and legal links">
+        <a href="https://learnmasterypath.com/">All courses</a>
+        <a href="https://learnmasterypath.com/about.html">About</a>
+        <a href="https://learnmasterypath.com/contact.html">Contact</a>
+        <a href="https://learnmasterypath.com/aws-mastery-path/privacy/">Privacy Policy</a>
+        <a href="https://learnmasterypath.com/terms.html">Terms</a>
+        <a href="https://learnmasterypath.com/aws-mastery-path/license/">License</a>
+        <a href="https://learnmasterypath.com/verify/">Verify a certificate</a>
+      </nav>
+    </div>
+    <p class="mp-license-note">
+      © 2026 Vinod Kumar Sigilipelli · Except where otherwise noted, lesson content is licensed under
+      <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> and code examples under the
+      <a href="https://opensource.org/license/mit">MIT License</a>.
+    </p>
+  </div>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.path", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.footer", "navigation.indexes", "toc.follow", "content.code.copy", "content.code.annotate", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.a7633da7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.a5f9d56c.min.js"></script>
+      
+        <script src="../javascripts/progress-tracker.js"></script>
+      
+        <script src="../javascripts/final-quiz.js"></script>
+      
+    
+  </body>
+</html>
